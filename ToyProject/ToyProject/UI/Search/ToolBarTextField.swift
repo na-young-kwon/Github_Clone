@@ -10,6 +10,7 @@ import SwiftUI
 struct ToolBarTextField: UIViewRepresentable {
     @Binding var text: String
     let placeholder: String
+    let completion: () -> Void
     
     // view가 생성될 때 최초 한 번 호출됨
     func makeUIView(context: Context) -> UITextField {
@@ -39,6 +40,7 @@ struct ToolBarTextField: UIViewRepresentable {
         
         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
             textField.resignFirstResponder()
+//            completion()
             return true
         }
         
