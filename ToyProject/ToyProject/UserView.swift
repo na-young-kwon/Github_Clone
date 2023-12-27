@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct UserView: View {
-    
-    
+
     
     var body: some View {
         Spacer(minLength: 10)
@@ -31,6 +30,11 @@ struct UserView: View {
                         HStack {
                             Text("followers 2")
                             Text("following 15")
+                            Button(action: {
+                                
+                            }, label: {
+                                Text("Button")
+                            })
                         }
                     }
                     Spacer()
