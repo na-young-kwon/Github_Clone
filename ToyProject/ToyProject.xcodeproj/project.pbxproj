@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		084299C32B3BF6C1009DA780 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084299C22B3BF6C1009DA780 /* DetailView.swift */; };
+		084299C52B3BF6D1009DA780 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084299C42B3BF6D1009DA780 /* WebView.swift */; };
 		08A8638D2B3BAF56003782E1 /* ToyProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A8638C2B3BAF56003782E1 /* ToyProjectApp.swift */; };
 		08A8638F2B3BAF56003782E1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A8638E2B3BAF56003782E1 /* ContentView.swift */; };
 		08A863912B3BAF57003782E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08A863902B3BAF57003782E1 /* Assets.xcassets */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		084299C22B3BF6C1009DA780 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailView.swift; path = ToyProject/UI/DetailView.swift; sourceTree = SOURCE_ROOT; };
+		084299C42B3BF6D1009DA780 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WebView.swift; path = ToyProject/UI/WebView.swift; sourceTree = SOURCE_ROOT; };
 		08A863892B3BAF56003782E1 /* ToyProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToyProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A8638C2B3BAF56003782E1 /* ToyProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyProjectApp.swift; sourceTree = "<group>"; };
 		08A8638E2B3BAF56003782E1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -170,6 +174,8 @@
 		08A997E22B3BB74B0014F24C /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				084299C22B3BF6C1009DA780 /* DetailView.swift */,
+				084299C42B3BF6D1009DA780 /* WebView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -338,6 +344,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				08A8638F2B3BAF56003782E1 /* ContentView.swift in Sources */,
+				084299C52B3BF6D1009DA780 /* WebView.swift in Sources */,
+				084299C32B3BF6C1009DA780 /* DetailView.swift in Sources */,
 				08A8638D2B3BAF56003782E1 /* ToyProjectApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
