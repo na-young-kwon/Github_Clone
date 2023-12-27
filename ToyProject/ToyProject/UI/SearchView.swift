@@ -9,8 +9,7 @@ import SwiftUI
 
 struct SearchView: View {
     @State private var text: String = ""
-    // 임시 데이터
-    private var searchHistory: [SearchHistory] = [SearchHistory(text: "검색어1"), SearchHistory(text: "검색어2")]
+    @StateObject var viewModel: SearchViewModel = SearchViewModel()
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -30,17 +29,17 @@ struct SearchView: View {
             }
             
             Text("최근 검색어")
-            List(searchHistory) { data in
+            List(viewModel.searchHistory) { data in
                 Text(data.text)
             }
-            .listStyle(.plain)
             .overlay(
                 Group {
-                    if searchHistory.isEmpty {
+                    if viewModel.searchHistory.isEmpty {
                         Text("최근 검색 기록이 없습니다.")
                     }
                 }
             )
+            .listStyle(.plain)
         }
         .padding(.horizontal)
         .padding(.top, 20)
