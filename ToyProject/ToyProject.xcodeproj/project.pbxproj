@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		082F093A2B3C0A7200A29EE9 /* SearchUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082F09392B3C0A7200A29EE9 /* SearchUsecase.swift */; };
-		082F093C2B3C0B4100A29EE9 /* UserNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082F093B2B3C0B4100A29EE9 /* UserNetwork.swift */; };
+		082F093A2B3C0A7200A29EE9 /* RepositoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082F09392B3C0A7200A29EE9 /* RepositoryUseCase.swift */; };
+		082F093C2B3C0B4100A29EE9 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082F093B2B3C0B4100A29EE9 /* NetworkService.swift */; };
 		084299C72B3BFBA7009DA780 /* SearchHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084299C62B3BFBA7009DA780 /* SearchHistory.swift */; };
 		084299C92B3BFBAF009DA780 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084299C82B3BFBAF009DA780 /* SearchView.swift */; };
 		0875A2282B3BFEA400733C59 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875A2272B3BFEA400733C59 /* DetailView.swift */; };
@@ -47,8 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		082F09392B3C0A7200A29EE9 /* SearchUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchUsecase.swift; path = ToyProject/SearchUsecase.swift; sourceTree = SOURCE_ROOT; };
-		082F093B2B3C0B4100A29EE9 /* UserNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserNetwork.swift; path = ToyProject/UserNetwork.swift; sourceTree = SOURCE_ROOT; };
+		082F09392B3C0A7200A29EE9 /* RepositoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RepositoryUseCase.swift; path = ToyProject/RepositoryUseCase.swift; sourceTree = SOURCE_ROOT; };
+		082F093B2B3C0B4100A29EE9 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkService.swift; path = ToyProject/NetworkService.swift; sourceTree = SOURCE_ROOT; };
 		084299C62B3BFBA7009DA780 /* SearchHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchHistory.swift; path = ToyProject/UI/SearchHistory.swift; sourceTree = SOURCE_ROOT; };
 		084299C82B3BFBAF009DA780 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchView.swift; path = ToyProject/UI/SearchView.swift; sourceTree = SOURCE_ROOT; };
 		0875A2272B3BFEA400733C59 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailView.swift; path = ToyProject/UI/DetailView.swift; sourceTree = SOURCE_ROOT; };
@@ -63,7 +63,7 @@
 		08A863A42B3BAF57003782E1 /* ToyProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToyProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A863A82B3BAF57003782E1 /* ToyProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyProjectUITests.swift; sourceTree = "<group>"; };
 		08A863AA2B3BAF57003782E1 /* ToyProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		08A863CA2B3BC408003782E1 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserView.swift; path = ToyProject/UserView.swift; sourceTree = SOURCE_ROOT; };
+		08A863CA2B3BC408003782E1 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserView.swift; path = ToyProject/UI/User/UserView.swift; sourceTree = SOURCE_ROOT; };
 		08A863CE2B3BF321003782E1 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserResponse.swift; path = ToyProject/UserResponse.swift; sourceTree = SOURCE_ROOT; };
 		08A863D02B3BF401003782E1 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserViewModel.swift; path = ToyProject/UserViewModel.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -180,9 +180,9 @@
 		08A997E12B3BB7450014F24C /* User */ = {
 			isa = PBXGroup;
 			children = (
-				08A863CA2B3BC408003782E1 /* UserView.swift */,
 				08A863CE2B3BF321003782E1 /* UserResponse.swift */,
 				08A863D02B3BF401003782E1 /* UserViewModel.swift */,
+				08A863CA2B3BC408003782E1 /* UserView.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -199,7 +199,7 @@
 		08A997E32B3BB7690014F24C /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				082F093B2B3C0B4100A29EE9 /* UserNetwork.swift */,
+				082F093B2B3C0B4100A29EE9 /* NetworkService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -207,7 +207,7 @@
 		08A997E42B3BB7CD0014F24C /* Usecase */ = {
 			isa = PBXGroup;
 			children = (
-				082F09392B3C0A7200A29EE9 /* SearchUsecase.swift */,
+				082F09392B3C0A7200A29EE9 /* RepositoryUseCase.swift */,
 			);
 			path = Usecase;
 			sourceTree = "<group>";
@@ -363,12 +363,12 @@
 			files = (
 				08A8638D2B3BAF56003782E1 /* ToyProjectApp.swift in Sources */,
 				0875A22A2B3BFEB400733C59 /* WebView.swift in Sources */,
-				082F093A2B3C0A7200A29EE9 /* SearchUsecase.swift in Sources */,
+				082F093A2B3C0A7200A29EE9 /* RepositoryUseCase.swift in Sources */,
 				08A863CB2B3BC408003782E1 /* UserView.swift in Sources */,
 				084299C92B3BFBAF009DA780 /* SearchView.swift in Sources */,
 				0875A2282B3BFEA400733C59 /* DetailView.swift in Sources */,
 				08A863D12B3BF401003782E1 /* UserViewModel.swift in Sources */,
-				082F093C2B3C0B4100A29EE9 /* UserNetwork.swift in Sources */,
+				082F093C2B3C0B4100A29EE9 /* NetworkService.swift in Sources */,
 				084299C72B3BFBA7009DA780 /* SearchHistory.swift in Sources */,
 				08A863CF2B3BF321003782E1 /* UserResponse.swift in Sources */,
 			);
