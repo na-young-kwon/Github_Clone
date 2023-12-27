@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SearchView: View {
     @State private var text: String = ""
+    // 임시 데이터
+    private var searchHistory: [SearchHistory] = [SearchHistory(text: "검색어1"), SearchHistory(text: "검색어2")]
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -16,7 +18,7 @@ struct SearchView: View {
             Text("깃헙 ID 검색")
                 .font(.headline)
                 .padding(.bottom, 10)
-                
+            
             TextField("search..", text: $text) {
                 print("Return 버튼 눌림")
             }
@@ -28,9 +30,8 @@ struct SearchView: View {
             }
             
             Text("최근 검색어")
-            List {
-                Text("검색어 1")
-                Text("검색어 2")
+            List(searchHistory) { data in
+                Text(data.text)
             }
             .listStyle(.plain)
         }
