@@ -107,6 +107,10 @@
 			children = (
 				08A8638C2B3BAF56003782E1 /* ToyProjectApp.swift */,
 				08A8638E2B3BAF56003782E1 /* ContentView.swift */,
+				08A997DF2B3BB7300014F24C /* UI */,
+				08A997E42B3BB7CD0014F24C /* Usecase */,
+				08A997E32B3BB7690014F24C /* Network */,
+				08A997E82B3BB8160014F24C /* DB */,
 				08A863902B3BAF57003782E1 /* Assets.xcassets */,
 				08A863922B3BAF57003782E1 /* ToyProject.entitlements */,
 				08A863932B3BAF57003782E1 /* Preview Content */,
@@ -137,6 +141,58 @@
 				08A863AA2B3BAF57003782E1 /* ToyProjectUITestsLaunchTests.swift */,
 			);
 			path = ToyProjectUITests;
+			sourceTree = "<group>";
+		};
+		08A997DF2B3BB7300014F24C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				08A997E02B3BB7410014F24C /* Search */,
+				08A997E12B3BB7450014F24C /* User */,
+				08A997E22B3BB74B0014F24C /* Detail */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		08A997E02B3BB7410014F24C /* Search */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		08A997E12B3BB7450014F24C /* User */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		08A997E22B3BB74B0014F24C /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		08A997E32B3BB7690014F24C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		08A997E42B3BB7CD0014F24C /* Usecase */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Usecase;
+			sourceTree = "<group>";
+		};
+		08A997E82B3BB8160014F24C /* DB */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DB;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
