@@ -34,6 +34,13 @@ struct SearchView: View {
                 Text(data.text)
             }
             .listStyle(.plain)
+            .overlay(
+                Group {
+                    if searchHistory.isEmpty {
+                        Text("최근 검색 기록이 없습니다.")
+                    }
+                }
+            )
         }
         .padding(.horizontal)
         .padding(.top, 20)
