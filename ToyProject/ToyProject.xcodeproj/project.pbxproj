@@ -20,6 +20,8 @@
 		08A863C52B3BB0C5003782E1 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 08A863C42B3BB0C5003782E1 /* URLImage */; };
 		08A863C72B3BB0C5003782E1 /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = 08A863C62B3BB0C5003782E1 /* URLImageStore */; };
 		08A863CB2B3BC408003782E1 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A863CA2B3BC408003782E1 /* UserView.swift */; };
+		08A863CF2B3BF321003782E1 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A863CE2B3BF321003782E1 /* UserResponse.swift */; };
+		08A863D12B3BF401003782E1 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A863D02B3BF401003782E1 /* UserViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		08A863A82B3BAF57003782E1 /* ToyProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyProjectUITests.swift; sourceTree = "<group>"; };
 		08A863AA2B3BAF57003782E1 /* ToyProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		08A863CA2B3BC408003782E1 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserView.swift; path = ToyProject/UserView.swift; sourceTree = SOURCE_ROOT; };
+		08A863CE2B3BF321003782E1 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserResponse.swift; path = ToyProject/UserResponse.swift; sourceTree = SOURCE_ROOT; };
+		08A863D02B3BF401003782E1 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserViewModel.swift; path = ToyProject/UserViewModel.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +170,8 @@
 			isa = PBXGroup;
 			children = (
 				08A863CA2B3BC408003782E1 /* UserView.swift */,
+				08A863CE2B3BF321003782E1 /* UserResponse.swift */,
+				08A863D02B3BF401003782E1 /* UserViewModel.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -343,6 +349,8 @@
 				08A8638F2B3BAF56003782E1 /* ContentView.swift in Sources */,
 				08A8638D2B3BAF56003782E1 /* ToyProjectApp.swift in Sources */,
 				08A863CB2B3BC408003782E1 /* UserView.swift in Sources */,
+				08A863D12B3BF401003782E1 /* UserViewModel.swift in Sources */,
+				08A863CF2B3BF321003782E1 /* UserResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
