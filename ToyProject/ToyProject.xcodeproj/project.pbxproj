@@ -17,6 +17,8 @@
 		08A863B92B3BAFB7003782E1 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 08A863B82B3BAFB7003782E1 /* Alamofire */; };
 		08A863BC2B3BAFC8003782E1 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 08A863BB2B3BAFC8003782E1 /* Realm */; };
 		08A863BE2B3BAFC8003782E1 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 08A863BD2B3BAFC8003782E1 /* RealmSwift */; };
+		08A863C52B3BB0C5003782E1 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 08A863C42B3BB0C5003782E1 /* URLImage */; };
+		08A863C72B3BB0C5003782E1 /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = 08A863C62B3BB0C5003782E1 /* URLImageStore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,8 +57,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08A863C72B3BB0C5003782E1 /* URLImageStore in Frameworks */,
 				08A863BE2B3BAFC8003782E1 /* RealmSwift in Frameworks */,
 				08A863BC2B3BAFC8003782E1 /* Realm in Frameworks */,
+				08A863C52B3BB0C5003782E1 /* URLImage in Frameworks */,
 				08A863B92B3BAFB7003782E1 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,6 +159,8 @@
 				08A863B82B3BAFB7003782E1 /* Alamofire */,
 				08A863BB2B3BAFC8003782E1 /* Realm */,
 				08A863BD2B3BAFC8003782E1 /* RealmSwift */,
+				08A863C42B3BB0C5003782E1 /* URLImage */,
+				08A863C62B3BB0C5003782E1 /* URLImageStore */,
 			);
 			productName = ToyProject;
 			productReference = 08A863892B3BAF56003782E1 /* ToyProject.app */;
@@ -231,6 +237,7 @@
 			packageReferences = (
 				08A863B72B3BAFB7003782E1 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				08A863BA2B3BAFC8003782E1 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				08A863C32B3BB0C5003782E1 /* XCRemoteSwiftPackageReference "url-image" */,
 			);
 			productRefGroup = 08A8638A2B3BAF56003782E1 /* Products */;
 			projectDirPath = "";
@@ -652,6 +659,14 @@
 				kind = branch;
 			};
 		};
+		08A863C32B3BB0C5003782E1 /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -669,6 +684,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 08A863BA2B3BAFC8003782E1 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		08A863C42B3BB0C5003782E1 /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 08A863C32B3BB0C5003782E1 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
+		};
+		08A863C62B3BB0C5003782E1 /* URLImageStore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 08A863C32B3BB0C5003782E1 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImageStore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
