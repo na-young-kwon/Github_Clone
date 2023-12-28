@@ -10,6 +10,7 @@ import URLImage
 
 struct UserView: View {
     @StateObject private var viewModel = UserViewModel()
+    @Binding var text: String
     
     var body: some View {
         NavigationView {
@@ -77,8 +78,8 @@ struct UserView: View {
             }
             .onAppear {
                 Task {
-                    await viewModel.fetchRepositories(forUser: "woobios97")
-                    await viewModel.fetchUser(forUser: "woobios97")
+                    await viewModel.fetchRepositories(forUser: text)
+                    await viewModel.fetchUser(forUser: text)
                 }
             }
         }
@@ -89,6 +90,6 @@ struct UserView: View {
 // Preview 코드
 struct UserView_Previews: PreviewProvider {
     static var previews: some View {
-        UserView()
+        UserView(text: .constant("woobios97"))
     }
 }
