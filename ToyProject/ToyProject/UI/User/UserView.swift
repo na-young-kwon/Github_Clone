@@ -6,35 +6,83 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct UserView: View {
     @StateObject private var viewModel = UserViewModel()
-
+    
     var body: some View {
         NavigationView {
+            
             VStack {
                 if viewModel.isLoading {
                     ProgressView()
                 } else {
+                    Spacer(minLength: 10)
+                    HStack {
+                        Spacer()
+                        if let urlString = viewModel.user?.avatarUrl, let url = URL(string: urlString) {
+                            URLImage(url) { image in
+                                image
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 120, height: 120)
+                                    .cornerRadius(100)
+                            }
+                        } else {
+                            Image(systemName: "person")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 80, height: 80)
+                                .cornerRadius(100)
+                        }
+                        Spacer()
+                        VStack(alignment: .leading, spacing: 18) {
+                            Text(viewModel.user?.login ?? "N/A") // 사용자 이름 표시
+                            Text(viewModel.user?.bio ?? "N/A")
+                            HStack {
+                                Text("followers \(viewModel.user?.followers ?? 0)")
+                                Text("following \(viewModel.user?.following ?? 0)")
+                            }
+                        }
+                        Spacer()
+                    }
+                    .frame(height: 120)
                     List(viewModel.repositories, id: \.id) { repository in
-                        VStack(alignment: .leading) {
-                            Text(repository.fullName ?? "")
-                                .font(.headline)
-                            Text("⭐️ Stars: \(repository.stargazersCount ?? 0)")
-                            Text("👀 Watchers: \(repository.watchersCount ?? 0)")
-                            Text("🍴 Forks: \(repository.forksCount ?? 0)")
-                            Text("Language: \(repository.language ?? "N/A")")
+                        VStack(alignment: .leading, spacing: 20) {
+                            HStack {
+                                Image(systemName: "book")
+                                Text(repository.fullName ?? "")
+                                    .fontWeight(.bold)
+                            }
+                            HStack(spacing: 10) {
+                                Text("⭐️")
+                                    .font(.caption)
+                                Text("\(repository.stargazersCount ?? 0)")
+                                    .foregroundColor(.secondary)
+                                Text("👀")
+                                    .font(.caption)
+                                Text("\(repository.watchersCount ?? 0)")
+                                    .foregroundColor(.secondary)
+                                Text("🍴")
+                                    .font(.caption)
+                                Text("\(repository.forksCount ?? 0)")
+                                    .foregroundColor(.secondary)
+                                Text("Language: \(repository.language ?? "N/A")")
+                                    .foregroundColor(.secondary)
+                            }
                         }
                     }
                 }
             }
-            .navigationBarTitle("Repositories")
             .onAppear {
                 Task {
                     await viewModel.fetchRepositories(forUser: "woobios97")
+                    await viewModel.fetchUser(forUser: "woobios97")
                 }
             }
         }
+        .listStyle(PlainListStyle())
     }
 }
 
@@ -44,84 +92,3 @@ struct UserView_Previews: PreviewProvider {
         UserView()
     }
 }
-
-
-
-//struct UserView: View {
-//    
-//    var body: some View {
-//        Spacer(minLength: 10)
-//        NavigationView {
-//            VStack(spacing: 0) {
-//                HStack {
-//                    Spacer()
-//                    Image(systemName: "person")
-//                        .renderingMode(.template)
-//                        .resizable()
-//                        .scaledToFit()
-//                        .foregroundColor(Color.orange)
-//                        .frame(width: 80, height: 80, alignment: .leading)
-//                        .cornerRadius(100)
-//                    Spacer()
-//                    VStack(alignment: .leading, spacing: 18) {
-//                        Text("UserName")
-//                        Text("Bio")
-//                        HStack {
-//                            Text("followers 2")
-//                            Text("following 15")
-//                            Button(action: {
-//                                
-//                            }, label: {
-//                                Text("Button")
-//                            })
-//                        }
-//                    }
-//                    Spacer()
-//                }
-//                .frame(height: 120)
-//
-//                Text("Repository")
-//                    .font(.title)
-//                    .fontWeight(.bold)
-//                    .frame(maxWidth: .infinity, alignment: .leading)
-//                    .padding(.leading)
-//                
-//                List(0 ..< 20) { item in
-//                    VStack(spacing: 15) {
-//                        HStack(spacing: 15) {
-//                            Image(systemName: "book.closed")
-//                            Text("AUTOMATIC1111/ stable-diffusion")
-//                                .foregroundColor(.blue)
-//                                .fontWeight(.semibold)
-//                            Spacer()
-//                        }
-//                        .font(.system(size: 13))
-//                        
-//                        HStack(spacing: 15) {
-//                            Image(systemName: "star")
-//                                .foregroundColor(.secondary)
-//                            Text("49,493")
-//                                .fontWeight(.light)
-//                            Image(systemName: "circle")
-//                                .foregroundColor(.secondary)
-//                            Text("Python")
-//                                .fontWeight(.light)
-//                            Image(systemName: "command")
-//                                .foregroundColor(.secondary)
-//                            Text("9,208")
-//                                .fontWeight(.light)
-//                            Spacer()
-//                        }
-//                        .font(.system(size: 12))
-//                    }
-//                }
-//                .listStyle(PlainListStyle())
-//            }
-//            .navigationBarTitleDisplayMode(.inline)
-//        }
-//    }
-//}
-//
-//#Preview {
-//    UserView()
-//}

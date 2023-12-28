@@ -15,6 +15,11 @@ struct UserResponse: Codable, Hashable, Identifiable {
     var language: String?
     var forksCount: Int?
     var htmlUrl: String?
+    var avatarUrl: String?
+    var login: String?
+    var bio: String?
+    var followers: Int?
+    var following: Int?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -24,5 +29,10 @@ struct UserResponse: Codable, Hashable, Identifiable {
         case language
         case forksCount = "forks_count"
         case htmlUrl = "html_url"
+        case avatarUrl = "avatar_url"
+        case login
+        case bio
+        case followers
+        case following
     }
 }
