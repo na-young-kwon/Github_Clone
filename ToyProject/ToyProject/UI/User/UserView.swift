@@ -19,60 +19,64 @@ struct UserView: View {
                 if viewModel.isLoading {
                     ProgressView()
                 } else {
-                    Spacer(minLength: 10)
-                    HStack {
-                        Spacer()
-                        if let urlString = viewModel.user?.avatarUrl, let url = URL(string: urlString) {
-                            URLImage(url) { image in
-                                image
+                    if let user = viewModel.user {
+                        Spacer(minLength: 10)
+                        HStack {
+                            Spacer()
+                            if let urlString = user.avatarUrl, let url = URL(string: urlString) {
+                                URLImage(url) { image in
+                                    image
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 120, height: 120)
+                                        .cornerRadius(100)
+                                }
+                            } else {
+                                Image(systemName: "person")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 120, height: 120)
+                                    .frame(width: 80, height: 80)
                                     .cornerRadius(100)
                             }
-                        } else {
-                            Image(systemName: "person")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 80, height: 80)
-                                .cornerRadius(100)
+                            Spacer()
+                            VStack(alignment: .leading, spacing: 18) {
+                                Text(user.login ?? "n/a") // 사용자 이름 표시
+                                Text(user.bio ?? "n/a")
+                                HStack {
+                                    Text("followers \(user.followers ?? 0)")
+                                    Text("following \(user.following ?? 0)")
+                                }
+                            }
+                            Spacer()
                         }
-                        Spacer()
-                        VStack(alignment: .leading, spacing: 18) {
-                            Text(viewModel.user?.login ?? "N/A") // 사용자 이름 표시
-                            Text(viewModel.user?.bio ?? "N/A")
-                            HStack {
-                                Text("followers \(viewModel.user?.followers ?? 0)")
-                                Text("following \(viewModel.user?.following ?? 0)")
+                        .frame(height: 120)
+                        List(viewModel.repositories, id: \.id) { repository in
+                            VStack(alignment: .leading, spacing: 20) {
+                                HStack {
+                                    Image(systemName: "book")
+                                    Text(repository.fullName ?? "")
+                                        .fontWeight(.bold)
+                                }
+                                HStack(spacing: 10) {
+                                    Text("⭐️")
+                                        .font(.caption)
+                                    Text("\(repository.stargazersCount ?? 0)")
+                                        .foregroundColor(.secondary)
+                                    Text("👀")
+                                        .font(.caption)
+                                    Text("\(repository.watchersCount ?? 0)")
+                                        .foregroundColor(.secondary)
+                                    Text("🍴")
+                                        .font(.caption)
+                                    Text("\(repository.forksCount ?? 0)")
+                                        .foregroundColor(.secondary)
+                                    Text("Language: \(repository.language ?? "N/A")")
+                                        .foregroundColor(.secondary)
+                                }
                             }
                         }
-                        Spacer()
-                    }
-                    .frame(height: 120)
-                    List(viewModel.repositories, id: \.id) { repository in
-                        VStack(alignment: .leading, spacing: 20) {
-                            HStack {
-                                Image(systemName: "book")
-                                Text(repository.fullName ?? "")
-                                    .fontWeight(.bold)
-                            }
-                            HStack(spacing: 10) {
-                                Text("⭐️")
-                                    .font(.caption)
-                                Text("\(repository.stargazersCount ?? 0)")
-                                    .foregroundColor(.secondary)
-                                Text("👀")
-                                    .font(.caption)
-                                Text("\(repository.watchersCount ?? 0)")
-                                    .foregroundColor(.secondary)
-                                Text("🍴")
-                                    .font(.caption)
-                                Text("\(repository.forksCount ?? 0)")
-                                    .foregroundColor(.secondary)
-                                Text("Language: \(repository.language ?? "N/A")")
-                                    .foregroundColor(.secondary)
-                            }
-                        }
+                    } else {
+                        Text("github ID가 없습니다 🙅🏻‍♂️")
                     }
                 }
             }
@@ -85,11 +89,10 @@ struct UserView: View {
         }
         .listStyle(PlainListStyle())
     }
-}
-
-// Preview 코드
-struct UserView_Previews: PreviewProvider {
-    static var previews: some View {
-        UserView(text: .constant("woobios97"))
+    
+    struct UserView_Previews: PreviewProvider {
+        static var previews: some View {
+            UserView(text: .constant("woobios97"))
+        }
     }
 }
