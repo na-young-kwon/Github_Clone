@@ -18,7 +18,7 @@ struct SearchView: View {
             VStack(alignment: .leading) {
                 
                 NavigationLink(isActive: $isActive) {
-                    UserView()
+                    UserView(text: $text)
                 } label: {
                     EmptyView()
                 }
