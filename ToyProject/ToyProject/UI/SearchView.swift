@@ -19,7 +19,7 @@ struct SearchView: View {
                 .padding(.bottom, 10)
             
             TextField("search..", text: $text) {
-                print("Return 버튼 눌림")
+                viewModel.saveSearch(SearchHistory(text: text))
             }
             .frame(height: 40)
             .padding(.bottom, 20)
@@ -43,6 +43,9 @@ struct SearchView: View {
         }
         .padding(.horizontal)
         .padding(.top, 20)
+        .onAppear {
+            viewModel.fetchSearchHistory()
+        }
     }
 }
 
