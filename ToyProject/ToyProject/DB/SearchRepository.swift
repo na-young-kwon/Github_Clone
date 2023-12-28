@@ -10,6 +10,7 @@ import Foundation
 protocol SearchDelegate {
     func saveSearchText(_ searchHistory: SearchHistory)
     func fetchSearchHistory() -> [SearchHistory]
+    func deleteSearchText(_ searchHistory: SearchHistory)
 }
 
 struct SearchRepository: SearchDelegate {
@@ -20,5 +21,10 @@ struct SearchRepository: SearchDelegate {
     
     func fetchSearchHistory() -> [SearchHistory] {
         RealmManager.shared.read()
+    }
+    
+    func deleteSearchText(_ searchHistory: SearchHistory) {
+        print("\(#fileID) \(#line)-line \(#function)")
+        RealmManager.shared.delete(searchHistory)
     }
 }

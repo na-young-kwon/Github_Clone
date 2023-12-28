@@ -19,4 +19,10 @@ class SearchViewModel: ObservableObject {
     func fetchSearchHistory() {
         searchHistory = usecase.fetchSearchHistory()
     }
+    
+    func deleteSearch(_ searchHistory: SearchHistory) {
+        print("\(#fileID) \(#line)-line \(#function)")
+        usecase.deleteSearchText(searchHistory)
+    }
+    
 }

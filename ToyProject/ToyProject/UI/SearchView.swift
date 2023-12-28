@@ -39,12 +39,15 @@ struct SearchView: View {
                 }
                 
                 Text("최근 검색어")
-                List(viewModel.searchHistory) { data in
-                    NavigationLink {
-                        UserView(text: .constant(data.text))
-                    } label: {
-                        Text(data.text)
+                List {
+                    ForEach(viewModel.searchHistory, id: \.id) { data in
+                        NavigationLink {
+                            UserView(text: .constant(data.text))
+                        } label: {
+                            Text(data.text)
+                        }
                     }
+                    .onDelete(perform: deleteItem)
                 }
                 .overlay(
                     Group {
@@ -63,8 +66,13 @@ struct SearchView: View {
             }
         }
     }
-}
-
-#Preview {
-    SearchView()
+    private func deleteItem(at indexSet: IndexSet) {
+        print("\(#fileID) \(#line)-line \(#function)")
+          for index in indexSet {
+              print("\(#fileID) \(#line)-line \(#function)")
+              let searchHistoryItem = viewModel.searchHistory[index]
+              viewModel.deleteSearch(searchHistoryItem) // ViewModel의 메소드 호출
+          }
+          viewModel.searchHistory.remove(atOffsets: indexSet) // 뷰 모델 업데이트
+      }
 }

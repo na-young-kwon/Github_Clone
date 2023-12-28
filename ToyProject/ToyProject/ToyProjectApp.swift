@@ -11,6 +11,8 @@ import SwiftUI
 struct ToyProjectApp: App {
     var body: some Scene {
         WindowGroup {
+            let _ = UserDefaults.standard.set(false, forKey: "_UIConstrainBasedLayoutLogUnsatisfialbe")
+            let _ = print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path)
             SearchView()
         }
     }
