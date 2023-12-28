@@ -79,16 +79,16 @@ struct UserView: View {
                             }
                         }
                     }
+                    .listStyle(.plain)
                 } else {
                     Text("github ID가 없습니다 🙅🏻‍♂️")
                 }
             }
         }
-        .listStyle(.plain)
         .onAppear {
             Task {
-                await viewModel.fetchRepositories(forUser: text)
                 await viewModel.fetchUser(forUser: text)
+                await viewModel.fetchRepositories(forUser: text)
             }
         }
     }

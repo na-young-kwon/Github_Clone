@@ -41,7 +41,7 @@ struct SearchView: View {
                 Text("최근 검색어")
                 List(viewModel.searchHistory) { data in
                     NavigationLink {
-                        
+                        UserView(text: .constant(data.text))
                     } label: {
                         Text(data.text)
                     }
