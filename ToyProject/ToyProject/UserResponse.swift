@@ -7,33 +7,32 @@
 
 import Foundation
 
-/*
- {
-    "full_name": "Woobios97/CompositionalLayout",
-    "html_url": "https://github.com/Woobios97/CompositionalLayout",
-    "stargazers_count": 0,
-    "watchers_count": 0,
-    "language": "Swift",
-    "forks_count": 0,
-}
- */
+struct UserResponse: Codable, Hashable, Identifiable {
+    let id: Int
+    var fullName: String?
+    var stargazersCount: Int?
+    var watchersCount: Int?
+    var language: String?
+    var forksCount: Int?
+    var htmlUrl: String?
+    var avatarUrl: String?
+    var login: String?
+    var bio: String?
+    var followers: Int?
+    var following: Int?
 
-//struct UserResponse: Codable {
-//    var user: User
-//}
-//
-//struct User: Codable, Identifiable {
-//    var id: UUID
-//    var fullName: String
-//    var stargazersCount: Int
-//    var watchersCount: Int
-//    var language: String
-//    var forksCount: Int
-//    var html_url: String
-//    
-//    enum CodingKeys: String, CodingKey {
-//        case fullName = "full_name"
-//        case language = "language"
-//        case htmlUrl = "html_url"
-//    }
-//}
+    enum CodingKeys: String, CodingKey {
+        case id
+        case fullName = "full_name"
+        case stargazersCount = "stargazers_count"
+        case watchersCount = "watchers_count"
+        case language
+        case forksCount = "forks_count"
+        case htmlUrl = "html_url"
+        case avatarUrl = "avatar_url"
+        case login
+        case bio
+        case followers
+        case following
+    }
+}
