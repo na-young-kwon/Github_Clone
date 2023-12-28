@@ -18,7 +18,7 @@ struct SearchView: View {
             VStack(alignment: .leading) {
                 
                 NavigationLink(isActive: $isActive) {
-                    UserView(text: $text)
+                    UserView()
                 } label: {
                     EmptyView()
                 }
@@ -40,11 +40,7 @@ struct SearchView: View {
                 
                 Text("최근 검색어")
                 List(viewModel.searchHistory) { data in
-                    NavigationLink {
-                        
-                    } label: {
-                        Text(data.text)
-                    }
+                    Text(data.text)
                 }
                 .overlay(
                     Group {

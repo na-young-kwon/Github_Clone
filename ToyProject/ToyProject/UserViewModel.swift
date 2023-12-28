@@ -12,12 +12,11 @@ import Alamofire
 class UserViewModel: ObservableObject {
     @Published var user: UserResponse?
     @Published var repositories: [UserResponse] = []
-    @Published var isLoading = false
+    @Published var isLoading = true
 
     private var repositoryUseCase = RepositoryUseCase()
 
     func fetchRepositories(forUser username: String) async {
-        isLoading = true
         do {
             repositories = try await repositoryUseCase.getRepositories(forUser: username)
         } catch {
@@ -28,7 +27,6 @@ class UserViewModel: ObservableObject {
     }
     
     func fetchUser(forUser username: String) async {
-        isLoading = true
         do {
             user = try await repositoryUseCase.getUser(foruser: username)
         } catch {

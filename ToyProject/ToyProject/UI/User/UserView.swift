@@ -13,44 +13,47 @@ struct UserView: View {
     @Binding var text: String
     
     var body: some View {
-        NavigationView {
-            
-            VStack {
-                if viewModel.isLoading {
-                    ProgressView()
-                } else {
-                    if let user = viewModel.user {
-                        Spacer(minLength: 10)
-                        HStack {
-                            Spacer()
-                            if let urlString = user.avatarUrl, let url = URL(string: urlString) {
-                                URLImage(url) { image in
-                                    image
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 120, height: 120)
-                                        .cornerRadius(100)
-                                }
-                            } else {
-                                Image(systemName: "person")
+        VStack {
+            if viewModel.isLoading {
+                ProgressView()
+            } else {
+                if let user = viewModel.user {
+                    Spacer(minLength: 10)
+                    HStack {
+                        Spacer()
+                        if let urlString = user.avatarUrl, let url = URL(string: urlString) {
+                            URLImage(url) { image in
+                                image
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 80, height: 80)
+                                    .frame(width: 120, height: 120)
                                     .cornerRadius(100)
                             }
-                            Spacer()
-                            VStack(alignment: .leading, spacing: 18) {
-                                Text(user.login ?? "n/a") // 사용자 이름 표시
-                                Text(user.bio ?? "n/a")
-                                HStack {
-                                    Text("followers \(user.followers ?? 0)")
-                                    Text("following \(user.following ?? 0)")
-                                }
-                            }
-                            Spacer()
+                        } else {
+                            Image(systemName: "person")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 80, height: 80)
+                                .cornerRadius(100)
                         }
-                        .frame(height: 120)
-                        List(viewModel.repositories, id: \.id) { repository in
+                        Spacer()
+                        VStack(alignment: .leading, spacing: 18) {
+                            Text(user.login ?? "n/a") // 사용자 이름 표시
+                            Text(user.bio ?? "n/a")
+                            HStack {
+                                Text("followers \(user.followers ?? 0)")
+                                Text("following \(user.following ?? 0)")
+                            }
+                        }
+                        Spacer()
+                    }
+                    .frame(height: 120)
+                    
+                    List(viewModel.repositories, id: \.id) { repository in
+                        
+                        NavigationLink {
+                            DetailView(url: repository.htmlUrl ?? "")
+                        } label: {
                             VStack(alignment: .leading, spacing: 20) {
                                 HStack {
                                     Image(systemName: "book")
@@ -75,19 +78,19 @@ struct UserView: View {
                                 }
                             }
                         }
-                    } else {
-                        Text("github ID가 없습니다 🙅🏻‍♂️")
                     }
-                }
-            }
-            .onAppear {
-                Task {
-                    await viewModel.fetchRepositories(forUser: text)
-                    await viewModel.fetchUser(forUser: text)
+                } else {
+                    Text("github ID가 없습니다 🙅🏻‍♂️")
                 }
             }
         }
-        .listStyle(PlainListStyle())
+        .listStyle(.plain)
+        .onAppear {
+            Task {
+                await viewModel.fetchRepositories(forUser: text)
+                await viewModel.fetchUser(forUser: text)
+            }
+        }
     }
     
     struct UserView_Previews: PreviewProvider {

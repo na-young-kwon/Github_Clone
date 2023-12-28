@@ -8,13 +8,11 @@
 import SwiftUI
 
 struct DetailView: View {
-    let url: String
-    
     var body: some View {
-        WebView(url: URL(string: url)!)
+        WebView(url: URL(string: "https://github.com/na-young-kwon")!)
     }
 }
 
 #Preview {
-    DetailView(url: "https://github.com/na-young-kwon/Github_Clone/commits/Feature/Search-User/")
+    DetailView()
 }

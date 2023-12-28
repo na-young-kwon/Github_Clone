@@ -16,25 +16,6 @@ struct Constants {
 // Network Layer
 class NetworkService {
     
-    /// 단일 레포지토리를 받아오는 함수
-    /// - Parameters:
-    ///   - username: 유저이름
-    ///   - repositoryName: 단일 레포지토리 이름
-    /// - Returns: UserResponse
-    func fetchRepository(username: String, repositoryName: String) async throws -> UserResponse {
-        let urlString = "\(Constants.repoURL)\(username)/\(repositoryName)"
-        guard let url = URL(string: urlString) else {
-            throw URLError(.badURL)
-        }
-        
-        let repository: UserResponse = try await AF.request(url)
-            .serializingDecodable(UserResponse.self)
-            .value
-        
-        return repository
-    }
-    
-    
     /// 레포지토리목록를 받아오는 함수
     /// - Parameter username: 유저의 이름을 파라미터로 받는다.
     /// - Returns: UserReponse
