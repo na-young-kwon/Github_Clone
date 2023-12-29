@@ -24,4 +24,12 @@ class SearchViewModel: ObservableObject {
         usecase.deleteSearchText(searchHistory)
     }
     
+    func deleteItem(at indexSet: IndexSet) {
+        for index in indexSet {
+            let searchHistoryItem = searchHistory[index]
+            deleteSearch(searchHistoryItem)
+        }
+        searchHistory.remove(atOffsets: indexSet)
+    }
+    
 }

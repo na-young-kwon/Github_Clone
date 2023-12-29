@@ -47,7 +47,7 @@ struct SearchView: View {
                             Text(data.text)
                         }
                     }
-                    .onDelete(perform: deleteItem)
+                    .onDelete(perform: viewModel.deleteItem(at:))
                 }
                 .overlay(
                     Group {
@@ -66,13 +66,4 @@ struct SearchView: View {
             }
         }
     }
-    
-    private func deleteItem(at indexSet: IndexSet) {
-        print("\(#fileID) \(#line)-line \(#function)")
-          for index in indexSet {
-              let searchHistoryItem = viewModel.searchHistory[index]
-              viewModel.deleteSearch(searchHistoryItem) // ViewModel의 메소드 호출
-          }
-          viewModel.searchHistory.remove(atOffsets: indexSet) // 뷰 모델 업데이트
-      }
 }
