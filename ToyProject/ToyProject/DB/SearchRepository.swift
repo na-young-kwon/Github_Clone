@@ -24,7 +24,6 @@ struct SearchRepository: SearchDelegate {
     }
     
     func deleteSearchText(_ searchHistory: SearchHistory) {
-        print("\(#fileID) \(#line)-line \(#function)")
         RealmManager.shared.delete(searchHistory)
     }
 }

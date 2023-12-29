@@ -19,7 +19,6 @@ struct SearchUsecase {
     }
     
     func deleteSearchText(_ searchHistory: SearchHistory) {
-        print("\(#fileID) \(#line)-line \(#function)")
         repository.deleteSearchText(searchHistory)
     }
 }

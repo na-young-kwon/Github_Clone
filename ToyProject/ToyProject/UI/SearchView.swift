@@ -66,10 +66,10 @@ struct SearchView: View {
             }
         }
     }
+    
     private func deleteItem(at indexSet: IndexSet) {
         print("\(#fileID) \(#line)-line \(#function)")
           for index in indexSet {
-              print("\(#fileID) \(#line)-line \(#function)")
               let searchHistoryItem = viewModel.searchHistory[index]
               viewModel.deleteSearch(searchHistoryItem) // ViewModel의 메소드 호출
           }

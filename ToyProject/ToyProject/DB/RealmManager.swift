@@ -10,7 +10,7 @@ import RealmSwift
 
 struct RealmManager {
     static var shared = RealmManager()
-    let realm = try! Realm()
+    private let realm = try! Realm()
     
     private init() {}
     
@@ -30,18 +30,14 @@ struct RealmManager {
         let searchHistoryForRealm = realm.objects(SearchHistoryForRealm.self)
         
         searchHistoryForRealm.forEach { history in
-            searchHistory.append(SearchHistory(text: history.text))
+            searchHistory.append(SearchHistory(id: history.id, text: history.text))
         }
         return searchHistory
     }
     
     func delete(_ searchHistory: SearchHistory) {
         do {
-            let realm = try Realm()
-            
-            let task = realm.objects(SearchHistoryForRealm.self).where {
-                $0.id == searchHistory.id
-            }
+            let task = realm.objects(SearchHistoryForRealm.self).where { $0.id == searchHistory.id }
             try realm.write {
                 realm.delete(task)
             }
