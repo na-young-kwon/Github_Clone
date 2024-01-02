@@ -16,6 +16,7 @@ struct UserView: View {
         VStack {
             if viewModel.isLoading {
                 ProgressView()
+                    .frame(width: 120, height: 120)
             } else {
                 if let user = viewModel.user {
                     Spacer(minLength: 10)
@@ -29,16 +30,20 @@ struct UserView: View {
                                     .frame(width: 120, height: 120)
                                     .cornerRadius(100)
                             }
+                            
+                            .frame(width: 120, height: 120) // 고정된 프레임 크기
+                            .cornerRadius(100)
                         } else {
                             Image(systemName: "person")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 80, height: 80)
+                                .frame(width: 120, height: 120)
                                 .cornerRadius(100)
                         }
-                        Spacer()
+                        
+                        Spacer() // 이미지와 텍스트 사이의 공간을 추가
                         VStack(alignment: .leading, spacing: 18) {
-                            Text(user.login ?? "n/a") // 사용자 이름 표시
+                            Text(user.login ?? "n/a")
                             Text(user.bio ?? "n/a")
                             HStack {
                                 Text("followers \(user.followers ?? 0)")
@@ -47,10 +52,10 @@ struct UserView: View {
                         }
                         Spacer()
                     }
-                    .frame(height: 120)
+                    .frame(height: 150) // 프레임의 높이를 조정하여 더 많은 공간 확보
+                    
                     
                     List(viewModel.repositories, id: \.id) { repository in
-                        
                         NavigationLink {
                             DetailView(url: repository.htmlUrl ?? "")
                         } label: {
@@ -92,10 +97,8 @@ struct UserView: View {
             }
         }
     }
-    
-    struct UserView_Previews: PreviewProvider {
-        static var previews: some View {
-            UserView(text: .constant("woobios97"))
-        }
-    }
+}
+
+#Preview {
+    UserView(text: .constant("woobios97"))
 }
