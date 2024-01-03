@@ -18,7 +18,7 @@ struct SearchView: View {
             VStack(alignment: .leading) {
                 
                 NavigationLink(isActive: $isActive) {
-                    UserView(text: $text)
+                    UserView(text: text)
                 } label: {
                     EmptyView()
                 }
@@ -42,7 +42,7 @@ struct SearchView: View {
                 List {
                     ForEach(viewModel.searchHistory, id: \.id) { data in
                         NavigationLink {
-                            UserView(text: .constant(data.text))
+                            UserView(text: data.text)
                         } label: {
                             Text(data.text)
                         }

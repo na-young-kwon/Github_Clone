@@ -10,7 +10,7 @@ import URLImage
 
 struct UserView: View {
     @StateObject private var viewModel = UserViewModel()
-    @Binding var text: String
+    let text: String
     
     var body: some View {
         VStack {
@@ -31,7 +31,7 @@ struct UserView: View {
                                     .cornerRadius(100)
                             }
                             
-                            .frame(width: 120, height: 120) // 고정된 프레임 크기
+                            .frame(width: 120, height: 120)
                             .cornerRadius(100)
                         } else {
                             Image(systemName: "person")
@@ -98,6 +98,6 @@ struct UserView: View {
     }
 }
 
-#Preview {
-    UserView(text: .constant("woobios97"))
-}
+//#Preview {
+//    UserView(text: .constant("woobios97"))
+//}

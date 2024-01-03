@@ -193,9 +193,9 @@
 		08A997E12B3BB7450014F24C /* User */ = {
 			isa = PBXGroup;
 			children = (
-				08A863CE2B3BF321003782E1 /* UserResponse.swift */,
-				08A863D02B3BF401003782E1 /* UserViewModel.swift */,
 				08A863CA2B3BC408003782E1 /* UserView.swift */,
+				08A863D02B3BF401003782E1 /* UserViewModel.swift */,
+				08A863CE2B3BF321003782E1 /* UserResponse.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
