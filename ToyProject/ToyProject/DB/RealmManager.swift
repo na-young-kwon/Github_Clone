@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-struct RealmManager {
+class RealmManager {
     static var shared = RealmManager()
     private let realm = try! Realm()
     
@@ -29,7 +29,7 @@ struct RealmManager {
         var searchHistory = [SearchHistory]()
         let searchHistoryForRealm = realm.objects(SearchHistoryForRealm.self)
         
-        searchHistoryForRealm.forEach { history in
+        for history in searchHistoryForRealm {
             searchHistory.append(SearchHistory(id: history.id, text: history.text))
         }
         return searchHistory
@@ -45,5 +45,4 @@ struct RealmManager {
             print("list를 삭제하는 데 실패했습니다 - \(error)")
         }
     }
-    
 }
