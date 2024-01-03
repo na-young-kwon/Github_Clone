@@ -18,7 +18,6 @@
 		0875A2302B3C0E4700733C59 /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875A22F2B3C0E4700733C59 /* SearchRepository.swift */; };
 		0875A2372B3D003C00733C59 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875A2362B3D003C00733C59 /* RealmManager.swift */; };
 		0875A2392B3D00E400733C59 /* SearchHistoryForRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875A2382B3D00E400733C59 /* SearchHistoryForRealm.swift */; };
-		08979D242B44F084008186F1 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08979D232B44F084008186F1 /* ImageCache.swift */; };
 		08A8638D2B3BAF56003782E1 /* ToyProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A8638C2B3BAF56003782E1 /* ToyProjectApp.swift */; };
 		08A863912B3BAF57003782E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08A863902B3BAF57003782E1 /* Assets.xcassets */; };
 		08A863952B3BAF57003782E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08A863942B3BAF57003782E1 /* Preview Assets.xcassets */; };
@@ -64,7 +63,6 @@
 		0875A22F2B3C0E4700733C59 /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchRepository.swift; path = ToyProject/DB/SearchRepository.swift; sourceTree = SOURCE_ROOT; };
 		0875A2362B3D003C00733C59 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RealmManager.swift; path = ToyProject/DB/RealmManager.swift; sourceTree = SOURCE_ROOT; };
 		0875A2382B3D00E400733C59 /* SearchHistoryForRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryForRealm.swift; sourceTree = "<group>"; };
-		08979D232B44F084008186F1 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		08A863892B3BAF56003782E1 /* ToyProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToyProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A8638C2B3BAF56003782E1 /* ToyProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyProjectApp.swift; sourceTree = "<group>"; };
 		08A863902B3BAF57003782E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -213,7 +211,6 @@
 			isa = PBXGroup;
 			children = (
 				082F093B2B3C0B4100A29EE9 /* NetworkService.swift */,
-				08979D232B44F084008186F1 /* ImageCache.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -381,7 +378,6 @@
 			files = (
 				08A8638D2B3BAF56003782E1 /* ToyProjectApp.swift in Sources */,
 				0875A22A2B3BFEB400733C59 /* WebView.swift in Sources */,
-				08979D242B44F084008186F1 /* ImageCache.swift in Sources */,
 				082F093A2B3C0A7200A29EE9 /* RepositoryUseCase.swift in Sources */,
 				0875A2302B3C0E4700733C59 /* SearchRepository.swift in Sources */,
 				08A863CB2B3BC408003782E1 /* UserView.swift in Sources */,
