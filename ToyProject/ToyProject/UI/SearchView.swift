@@ -15,7 +15,7 @@ struct SearchView: View {
     var body: some View {
         NavigationView {
             
-            VStack(alignment: .leading) {
+            VStack {
                 
                 NavigationLink(isActive: $isActive) {
                     UserView(text: text)
@@ -23,43 +23,50 @@ struct SearchView: View {
                     EmptyView()
                 }
                 
-                Text("깃헙 ID 검색")
-                    .font(.headline)
-                    .padding(.bottom, 10)
-                
-                TextField("search..", text: $text) {
-                    isActive = true
-                    viewModel.saveSearch(SearchHistory(text: text))
-                }
-                .frame(height: 40)
-                .padding(.bottom, 20)
-                .textFieldStyle(.roundedBorder)
-                .onAppear {
-                    UITextField.appearance().clearButtonMode = .whileEditing
-                }
-                
-                Text("최근 검색어")
-                List {
-                    ForEach(viewModel.searchHistory, id: \.id) { data in
-                        NavigationLink {
-                            UserView(text: data.text)
-                        } label: {
-                            Text(data.text)
-                        }
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("깃헙 ID 검색")
+                        .font(.headline)
+                        .padding(.bottom, 10)
+                    
+                    TextField("search..", text: $text) {
+                        isActive = true
+                        viewModel.saveSearch(SearchHistory(text: text))
                     }
-                    .onDelete(perform: viewModel.deleteItem(at:))
-                }
-                .overlay(
-                    Group {
-                        if viewModel.searchHistory.isEmpty {
-                            Text("최근 검색 기록이 없습니다.")
-                        }
+                    .frame(height: 40)
+                    .padding(.bottom, 20)
+                    .textFieldStyle(.roundedBorder)
+                    .onAppear {
+                        UITextField.appearance().clearButtonMode = .whileEditing
                     }
-                )
-                .listStyle(.plain)
+                }
+                .padding(.horizontal, 16)
+                
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("최근 검색어")
+                        .padding(.horizontal, 16)
+                    
+                    List {
+                        ForEach(viewModel.searchHistory, id: \.id) { data in
+                            NavigationLink {
+                                UserView(text: data.text)
+                            } label: {
+                                Text(data.text)
+                            }
+                        }
+                        .onDelete(perform: viewModel.deleteItem(at:))
+                    }
+                    .overlay(
+                        Group {
+                            if viewModel.searchHistory.isEmpty {
+                                Text("최근 검색 기록이 없습니다.")
+                            }
+                        }
+                    )
+                    .listStyle(.plain)
+                }
             }
-            .padding(.horizontal)
             .padding(.top, 20)
+//            .onTapGesture { hideKeyboard() }
             .onAppear {
                 text = ""
                 viewModel.fetchSearchHistory()
