@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 class RealmManager {
-    static var shared = RealmManager()
+    static let shared = RealmManager()
     private let realm = try! Realm()
     
     private init() {}
