@@ -8,7 +8,7 @@
 import Foundation
 
 struct SearchUsecase {
-    let repository: SearchRepository = SearchRepository()
+    private let repository: SearchRepository = SearchRepository()
     
     func saveSearchText(_ searchHistory: SearchHistory) {
         repository.saveSearchText(searchHistory)
