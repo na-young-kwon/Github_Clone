@@ -48,4 +48,13 @@ class NetworkService {
         return user
     }
     
+    func downloadImage(from urlString: String) async throws -> UIImage? {
+        guard let url = URL(string: urlString) else {
+            throw URLError(.badURL)
+        }
+        
+        let (data, _) = try await URLSession.shared.data(from: url)
+        return UIImage(data: data)
+    }
+    
 }
