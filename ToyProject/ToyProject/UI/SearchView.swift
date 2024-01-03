@@ -66,6 +66,7 @@ struct SearchView: View {
                 }
             }
             .padding(.top, 20)
+//            .onTapGesture { hideKeyboard() }
             .onAppear {
                 text = ""
                 viewModel.fetchSearchHistory()

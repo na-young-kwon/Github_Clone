@@ -15,6 +15,11 @@ class RealmManager {
     private init() {}
     
     func create(_ searchHistory: SearchHistory) {
+        guard searchHistory.text != ""
+                && realm.objects(SearchHistoryForRealm.self).filter({ $0.text == searchHistory.text }).isEmpty else {
+            return
+        }
+        
         do {
             try realm.write {
                 let search = SearchHistoryForRealm(id: searchHistory.id, text: searchHistory.text)
