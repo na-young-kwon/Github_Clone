@@ -6,14 +6,19 @@
 //
 
 import SwiftUI
+import URLImage
+import URLImageStore
 
 @main
 struct ToyProjectApp: App {
+    
+    private let urlImageService = URLImageService(fileStore: nil, inMemoryStore: URLImageInMemoryStore())
+
     var body: some Scene {
         WindowGroup {
-            let _ = UserDefaults.standard.set(false, forKey: "_UIConstrainBasedLayoutLogUnsatisfialbe")
             let _ = print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path)
             SearchView()
+                .environment(\.urlImageService, urlImageService)
         }
     }
 }
