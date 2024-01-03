@@ -17,8 +17,11 @@ struct UserView: View {
             if viewModel.isLoading {
                 ProgressView()
                     .frame(width: 120, height: 120)
-            } else {
-                if let user = viewModel.user {
+            }  else if let errorMessage = viewModel.errorMessage {
+                // 오류 메시지가 있을 경우 표시
+                Text(errorMessage)
+                    .foregroundColor(.red)
+            } else if let user = viewModel.user {
                     Spacer(minLength: 10)
                     HStack {
                         Spacer()
@@ -41,7 +44,7 @@ struct UserView: View {
                                 .cornerRadius(100)
                         }
                         
-                        Spacer() // 이미지와 텍스트 사이의 공간을 추가
+                        Spacer()
                         VStack(alignment: .leading, spacing: 18) {
                             Text(user.login ?? "n/a")
                             Text(user.bio ?? "n/a")
@@ -52,8 +55,7 @@ struct UserView: View {
                         }
                         Spacer()
                     }
-                    .frame(height: 150) // 프레임의 높이를 조정하여 더 많은 공간 확보
-                    
+                    .frame(height: 150)
                     
                     List(viewModel.repositories, id: \.id) { repository in
                         NavigationLink {
@@ -89,7 +91,6 @@ struct UserView: View {
                     Text("github ID가 없습니다 🙅🏻‍♂️")
                 }
             }
-        }
         .onAppear {
             Task {
                 await viewModel.fetchUser(forUser: text)
@@ -97,7 +98,3 @@ struct UserView: View {
         }
     }
 }
-
-//#Preview {
-//    UserView(text: .constant("woobios97"))
-//}
