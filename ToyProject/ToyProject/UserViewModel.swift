@@ -21,7 +21,7 @@ class UserViewModel: ObservableObject {
           isLoading = true
           do {
               user = try await repositoryUseCase.getUser(foruser: username)
-              await fetchRepositories(forUser: username) // 여기서 fetchRepositories 호출
+              await fetchRepositories(forUser: username)
           } catch let error as NetworkError {
               errorMessage = errorMessage(for: error)
           } catch {

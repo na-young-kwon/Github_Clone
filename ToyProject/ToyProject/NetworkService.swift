@@ -8,7 +8,6 @@
 import Alamofire
 import SwiftUI
 
-// 네트워크 오류를 나타내는 커스텀 열거형
 enum NetworkError: Error {
     case badURL
     case serverError(Int)

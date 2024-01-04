@@ -87,8 +87,6 @@ struct UserView: View {
                         }
                     }
                     .listStyle(.plain)
-                } else {
-                    Text("github ID가 없습니다 🙅🏻‍♂️")
                 }
             }
         .onAppear {
