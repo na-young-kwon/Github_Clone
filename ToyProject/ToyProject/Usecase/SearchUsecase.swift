@@ -11,10 +11,10 @@ struct SearchUsecase {
     private let repository: SearchRepository = SearchRepository()
     
     func fetchSearchHistory() -> [SearchHistory] {
-        return repository.fetchSearchHistory()
+        return repository.getSearchHistory()
     }
     
-    func deleteSearchText(_ searchHistory: SearchHistory) {
-        repository.deleteSearchText(searchHistory)
+    func deleteSearchText(_ historyId: Int) {
+        repository.deleteHistory(historyId)
     }
 }

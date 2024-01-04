@@ -85,6 +85,13 @@ struct UserView: View {
                         }
                     }
                     .listStyle(.plain)
+                    .overlay(
+                        Group {
+                            if viewModel.repositories.isEmpty {
+                                Text("이 사람은 레포가 없음.")
+                            }
+                        }
+                    )
                 } else {
                     Text("github ID가 없습니다 🙅🏻‍♂️")
                 }

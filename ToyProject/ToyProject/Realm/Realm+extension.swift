@@ -15,8 +15,7 @@ extension Realm {
     static var baseConfiguration: Configuration {
         // 이건 무슨 url 이지
         let supportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
-        print(supportURL)
-        print(supportURL.appendingPathComponent("main.realm"))
+//        print(supportURL)
         
         // 없으면 디렉토리 만들기
         if !FileManager.default.fileExists(atPath: supportURL.absoluteString) {

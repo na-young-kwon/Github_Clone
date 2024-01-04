@@ -10,16 +10,17 @@ import Alamofire
 
 struct RepositoryUseCase {
     private let networkService = NetworkService()
+    private let repository = SearchRepository()
     
     func getRepositories(forUser username: String) async throws -> [UserResponse] {
         return try await networkService.fetchRepositories(forUser: username)
     }
     
-    func getUser(foruser username: String) async throws -> UserResponse {
+    func getUser(forUser username: String) async throws -> UserResponse {
         return try await networkService.fetchUser(forUser: username)
     }
     
-//    func saveSearchText(_ searchHistory: SearchHistory) {
-//        RealmManager.shared.create(searchHistory)
-//    }
+    func saveSearchHistory(_ searchHistory: SearchHistory) {
+        repository.saveSearchHistory(searchHistory)
+    }
 }

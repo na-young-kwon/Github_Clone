@@ -12,9 +12,9 @@ class SearchHistoryForRealm: Object {
     @Persisted(primaryKey: true) var id: Int
     @Persisted var userName: String
     
-    convenience init(id: Int, text: String) {
+    convenience init(id: Int, userName: String) {
         self.init()
         self.id = id
-        self.text = text
+        self.userName = userName
     }
 }

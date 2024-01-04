@@ -15,9 +15,10 @@ class UserViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var avatarImage: UIImage?
     
-    private var repositoryUseCase = RepositoryUseCase()
+    // let 으로 변경
+    private let repositoryUseCase = RepositoryUseCase()
     
-    func fetchRepositories(forUser username: String) async {
+    private func fetchRepositories(forUser username: String) async {
         do {
             repositories = try await repositoryUseCase.getRepositories(forUser: username)
         } catch {
@@ -26,10 +27,13 @@ class UserViewModel: ObservableObject {
         isLoading = false // 모든 작업이 끝나면 isLoading 상태를 업데이트합니다.
     }
     
+    // 이거 수정하는게 좋을 듯
     func fetchUser(forUser username: String) async {
         isLoading = true
         do {
-            user = try await repositoryUseCase.getUser(foruser: username)
+            let userResponse = try await repositoryUseCase.getUser(forUser: username)
+            user = userResponse
+            repositoryUseCase.saveSearchHistory(SearchHistory(id: userResponse.id, text: userResponse.login ?? "login id 없음"))
         } catch {
             print("유저의 종합정보를 받아오는 데 실패했습니다 - \(error)")
         }

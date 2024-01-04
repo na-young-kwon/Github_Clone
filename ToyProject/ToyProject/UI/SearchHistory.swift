@@ -8,10 +8,10 @@
 import Foundation
 
 struct SearchHistory: Identifiable, Equatable {
-    let id: UUID
+    let id: Int
     let text: String
     
-    init(id: UUID = UUID(), text: String) {
+    init(id: Int, text: String) {
         self.id = id
         self.text = text
     }
