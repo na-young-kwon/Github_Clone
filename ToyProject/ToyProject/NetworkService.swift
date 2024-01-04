@@ -8,12 +8,19 @@
 import Alamofire
 import SwiftUI
 
+// 네트워크 오류를 나타내는 커스텀 열거형
+enum NetworkError: Error {
+    case badURL
+    case serverError(Int)
+    case connectionError(Error)
+    case unknownError
+}
+
 struct Constants {
     static let repoURL = "https://api.github.com/repos/"
     static let userURL = "https://api.github.com/users/"
 }
 
-// Network Layer
 class NetworkService {
     
     // 레포지토리 목록을 받아오는 함수
@@ -68,12 +75,4 @@ class NetworkService {
             return .unknownError
         }
     }
-}
-
-// 네트워크 오류를 나타내는 커스텀 열거형
-enum NetworkError: Error {
-    case badURL
-    case serverError(Int)
-    case connectionError(Error)
-    case unknownError
 }

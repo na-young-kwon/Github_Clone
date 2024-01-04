@@ -20,7 +20,7 @@ struct UserView: View {
             }  else if let errorMessage = viewModel.errorMessage {
                 // 오류 메시지가 있을 경우 표시
                 Text(errorMessage)
-                    .foregroundColor(.red)
+                    .foregroundColor(.primary)
             } else if let user = viewModel.user {
                     Spacer(minLength: 10)
                     HStack {
