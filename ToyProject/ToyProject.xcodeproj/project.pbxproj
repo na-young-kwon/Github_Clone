@@ -12,13 +12,15 @@
 		084299C72B3BFBA7009DA780 /* SearchHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084299C62B3BFBA7009DA780 /* SearchHistory.swift */; };
 		084299C92B3BFBAF009DA780 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084299C82B3BFBAF009DA780 /* SearchView.swift */; };
 		0872FB0C2B43FEED004D9A35 /* View+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0872FB0B2B43FEED004D9A35 /* View+extension.swift */; };
+		0872FB0E2B454AA4004D9A35 /* SearchDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0872FB0D2B454AA4004D9A35 /* SearchDao.swift */; };
+		0872FB132B454C7F004D9A35 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0872FB122B454C7F004D9A35 /* RealmManager.swift */; };
+		0872FB152B454C85004D9A35 /* SearchHistoryForRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0872FB142B454C85004D9A35 /* SearchHistoryForRealm.swift */; };
+		0872FB172B454CB4004D9A35 /* Realm+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0872FB162B454CB4004D9A35 /* Realm+extension.swift */; };
 		0875A2282B3BFEA400733C59 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875A2272B3BFEA400733C59 /* DetailView.swift */; };
 		0875A22A2B3BFEB400733C59 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875A2292B3BFEB400733C59 /* WebView.swift */; };
 		0875A22C2B3C09E300733C59 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875A22B2B3C09E300733C59 /* SearchViewModel.swift */; };
 		0875A22E2B3C0C5F00733C59 /* SearchUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875A22D2B3C0C5F00733C59 /* SearchUsecase.swift */; };
 		0875A2302B3C0E4700733C59 /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875A22F2B3C0E4700733C59 /* SearchRepository.swift */; };
-		0875A2372B3D003C00733C59 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875A2362B3D003C00733C59 /* RealmManager.swift */; };
-		0875A2392B3D00E400733C59 /* SearchHistoryForRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875A2382B3D00E400733C59 /* SearchHistoryForRealm.swift */; };
 		08A8638D2B3BAF56003782E1 /* ToyProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A8638C2B3BAF56003782E1 /* ToyProjectApp.swift */; };
 		08A863912B3BAF57003782E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08A863902B3BAF57003782E1 /* Assets.xcassets */; };
 		08A863952B3BAF57003782E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08A863942B3BAF57003782E1 /* Preview Assets.xcassets */; };
@@ -58,13 +60,15 @@
 		084299C62B3BFBA7009DA780 /* SearchHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchHistory.swift; path = ToyProject/UI/SearchHistory.swift; sourceTree = SOURCE_ROOT; };
 		084299C82B3BFBAF009DA780 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchView.swift; path = ToyProject/UI/SearchView.swift; sourceTree = SOURCE_ROOT; };
 		0872FB0B2B43FEED004D9A35 /* View+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+extension.swift"; sourceTree = "<group>"; };
+		0872FB0D2B454AA4004D9A35 /* SearchDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDao.swift; sourceTree = "<group>"; };
+		0872FB122B454C7F004D9A35 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		0872FB142B454C85004D9A35 /* SearchHistoryForRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryForRealm.swift; sourceTree = "<group>"; };
+		0872FB162B454CB4004D9A35 /* Realm+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+extension.swift"; sourceTree = "<group>"; };
 		0875A2272B3BFEA400733C59 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailView.swift; path = ToyProject/UI/DetailView.swift; sourceTree = SOURCE_ROOT; };
 		0875A2292B3BFEB400733C59 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WebView.swift; path = ToyProject/UI/WebView.swift; sourceTree = SOURCE_ROOT; };
 		0875A22B2B3C09E300733C59 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchViewModel.swift; path = ToyProject/UI/SearchViewModel.swift; sourceTree = SOURCE_ROOT; };
 		0875A22D2B3C0C5F00733C59 /* SearchUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchUsecase.swift; path = ToyProject/Usecase/SearchUsecase.swift; sourceTree = SOURCE_ROOT; };
-		0875A22F2B3C0E4700733C59 /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchRepository.swift; path = ToyProject/DB/SearchRepository.swift; sourceTree = SOURCE_ROOT; };
-		0875A2362B3D003C00733C59 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RealmManager.swift; path = ToyProject/DB/RealmManager.swift; sourceTree = SOURCE_ROOT; };
-		0875A2382B3D00E400733C59 /* SearchHistoryForRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryForRealm.swift; sourceTree = "<group>"; };
+		0875A22F2B3C0E4700733C59 /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchRepository.swift; path = ToyProject/Repository/SearchRepository.swift; sourceTree = SOURCE_ROOT; };
 		08A863892B3BAF56003782E1 /* ToyProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToyProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A8638C2B3BAF56003782E1 /* ToyProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyProjectApp.swift; sourceTree = "<group>"; };
 		08A863902B3BAF57003782E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -110,6 +114,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0872FB0F2B454B91004D9A35 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				0875A22F2B3C0E4700733C59 /* SearchRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		0872FB102B454BAB004D9A35 /* Dao */ = {
+			isa = PBXGroup;
+			children = (
+				0872FB0D2B454AA4004D9A35 /* SearchDao.swift */,
+			);
+			path = Dao;
+			sourceTree = "<group>";
+		};
+		0872FB112B454BEA004D9A35 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0872FB0B2B43FEED004D9A35 /* View+extension.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		08A863802B3BAF56003782E1 = {
 			isa = PBXGroup;
 			children = (
@@ -135,10 +163,11 @@
 			children = (
 				08A8638C2B3BAF56003782E1 /* ToyProjectApp.swift */,
 				08A997DF2B3BB7300014F24C /* UI */,
-				0872FB0B2B43FEED004D9A35 /* View+extension.swift */,
 				08A997E42B3BB7CD0014F24C /* Usecase */,
 				08A997E32B3BB7690014F24C /* Network */,
-				08A997E82B3BB8160014F24C /* DB */,
+				0872FB0F2B454B91004D9A35 /* Repository */,
+				0872FB102B454BAB004D9A35 /* Dao */,
+				08A997E82B3BB8160014F24C /* Realm */,
 				08A863902B3BAF57003782E1 /* Assets.xcassets */,
 				08A863922B3BAF57003782E1 /* ToyProject.entitlements */,
 				08A863932B3BAF57003782E1 /* Preview Content */,
@@ -177,6 +206,7 @@
 				08A997E02B3BB7410014F24C /* Search */,
 				08A997E12B3BB7450014F24C /* User */,
 				08A997E22B3BB74B0014F24C /* Detail */,
+				0872FB112B454BEA004D9A35 /* Utils */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -227,14 +257,14 @@
 			path = Usecase;
 			sourceTree = "<group>";
 		};
-		08A997E82B3BB8160014F24C /* DB */ = {
+		08A997E82B3BB8160014F24C /* Realm */ = {
 			isa = PBXGroup;
 			children = (
-				0875A22F2B3C0E4700733C59 /* SearchRepository.swift */,
-				0875A2362B3D003C00733C59 /* RealmManager.swift */,
-				0875A2382B3D00E400733C59 /* SearchHistoryForRealm.swift */,
+				0872FB122B454C7F004D9A35 /* RealmManager.swift */,
+				0872FB142B454C85004D9A35 /* SearchHistoryForRealm.swift */,
+				0872FB162B454CB4004D9A35 /* Realm+extension.swift */,
 			);
-			path = DB;
+			path = Realm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -381,18 +411,20 @@
 			files = (
 				08A8638D2B3BAF56003782E1 /* ToyProjectApp.swift in Sources */,
 				0875A22A2B3BFEB400733C59 /* WebView.swift in Sources */,
+				0872FB152B454C85004D9A35 /* SearchHistoryForRealm.swift in Sources */,
+				0872FB172B454CB4004D9A35 /* Realm+extension.swift in Sources */,
 				0872FB0C2B43FEED004D9A35 /* View+extension.swift in Sources */,
 				082F093A2B3C0A7200A29EE9 /* RepositoryUseCase.swift in Sources */,
 				0875A2302B3C0E4700733C59 /* SearchRepository.swift in Sources */,
+				0872FB132B454C7F004D9A35 /* RealmManager.swift in Sources */,
 				08A863CB2B3BC408003782E1 /* UserView.swift in Sources */,
 				0875A22E2B3C0C5F00733C59 /* SearchUsecase.swift in Sources */,
-				0875A2372B3D003C00733C59 /* RealmManager.swift in Sources */,
 				084299C92B3BFBAF009DA780 /* SearchView.swift in Sources */,
-				0875A2392B3D00E400733C59 /* SearchHistoryForRealm.swift in Sources */,
 				0875A2282B3BFEA400733C59 /* DetailView.swift in Sources */,
 				08A863D12B3BF401003782E1 /* UserViewModel.swift in Sources */,
 				082F093C2B3C0B4100A29EE9 /* NetworkService.swift in Sources */,
 				0875A22C2B3C09E300733C59 /* SearchViewModel.swift in Sources */,
+				0872FB0E2B454AA4004D9A35 /* SearchDao.swift in Sources */,
 				084299C72B3BFBA7009DA780 /* SearchHistory.swift in Sources */,
 				08A863CF2B3BF321003782E1 /* UserResponse.swift in Sources */,
 			);

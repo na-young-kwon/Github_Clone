@@ -12,10 +12,6 @@ class SearchViewModel: ObservableObject {
     
     private let usecase: SearchUsecase = SearchUsecase()
     
-    func saveSearch(_ searchHistory: SearchHistory) {
-        usecase.saveSearchText(searchHistory)
-    }
-    
     func fetchSearchHistory() {
         searchHistory = usecase.fetchSearchHistory()
     }

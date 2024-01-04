@@ -10,10 +10,6 @@ import Foundation
 struct SearchUsecase {
     private let repository: SearchRepository = SearchRepository()
     
-    func saveSearchText(_ searchHistory: SearchHistory) {
-        repository.saveSearchText(searchHistory)
-    }
-    
     func fetchSearchHistory() -> [SearchHistory] {
         return repository.fetchSearchHistory()
     }

@@ -35,6 +35,5 @@ class UserViewModel: ObservableObject {
         }
         await fetchRepositories(forUser: username) // 여기서도 비동기 호출을 진행합니다.
     }
-    
 }
 
