@@ -15,8 +15,7 @@ class RealmManager {
     private init() {}
     
     func create(_ searchHistory: SearchHistory) {
-        guard searchHistory.text != ""
-                && !searchHistory.text.starts(with: " ")
+        guard searchHistory.text.trimmingCharacters(in: .whitespaces) != ""
                 && realm.objects(SearchHistoryForRealm.self).filter({ $0.text == searchHistory.text }).isEmpty else {
             return
         }
@@ -32,13 +31,10 @@ class RealmManager {
     }
     
     func read() -> [SearchHistory] {
-        var searchHistory = [SearchHistory]()
-        let searchHistoryForRealm = realm.objects(SearchHistoryForRealm.self)
+        let historyForRealm = realm.objects(SearchHistoryForRealm.self)
+        let searchHistory = historyForRealm.map { SearchHistory(id: $0.id, text: $0.text) }
         
-        for history in searchHistoryForRealm {
-            searchHistory.append(SearchHistory(id: history.id, text: history.text))
-        }
-        return searchHistory
+        return Array(searchHistory)
     }
     
     func delete(_ searchHistory: SearchHistory) {

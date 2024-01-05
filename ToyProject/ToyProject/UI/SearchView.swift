@@ -23,7 +23,7 @@ struct SearchView: View {
                     EmptyView()
                 }
                 
-                VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading) {
                     Text("깃헙 ID 검색")
                         .font(.headline)
                         .padding(.bottom, 10)
@@ -41,9 +41,10 @@ struct SearchView: View {
                 }
                 .padding(.horizontal, 16)
                 
-                VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading) {
                     Text("최근 검색어")
                         .padding(.horizontal, 16)
+                        .padding(.bottom, 10)
                     
                     List {
                         ForEach(viewModel.searchHistory, id: \.id) { data in

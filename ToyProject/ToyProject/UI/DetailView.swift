@@ -12,7 +12,7 @@ struct DetailView: View {
     
     var body: some View {
         if let url = URL(string: url) {
-            WebView(url: url)
+            WebView(url: url, urlType: .localUrl)
         } else {
             Text("존재하지 않는 레포지토리 입니다.")
         }
