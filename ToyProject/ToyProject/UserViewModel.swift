@@ -40,6 +40,10 @@ class UserViewModel: ObservableObject {
               errorMessage = "깃허브 ID가 없습니다. 🙅🏻‍♂️"
           }
       }
+    
+    func saveSearch(_ searchHistory: SearchHistory) {
+        repositoryUseCase.saveSearchText(searchHistory)
+    }
 }
 
 extension UserViewModel {

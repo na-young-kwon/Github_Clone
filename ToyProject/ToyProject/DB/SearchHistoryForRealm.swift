@@ -9,12 +9,16 @@ import Foundation
 import RealmSwift
 
 class SearchHistoryForRealm: Object {
-    @Persisted(primaryKey: true) var id: UUID
-    @Persisted var text: String
+    @Persisted(primaryKey: true) var userID: Int
+    @Persisted var userName: String
+    @Persisted var createdAt: Date = Date()
+    @Persisted var age: Int
+    @Persisted var isNew: Bool = false
+    @Persisted var nickName: String = ""
     
-    convenience init(id: UUID, text: String) {
+    convenience init(id: Int, userName: String) {
         self.init()
-        self.id = id
-        self.text = text
+        self.userID = id
+        self.userName = userName
     }
 }

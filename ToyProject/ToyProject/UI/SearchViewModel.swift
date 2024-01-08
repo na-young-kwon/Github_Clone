@@ -12,9 +12,10 @@ class SearchViewModel: ObservableObject {
     
     private let usecase: SearchUsecase = SearchUsecase()
     
-    func saveSearch(_ searchHistory: SearchHistory) {
-        usecase.saveSearchText(searchHistory)
-    }
+    // 이제 필요 없음
+//    func saveSearch(_ searchHistory: SearchHistory) {
+//        usecase.saveSearchText(searchHistory)
+//    }
     
     func fetchSearchHistory() {
         searchHistory = usecase.fetchSearchHistory()
@@ -24,7 +25,7 @@ class SearchViewModel: ObservableObject {
         for index in indexSet {
             let searchHistoryItem = searchHistory[index]
             usecase.deleteSearchText(searchHistoryItem)
-            searchHistory = usecase.fetchSearchHistory()
         }
+        searchHistory = usecase.fetchSearchHistory()
     }
 }

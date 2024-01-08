@@ -96,5 +96,8 @@ struct UserView: View {
                 await viewModel.fetchUser(forUser: text)
             }
         }
+        .onReceive(viewModel.$user, perform: { user in
+            viewModel.saveSearch(SearchHistory(id: user?.id ?? 0, text: user?.login ?? ""))
+        })
     }
 }

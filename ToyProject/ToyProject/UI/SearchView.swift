@@ -30,7 +30,6 @@ struct SearchView: View {
                     
                     TextField("search".getLocalizedString(), text: $text) {
                         isActive = true
-                        viewModel.saveSearch(SearchHistory(text: text))
                     }
                     .frame(height: 40)
                     .padding(.bottom, 20)
