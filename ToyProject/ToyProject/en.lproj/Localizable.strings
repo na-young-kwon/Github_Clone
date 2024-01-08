@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  ToyProject
+
+  Created by nayoung kwon on 1/5/24.
+  
+*/
+
+
+"search_ID" = "search ID";
+"search" = "search...";
+"search_history" = "Search History";
+"search_history_is_empty" = "Search History is empty";
+"no_github_ID" = "no github ID";
+"language_n" = "Language: %@";
+"follower_n" = "followers: %d";
+"following_n" = "following: %d";

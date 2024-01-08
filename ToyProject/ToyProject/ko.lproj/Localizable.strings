@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  ToyProject
+
+  Created by nayoung kwon on 1/5/24.
+  
+*/
+
+
+"search_ID" = "깃헙 ID 검색";
+"search" = "검색어 입력..";
+"search_history" = "최근 검색어";
+"search_history_is_empty" = "최근 검색 기록이 없습니다.";
+"no_github_ID" = "github ID가 없습니다 🙅🏻‍♂️";
+"language_n" = "언어: %@";
+"follower_n" = "팔로워: %d";
+"following_n" = "팔로잉: %d";

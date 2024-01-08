@@ -24,11 +24,11 @@ struct SearchView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("깃헙 ID 검색")
+                    Text("search_ID".getLocalizedString())
                         .font(.headline)
                         .padding(.bottom, 10)
                     
-                    TextField("search..", text: $text) {
+                    TextField("search".getLocalizedString(), text: $text) {
                         isActive = true
                         viewModel.saveSearch(SearchHistory(text: text))
                     }
@@ -42,7 +42,7 @@ struct SearchView: View {
                 .padding(.horizontal, 16)
                 
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("최근 검색어")
+                    Text("search_history".getLocalizedString())
                         .padding(.horizontal, 16)
                     
                     List {
@@ -58,7 +58,7 @@ struct SearchView: View {
                     .overlay(
                         Group {
                             if viewModel.searchHistory.isEmpty {
-                                Text("최근 검색 기록이 없습니다.")
+                                Text("search_history_is_empty".getLocalizedString())
                             }
                         }
                     )
