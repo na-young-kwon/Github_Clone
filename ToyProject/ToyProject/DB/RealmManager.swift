@@ -9,13 +9,14 @@ import Foundation
 import RealmSwift
 
 class RealmManager {
-    static var shared = RealmManager()
+    static let shared = RealmManager()
     private let realm = try! Realm()
     
     private init() {}
     
     func create(_ searchHistory: SearchHistory) {
         guard searchHistory.text != ""
+                && !searchHistory.text.starts(with: " ")
                 && realm.objects(SearchHistoryForRealm.self).filter({ $0.text == searchHistory.text }).isEmpty else {
             return
         }

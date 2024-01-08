@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  ToyProject
+
+  Created by 김우섭 on 1/7/24.
+  
+*/
+
+"깃허브 ID가 없습니다. 🙅🏻‍♂️" = "There is no GitHub ID. 🙅🏻‍♂️";
+"깃헙 ID 검색" = "GitHub ID Search";
+"네트워크 연결 오류가 발생했습니다." = "A network connection error occurred.";
+"서버 오류가 발생했습니다. 오류 코드: %lld" = "A server error occurred. Error code: %lld";
+"언어: %@" = "language: %@";
+"존재하지 않는 레포지토리 입니다." = "This repository does not exist.";
+"최근 검색 기록이 없습니다." = "No recent search history.";
+"최근 검색어" = "Recent searches";
+"팔로워 %lld" = "followers %lld";
+"팔로잉 %lld" = "following %lld";
