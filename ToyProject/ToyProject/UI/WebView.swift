@@ -8,42 +8,48 @@
 import SwiftUI
 import WebKit
 
+protocol WebViewHandlerDelegate {
+    func receivedJsonValueFromWebView(value: [String: Any?])
+    func receivedStringValueFromWebView(value: String)
+}
+
 enum WebUrlType {
     case localUrl, publicUrl
 }
 
-struct WebView: UIViewRepresentable {
+struct WebView: UIViewRepresentable, WebViewHandlerDelegate {
     let url: URL
     var urlType: WebUrlType
     
-    static let webMessage = "fromWebPage"
+    func receivedJsonValueFromWebView(value: [String : Any?]) {
+        // VM 에서 이 메서드를 호출해서 View를 바꾸도록 구현
+        print("웹에서 JSON 데이터 받음: \(value)")
+    }
+    
+    func receivedStringValueFromWebView(value: String) {
+        // VM 에서 이 메서드를 호출해서 View를 바꾸도록 구현
+        print("웹에서 String 데이터 받음: \(value)")
+    }
     
     func makeUIView(context: Context) -> WKWebView {
-
+        let preferences = WKPreferences()
+        preferences.javaScriptEnabled = true // 이거 꼭 해줘야 자바스크립트 메서드 호출 가능
+        
         let config = WKWebViewConfiguration()
-        config.userContentController.add(context.coordinator, name: WebView.webMessage)
+        config.userContentController.add(context.coordinator, name: "iOSNative")
+        config.preferences = preferences
         
         let webView = WKWebView(frame: .zero, configuration: config)
         webView.navigationDelegate = context.coordinator   // 웹의 탐색 동작을 관리하는데 사용하는 개체
         webView.allowsBackForwardNavigationGestures = true // 가로로 스와이프 동작이 페이지 탐색을 앞뒤로 트리거 하는지 여부
         webView.scrollView.isScrollEnabled = true          // 스크롤뷰에서 스크롤 가능 여부
         
-        
-        // 함수명을 적으면 됨
-        let value = "valueFromView"
-        webView.evaluateJavaScript("valueGotFromIOS(\(value))") { result, error in // evaluateJavaScript를 통해 웹 페이지의 자바스크립트 함수를 호출
-            if let error = error {
-                print("Error Calling from JS function: \(error)")
-            } else if let result = result {
-                print("Received result from JS function: \(result)")
-            }
-        }
         return webView
     }
     
     func updateUIView(_ webView: WKWebView, context: Context) {
         if urlType == .localUrl {
-            if let url = Bundle.main.url(forResource: "LocalWebsite", withExtension: "html", subdirectory: "www") {
+            if let url = Bundle.main.url(forResource: "LocalWebsite", withExtension: "html") {
                 webView.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent())
             }
         } else if urlType == .publicUrl {
@@ -57,26 +63,27 @@ struct WebView: UIViewRepresentable {
 }
 
 extension WebView {
-    class Coordinator: NSObject, WKNavigationDelegate, WKScriptMessageHandler {
+    class Coordinator: NSObject, WKNavigationDelegate {
         
         private let parent: WebView
+        var delegate: WebViewHandlerDelegate?
         
         init(_ parent: WebView) {
             self.parent = parent
         }
         
-        // MARK: WKScriptMessageHandler
-        // Receive value from web (iOS -> JS)
-        func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-            if message.name == webMessage { // ios에서 메시지 핸들러를 추가할 때 지정한 이름 (fromWebPage)
-                if let body = message.body as? [String: Any?] {
-                    print("JSON received from web: \(body)")
-                } else if let body = message.body as? String {
-                    print("String received from web: \(body)")
+        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+            // 앱 -> 웹
+            // 언제 호출해야 하는지를 모르겠음
+            let value = "앱에서 전달한 데이터!!"
+            webView.evaluateJavaScript("valueGotFromIOS('\(value)');") { result, error in
+                if let error = error {
+                    print("Error Calling from JS function: \(error)")
+                } else if let result = result { // 여긴 안타네
+                    print("Received result from JS function: \(result)")
                 }
             }
         }
-        
         
         // MARK: WKNavigationDelegate
         
@@ -116,5 +123,19 @@ extension WebView {
 //            webView.evaluateJavaScript("", completionHandler: <#T##((Any?, Error?) -> Void)?##((Any?, Error?) -> Void)?##(Any?, Error?) -> Void#>)
 //        }
         
+    }
+}
+
+// MARK: - Extensions
+extension WebView.Coordinator: WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        
+        if message.name == "iOSNative" { // ios에서 메시지 핸들러를 추가할 때 지정한 이름
+            if let body = message.body as? [String: Any?] {
+                delegate?.receivedJsonValueFromWebView(value: body)
+            } else if let body = message.body as? String {
+                delegate?.receivedStringValueFromWebView(value: body)
+            }
+        }
     }
 }

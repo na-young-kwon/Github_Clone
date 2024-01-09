@@ -33,7 +33,6 @@ class UserViewModel: ObservableObject {
       func fetchRepositories(forUser username: String) async {
           do {
               repositories = try await repositoryUseCase.getRepositories(forUser: username)
-              print("Repositories 정보 가져오기 성공: \(repositories)")
           } catch let error as NetworkError {
               errorMessage = errorMessage(for: error)
           } catch {
