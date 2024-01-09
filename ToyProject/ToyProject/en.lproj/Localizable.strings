@@ -11,7 +11,10 @@
 "search" = "search...";
 "search_history" = "Search History";
 "search_history_is_empty" = "Search History is empty";
-"no_github_ID" = "no github ID";
+"no_github_ID" = "No such github ID 🙅🏻‍♂️";
 "language_n" = "Language: %@";
 "follower_n" = "followers: %d";
 "following_n" = "following: %d";
+"connection_error" = "Network connection error occurred";
+"server_error" = "Server error occured. error code: %d";
+"invalid_repository" = "The repository does not exist";

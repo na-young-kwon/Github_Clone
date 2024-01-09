@@ -14,7 +14,7 @@ struct DetailView: View {
         if let url = URL(string: url) {
             WebView(url: url)
         } else {
-            Text("존재하지 않는 레포지토리 입니다.")
+            Text("invalid_repository".getLocalizedString())
         }
     }
 }
