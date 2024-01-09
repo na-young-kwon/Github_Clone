@@ -15,8 +15,7 @@ class RealmManager {
     private init() {}
     
     func create(_ searchHistory: SearchHistory) {
-        guard searchHistory.text != ""
-                && !searchHistory.text.starts(with: " ")
+        guard !searchHistory.text.trimmingCharacters(in: .whitespaces).isEmpty
                 && realm.objects(SearchHistoryForRealm.self).filter({ $0.text == searchHistory.text }).isEmpty else {
             return
         }
