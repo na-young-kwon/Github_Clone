@@ -24,7 +24,7 @@ class SearchViewModel: ObservableObject {
         for index in indexSet {
             let searchHistoryItem = searchHistory[index]
             usecase.deleteSearchText(searchHistoryItem)
-            searchHistory = usecase.fetchSearchHistory()
         }
+        searchHistory = usecase.fetchSearchHistory()
     }
 }
