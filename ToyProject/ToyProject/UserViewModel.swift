@@ -25,7 +25,7 @@ class UserViewModel: ObservableObject {
           } catch let error as NetworkError {
               errorMessage = errorMessage(for: error)
           } catch {
-              errorMessage = "깃허브 ID가 없습니다. 🙅🏻‍♂️"
+              errorMessage = "no_github_ID".getLocalizedString()
           }
           isLoading = false
       }
@@ -33,11 +33,10 @@ class UserViewModel: ObservableObject {
       func fetchRepositories(forUser username: String) async {
           do {
               repositories = try await repositoryUseCase.getRepositories(forUser: username)
-              print("Repositories 정보 가져오기 성공: \(repositories)")
           } catch let error as NetworkError {
               errorMessage = errorMessage(for: error)
           } catch {
-              errorMessage = "깃허브 ID가 없습니다. 🙅🏻‍♂️"
+              errorMessage = "no_github_ID".getLocalizedString()
           }
       }
 }
@@ -46,13 +45,13 @@ extension UserViewModel {
     private func errorMessage(for error: NetworkError) -> String {
         switch error {
         case .badURL:
-            return "깃허브 ID가 없습니다. 🙅🏻‍♂️"
+            return "no_github_ID".getLocalizedString()
         case .serverError(let code):
-            return "서버 오류가 발생했습니다. 오류 코드: \(code)"
+            return "server_error".getLocalizedString(with: code)
         case .connectionError:
-            return "네트워크 연결 오류가 발생했습니다."
+            return "connection_error".getLocalizedString()
         case .unknownError:
-            return "깃허브 ID가 없습니다. 🙅🏻‍♂️"
+            return "no_github_ID".getLocalizedString()
         }
     }
 }

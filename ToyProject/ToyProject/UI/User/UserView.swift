@@ -49,8 +49,8 @@ struct UserView: View {
                             Text(user.login ?? "n/a")
                             Text(user.bio ?? "n/a")
                             HStack {
-                                Text("followers \(user.followers ?? 0)")
-                                Text("following \(user.following ?? 0)")
+                                Text("follower_n".getLocalizedString(with: user.followers ?? 0))
+                                Text("following_n".getLocalizedString(with: user.following ?? 0))
                             }
                         }
                         Spacer()
@@ -80,7 +80,7 @@ struct UserView: View {
                                         .font(.caption)
                                     Text("\(repository.forksCount ?? 0)")
                                         .foregroundColor(.secondary)
-                                    Text("Language: \(repository.language ?? "N/A")")
+                                    Text("language_n".getLocalizedString(with: repository.language ?? "N/A"))
                                         .foregroundColor(.secondary)
                                 }
                             }
@@ -88,7 +88,7 @@ struct UserView: View {
                     }
                     .listStyle(.plain)
                 } else {
-                    Text("github ID가 없습니다 🙅🏻‍♂️")
+                    Text("no_github_ID".getLocalizedString())
                 }
             }
         .onAppear {
