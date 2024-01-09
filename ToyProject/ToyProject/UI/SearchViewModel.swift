@@ -2,7 +2,7 @@
 //  SearchViewModel.swift
 //  ToyProject
 //
-//  Created by SNPLAB on 12/27/23.
+//  Created by nayoung kwon on 12/27/23.
 //
 
 import Foundation
@@ -20,16 +20,11 @@ class SearchViewModel: ObservableObject {
         searchHistory = usecase.fetchSearchHistory()
     }
     
-    func deleteSearch(_ searchHistory: SearchHistory) {
-        usecase.deleteSearchText(searchHistory)
-    }
-    
     func deleteItem(at indexSet: IndexSet) {
         for index in indexSet {
             let searchHistoryItem = searchHistory[index]
-            deleteSearch(searchHistoryItem)
+            usecase.deleteSearchText(searchHistoryItem)
         }
-        searchHistory.remove(atOffsets: indexSet)
+        searchHistory = usecase.fetchSearchHistory()
     }
-    
 }

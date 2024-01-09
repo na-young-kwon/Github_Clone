@@ -2,7 +2,7 @@
 //  UserView.swift
 //  ToyProject
 //
-//  Created by SNPLAB on 12/27/23.
+//  Created by woosub kim on 12/27/23.
 //
 
 import SwiftUI
@@ -10,14 +10,18 @@ import URLImage
 
 struct UserView: View {
     @StateObject private var viewModel = UserViewModel()
-    @Binding var text: String
+    let text: String
     
     var body: some View {
         VStack {
             if viewModel.isLoading {
                 ProgressView()
-            } else {
-                if let user = viewModel.user {
+                    .frame(width: 120, height: 120)
+            }  else if let errorMessage = viewModel.errorMessage {
+                // 오류 메시지가 있을 경우 표시
+                Text(errorMessage)
+                    .foregroundColor(.primary)
+            } else if let user = viewModel.user {
                     Spacer(minLength: 10)
                     HStack {
                         Spacer()
@@ -29,16 +33,20 @@ struct UserView: View {
                                     .frame(width: 120, height: 120)
                                     .cornerRadius(100)
                             }
+                            
+                            .frame(width: 120, height: 120)
+                            .cornerRadius(100)
                         } else {
                             Image(systemName: "person")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 80, height: 80)
+                                .frame(width: 120, height: 120)
                                 .cornerRadius(100)
                         }
+                        
                         Spacer()
                         VStack(alignment: .leading, spacing: 18) {
-                            Text(user.login ?? "n/a") // 사용자 이름 표시
+                            Text(user.login ?? "n/a")
                             Text(user.bio ?? "n/a")
                             HStack {
                                 Text("followers \(user.followers ?? 0)")
@@ -47,10 +55,9 @@ struct UserView: View {
                         }
                         Spacer()
                     }
-                    .frame(height: 120)
+                    .frame(height: 150)
                     
                     List(viewModel.repositories, id: \.id) { repository in
-                        
                         NavigationLink {
                             DetailView(url: repository.htmlUrl ?? "")
                         } label: {
@@ -84,18 +91,10 @@ struct UserView: View {
                     Text("github ID가 없습니다 🙅🏻‍♂️")
                 }
             }
-        }
         .onAppear {
             Task {
                 await viewModel.fetchUser(forUser: text)
-                await viewModel.fetchRepositories(forUser: text)
             }
-        }
-    }
-    
-    struct UserView_Previews: PreviewProvider {
-        static var previews: some View {
-            UserView(text: .constant("woobios97"))
         }
     }
 }

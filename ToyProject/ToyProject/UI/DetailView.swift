@@ -2,7 +2,7 @@
 //  DetailView.swift
 //  ToyProject
 //
-//  Created by SNPLAB on 12/27/23.
+//  Created by nayoung kwon on 12/27/23.
 //
 
 import SwiftUI
@@ -11,7 +11,11 @@ struct DetailView: View {
     let url: String
     
     var body: some View {
-        WebView(url: URL(string: url)!)
+        if let url = URL(string: url) {
+            WebView(url: url)
+        } else {
+            Text("존재하지 않는 레포지토리 입니다.")
+        }
     }
 }
 

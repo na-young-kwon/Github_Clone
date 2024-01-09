@@ -2,7 +2,7 @@
 //  WebView.swift
 //  ToyProject
 //
-//  Created by SNPLAB on 12/27/23.
+//  Created by nayoung kwon on 12/27/23.
 //
 
 import SwiftUI

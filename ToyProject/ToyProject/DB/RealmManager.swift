@@ -2,19 +2,24 @@
 //  RealmManager.swift
 //  ToyProject
 //
-//  Created by SNPLAB on 12/28/23.
+//  Created by nayoung kwon on 12/28/23.
 //
 
 import Foundation
 import RealmSwift
 
-struct RealmManager {
-    static var shared = RealmManager()
+class RealmManager {
+    static let shared = RealmManager()
     private let realm = try! Realm()
     
     private init() {}
     
     func create(_ searchHistory: SearchHistory) {
+        guard !searchHistory.text.trimmingCharacters(in: .whitespaces).isEmpty
+                && realm.objects(SearchHistoryForRealm.self).filter({ $0.text == searchHistory.text }).isEmpty else {
+            return
+        }
+        
         do {
             try realm.write {
                 let search = SearchHistoryForRealm(id: searchHistory.id, text: searchHistory.text)
@@ -29,7 +34,7 @@ struct RealmManager {
         var searchHistory = [SearchHistory]()
         let searchHistoryForRealm = realm.objects(SearchHistoryForRealm.self)
         
-        searchHistoryForRealm.forEach { history in
+        for history in searchHistoryForRealm {
             searchHistory.append(SearchHistory(id: history.id, text: history.text))
         }
         return searchHistory
@@ -45,5 +50,4 @@ struct RealmManager {
             print("list를 삭제하는 데 실패했습니다 - \(error)")
         }
     }
-    
 }
