@@ -11,7 +11,7 @@ import Alamofire
 struct RepositoryUseCase {
     let networkService = NetworkService()
     
-    func getRepositories(forUser username: String) async throws -> [UserResponse] {
+    func getRepositories(forUser username: String) async throws -> [RepositoryResponse] {
         return try await networkService.fetchRepositories(forUser: username)
     }
     

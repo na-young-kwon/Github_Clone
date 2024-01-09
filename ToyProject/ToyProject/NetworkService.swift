@@ -17,22 +17,21 @@ enum NetworkError: Error {
 }
 
 struct Constants {
-    static let repoURL = "https://api.github.com/repos/"
     static let userURL = "https://api.github.com/users/"
 }
 
 class NetworkService {
     
     // 레포지토리 목록을 받아오는 함수
-    func fetchRepositories(forUser username: String) async throws -> [UserResponse] {
+    func fetchRepositories(forUser username: String) async throws -> [RepositoryResponse] {
         let urlString = "\(Constants.userURL)\(username)/repos"
         guard let url = URL(string: urlString) else {
             throw NetworkError.badURL
         }
         
         do {
-            let repositories: [UserResponse] = try await AF.request(url)
-                .serializingDecodable([UserResponse].self)
+            let repositories: [RepositoryResponse] = try await AF.request(url)
+                .serializingDecodable([RepositoryResponse].self)
                 .value
             return repositories
         } catch {

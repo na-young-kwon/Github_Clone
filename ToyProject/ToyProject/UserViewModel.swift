@@ -11,7 +11,7 @@ import Alamofire
 @MainActor
 class UserViewModel: ObservableObject {
     @Published var user: UserResponse?
-    @Published var repositories: [UserResponse] = []
+    @Published var repositories: [RepositoryResponse] = []
     @Published var isLoading = false
     @Published var errorMessage: String?
     
