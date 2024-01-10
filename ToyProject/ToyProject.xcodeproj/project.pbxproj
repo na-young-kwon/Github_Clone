@@ -42,6 +42,8 @@
 		08F8647F2B4E3A16004E9E06 /* RepositoryRealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F8647E2B4E3A16004E9E06 /* RepositoryRealmManager.swift */; };
 		08F864812B4E6266004E9E06 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F864802B4E6266004E9E06 /* UserRepository.swift */; };
 		08F864832B4E6310004E9E06 /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F864822B4E6310004E9E06 /* UserUseCase.swift */; };
+		08F864852B4E8A15004E9E06 /* RepositoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F864842B4E8A15004E9E06 /* RepositoryUseCase.swift */; };
+		08F864872B4E8A40004E9E06 /* RepoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F864862B4E8A40004E9E06 /* RepoRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +99,8 @@
 		08F8647E2B4E3A16004E9E06 /* RepositoryRealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryRealmManager.swift; sourceTree = "<group>"; };
 		08F864802B4E6266004E9E06 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		08F864822B4E6310004E9E06 /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
+		08F864842B4E8A15004E9E06 /* RepositoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryUseCase.swift; sourceTree = "<group>"; };
+		08F864862B4E8A40004E9E06 /* RepoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +268,7 @@
 				082F09392B3C0A7200A29EE9 /* NetworkUseCase.swift */,
 				0875A22D2B3C0C5F00733C59 /* SearchUsecase.swift */,
 				08F864822B4E6310004E9E06 /* UserUseCase.swift */,
+				08F864842B4E8A15004E9E06 /* RepositoryUseCase.swift */,
 			);
 			path = Usecase;
 			sourceTree = "<group>";
@@ -271,6 +276,7 @@
 		08A997E82B3BB8160014F24C /* DB */ = {
 			isa = PBXGroup;
 			children = (
+				08F864862B4E8A40004E9E06 /* RepoRepository.swift */,
 				0875A22F2B3C0E4700733C59 /* SearchRepository.swift */,
 				08F864802B4E6266004E9E06 /* UserRepository.swift */,
 				0875A2362B3D003C00733C59 /* RealmManager.swift */,
@@ -439,8 +445,10 @@
 				08F864832B4E6310004E9E06 /* UserUseCase.swift in Sources */,
 				0875A22E2B3C0C5F00733C59 /* SearchUsecase.swift in Sources */,
 				08F8647F2B4E3A16004E9E06 /* RepositoryRealmManager.swift in Sources */,
+				08F864852B4E8A15004E9E06 /* RepositoryUseCase.swift in Sources */,
 				0875A2372B3D003C00733C59 /* RealmManager.swift in Sources */,
 				084299C92B3BFBAF009DA780 /* SearchView.swift in Sources */,
+				08F864872B4E8A40004E9E06 /* RepoRepository.swift in Sources */,
 				0875A2392B3D00E400733C59 /* SearchHistoryForRealm.swift in Sources */,
 				0875A2282B3BFEA400733C59 /* DetailView.swift in Sources */,
 				08A863D12B3BF401003782E1 /* UserViewModel.swift in Sources */,

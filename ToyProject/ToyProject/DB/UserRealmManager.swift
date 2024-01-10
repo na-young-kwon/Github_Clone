@@ -36,7 +36,7 @@ class UserRealmManager {
     // read
     func read() -> [UserResponse] {
         let userResponseForRealm = realm.objects(UserForRealm.self)
-        
+ 
         let users = userResponseForRealm.map {
             UserResponse(
                 id: $0.id,

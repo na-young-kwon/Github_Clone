@@ -17,46 +17,42 @@ class UserViewModel: ObservableObject {
     
     private var networkUseCase = NetworkUseCase()
     
-    private let repositoryUseCase: UserUseCase = UserUseCase()
+    private let userUseCase: UserUseCase = UserUseCase()
+    private let repoUseCase: RepoUseCase = RepoUseCase()
     
     func fetchUser(forUser userName: String) async {
-          isLoading = true
-          do {
-              user = try await networkUseCase.getUser(forUser: userName)
-              await fetchRepositories(forUser: userName) // 여기서 fetchRepositories 호출
-          } catch let error as NetworkError {
-              errorMessage = errorMessage(for: error)
-          } catch {
-              errorMessage = "no_github_ID".getLocalizedString()
-              print("11")
-          }
-          isLoading = false
-      }
-
-      func fetchRepositories(forUser userName: String) async {
-          do {
-              repositories = try await networkUseCase.getRepositories(forUser: userName)
-          } catch let error as NetworkError {
-              errorMessage = errorMessage(for: error)
-          } catch {
-              errorMessage = "no_github_ID".getLocalizedString()
-              print("22")
-          }
-      }
+        isLoading = true
+        do {
+            user = try await networkUseCase.getUser(forUser: userName)
+            await fetchRepositories(forUser: userName) // 여기서 fetchRepositories 호출
+        } catch let error as NetworkError {
+            errorMessage = errorMessage(for: error)
+        } catch {
+            errorMessage = "no_github_ID".getLocalizedString()
+        }
+        saveUser(user!)
+//        saveRepo(repositories.)
+        isLoading = false
+    }
+    
+    func fetchRepositories(forUser userName: String) async {
+        do {
+            repositories = try await networkUseCase.getRepositories(forUser: userName)
+        } catch let error as NetworkError {
+            errorMessage = errorMessage(for: error)
+        } catch {
+            errorMessage = "no_github_ID".getLocalizedString()
+        }
+    }
     
     func saveUser(_ userResponse: UserResponse) {
-        repositoryUseCase.saveUser(userResponse)
+        userUseCase.saveUser(userResponse)
     }
     
     func fetchUser() {
-    
+        
     }
     
-//    func deleteItem(at indexSet: IndexSet) {
-//        for index in indexSet {
-//            let userResponse =
-//        }
-//    }
 }
 
 extension UserViewModel {

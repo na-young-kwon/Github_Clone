@@ -95,8 +95,5 @@ struct UserView: View {
                 await viewModel.fetchUser(forUser: text)
             }
         }
-//        .onDisappear() {
-//            viewModel.saveUser(viewModel.user!)
-//        }
     }
 }

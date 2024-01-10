@@ -8,17 +8,17 @@
 import Foundation
 
 struct UserUseCase {
-    private let repository: UserRepository = UserRepository()
+    private let userRepository: UserRepository = UserRepository()
     
     func saveUser(_ userResponse: UserResponse) {
-        repository.saveUser(userResponse)
+        userRepository.saveUser(userResponse)
     }
     
     func fetchUser() -> [UserResponse] {
-        return repository.fetchUser()
+        return userRepository.fetchUser()
     }
     
     func deleteUser(_ userResponse: UserResponse) {
-        repository.deleteUser(userResponse)
+        userRepository.deleteUser(userResponse)
     }
 }
