@@ -46,11 +46,11 @@ struct UserView: View {
                         
                         Spacer()
                         VStack(alignment: .leading, spacing: 18) {
-                            Text(user.login ?? "n/a")
-                            Text(user.bio ?? "n/a")
+                            Text(user.login )
+                            Text(user.bio )
                             HStack {
-                                Text("follower_n".getLocalizedString(with: user.followers ?? 0))
-                                Text("following_n".getLocalizedString(with: user.following ?? 0))
+                                Text("follower_n".getLocalizedString(with: user.followers ))
+                                Text("following_n".getLocalizedString(with: user.following ))
                             }
                         }
                         Spacer()
@@ -59,28 +59,28 @@ struct UserView: View {
                     
                     List(viewModel.repositories, id: \.id) { repository in
                         NavigationLink {
-                            DetailView(url: repository.htmlUrl ?? "")
+                            DetailView(url: repository.htmlUrl )
                         } label: {
                             VStack(alignment: .leading, spacing: 20) {
                                 HStack {
                                     Image(systemName: "book")
-                                    Text(repository.fullName ?? "")
+                                    Text(repository.fullName )
                                         .fontWeight(.bold)
                                 }
                                 HStack(spacing: 10) {
                                     Text("⭐️")
                                         .font(.caption)
-                                    Text("\(repository.stargazersCount ?? 0)")
+                                    Text("\(repository.stargazersCount)")
                                         .foregroundColor(.secondary)
                                     Text("👀")
                                         .font(.caption)
-                                    Text("\(repository.watchersCount ?? 0)")
+                                    Text("\(repository.watchersCount)")
                                         .foregroundColor(.secondary)
                                     Text("🍴")
                                         .font(.caption)
-                                    Text("\(repository.forksCount ?? 0)")
+                                    Text("\(repository.forksCount)")
                                         .foregroundColor(.secondary)
-                                    Text("language_n".getLocalizedString(with: repository.language ?? "N/A"))
+                                    Text("language_n".getLocalizedString(with: repository.language))
                                         .foregroundColor(.secondary)
                                 }
                             }

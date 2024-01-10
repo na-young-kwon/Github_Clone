@@ -70,6 +70,7 @@ struct SearchView: View {
             .onAppear {
                 text = ""
                 viewModel.fetchSearchHistory()
+                
             }
         }
     }

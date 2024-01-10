@@ -40,12 +40,12 @@ import Foundation
 //}
 
 struct UserResponse: Codable, Hashable, Identifiable {
-    var id: Int?
-    var login: String?
+    var id: Int = 0
+    var login: String = ""
     var avatarUrl: String?
-    var bio: String?
-    var followers: Int?
-    var following: Int?
+    var bio: String = ""
+    var followers: Int = 0
+    var following: Int = 0
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -60,13 +60,14 @@ struct UserResponse: Codable, Hashable, Identifiable {
 
 
 struct RepositoryResponse: Codable, Hashable, Identifiable {
-    var id: Int?
-    var fullName: String?
-    var htmlUrl: String?
-    let stargazersCount: Int?
-    var watchersCount: Int?
-    var language: String?
-    var forksCount: Int?
+    var id: Int = 0
+    var fullName: String = ""
+    var htmlUrl: String = ""
+    let stargazersCount: Int = 0
+    var watchersCount: Int = 0
+    var language: String = ""
+    var forksCount: Int = 0
+//    var owner: [Owner]
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -78,6 +79,11 @@ struct RepositoryResponse: Codable, Hashable, Identifiable {
         case forksCount = "forks_count"
     }
 }
+
+//struct Owner: Codable, Hashable, Identifiable {
+//    var login: String = ""
+//    var id: Int = 0
+//}
 
 
 /*

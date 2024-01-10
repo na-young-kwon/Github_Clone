@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-struct RepositoryUseCase {
+struct NetworkUseCase {
     let networkService = NetworkService()
     
     func getRepositories(forUser username: String) async throws -> [RepositoryResponse] {
