@@ -25,7 +25,7 @@ struct UserView: View {
                     Spacer(minLength: 10)
                     HStack {
                         Spacer()
-                        if let urlString = user.avatarUrl, let url = URL(string: urlString) {
+                        if let url = URL(string: user.avatarUrl) {
                             URLImage(url) { image in
                                 image
                                     .resizable()
@@ -33,7 +33,6 @@ struct UserView: View {
                                     .frame(width: 120, height: 120)
                                     .cornerRadius(100)
                             }
-                            
                             .frame(width: 120, height: 120)
                             .cornerRadius(100)
                         } else {
@@ -46,11 +45,11 @@ struct UserView: View {
                         
                         Spacer()
                         VStack(alignment: .leading, spacing: 18) {
-                            Text(user.login )
-                            Text(user.bio )
+                            Text(user.userName)
+                            Text(user.bio ?? "N/A")
                             HStack {
-                                Text("follower_n".getLocalizedString(with: user.followers ))
-                                Text("following_n".getLocalizedString(with: user.following ))
+                                Text("follower_n".getLocalizedString(with: user.follower))
+                                Text("following_n".getLocalizedString(with: user.following))
                             }
                         }
                         Spacer()
@@ -70,7 +69,7 @@ struct UserView: View {
                                 HStack(spacing: 10) {
                                     Text("⭐️")
                                         .font(.caption)
-                                    Text("\(repository.stargazersCount)")
+                                    Text("\(repository.starsCount)")
                                         .foregroundColor(.secondary)
                                     Text("👀")
                                         .font(.caption)
@@ -80,7 +79,11 @@ struct UserView: View {
                                         .font(.caption)
                                     Text("\(repository.forksCount)")
                                         .foregroundColor(.secondary)
+<<<<<<< HEAD
                                     Text("language_n".getLocalizedString(with: repository.language ?? ""))
+=======
+                                    Text("language_n".getLocalizedString(with: repository.language ?? "N/A"))
+>>>>>>> 9db1cbef99cafaec102097283ab9bdc1c86d4e91
                                         .foregroundColor(.secondary)
                                 }
                             }

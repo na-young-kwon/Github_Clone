@@ -15,7 +15,7 @@ struct NetworkUseCase {
         return try await networkService.fetchRepositories(forUser: username)
     }
     
-    func getUser(foruser username: String) async throws -> UserResponse {
+    func getUser(forUser username: String) async throws -> UserResponse {
         return try await networkService.fetchUser(forUser: username)
     }
 }

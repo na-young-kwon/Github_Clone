@@ -18,7 +18,14 @@ class UserRealmManager {
     func create(_ userResponse: UserResponse) {
         do {
             try realm.write {
-                let user = UserForRealm(id: userResponse.id, avatarUrl: userResponse.avatarUrl ?? "", userName: userResponse.login, bio: userResponse.bio, follower: userResponse.followers, following: userResponse.following)
+                let user = UserForRealm(
+                    id: userResponse.id,
+                    userName: userResponse.userName,
+                    avatarUrl: userResponse.avatarUrl,
+                    follower: userResponse.follower,
+                    following: userResponse.following,
+                    bio: userResponse.bio ?? ""
+                )
                 realm.add(user)
             }
         } catch {
@@ -28,13 +35,19 @@ class UserRealmManager {
     
     // read
     func read() -> [UserResponse] {
-        var userResponse = [UserResponse]()
         let userResponseForRealm = realm.objects(UserForRealm.self)
         
-        for user in userResponseForRealm {
-            userResponse.append(UserResponse(id: user.id, login: user.userName, avatarUrl: user.avatarUrl, bio: user.bio, followers: user.follower, following: user.following))
+        let users = userResponseForRealm.map {
+            UserResponse(
+                id: $0.id,
+                userName: $0.userName,
+                avatarUrl: $0.avatarUrl,
+                follower: $0.follower,
+                following: $0.following,
+                bio: $0.bio
+            )
         }
-        return userResponse
+        return Array(users)
     }
     
     // delete
@@ -49,5 +62,4 @@ class UserRealmManager {
             print("유저를 삭제하는 데 실패했습니다 - \(error)")
         }
     }
-    
 }

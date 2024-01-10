@@ -37,6 +37,7 @@
 		08A863CB2B3BC408003782E1 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A863CA2B3BC408003782E1 /* UserView.swift */; };
 		08A863CF2B3BF321003782E1 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A863CE2B3BF321003782E1 /* UserResponse.swift */; };
 		08A863D12B3BF401003782E1 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A863D02B3BF401003782E1 /* UserViewModel.swift */; };
+		08DB88EB2B4E642D00631880 /* RepositoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DB88EA2B4E642D00631880 /* RepositoryResponse.swift */; };
 		08F8647D2B4E3A04004E9E06 /* UserRealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F8647C2B4E3A04004E9E06 /* UserRealmManager.swift */; };
 		08F8647F2B4E3A16004E9E06 /* RepositoryRealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F8647E2B4E3A16004E9E06 /* RepositoryRealmManager.swift */; };
 		08F864812B4E6266004E9E06 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F864802B4E6266004E9E06 /* UserRepository.swift */; };
@@ -91,6 +92,7 @@
 		08A863CA2B3BC408003782E1 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserView.swift; path = ToyProject/UI/User/UserView.swift; sourceTree = SOURCE_ROOT; };
 		08A863CE2B3BF321003782E1 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserResponse.swift; path = ToyProject/UserResponse.swift; sourceTree = SOURCE_ROOT; };
 		08A863D02B3BF401003782E1 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserViewModel.swift; path = ToyProject/UserViewModel.swift; sourceTree = SOURCE_ROOT; };
+		08DB88EA2B4E642D00631880 /* RepositoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryResponse.swift; sourceTree = "<group>"; };
 		08F8647C2B4E3A04004E9E06 /* UserRealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRealmManager.swift; sourceTree = "<group>"; };
 		08F8647E2B4E3A16004E9E06 /* RepositoryRealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryRealmManager.swift; sourceTree = "<group>"; };
 		08F864802B4E6266004E9E06 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				08A863CA2B3BC408003782E1 /* UserView.swift */,
 				08A863D02B3BF401003782E1 /* UserViewModel.swift */,
 				08A863CE2B3BF321003782E1 /* UserResponse.swift */,
+				08DB88EA2B4E642D00631880 /* RepositoryResponse.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				08F864812B4E6266004E9E06 /* UserRepository.swift in Sources */,
 				0872FB382B4E2BBC004D9A35 /* UserForRealm.swift in Sources */,
 				08A8638D2B3BAF56003782E1 /* ToyProjectApp.swift in Sources */,
+				08DB88EB2B4E642D00631880 /* RepositoryResponse.swift in Sources */,
 				0875A22A2B3BFEB400733C59 /* WebView.swift in Sources */,
 				0872FB0C2B43FEED004D9A35 /* View+extension.swift in Sources */,
 				08F8647D2B4E3A04004E9E06 /* UserRealmManager.swift in Sources */,
