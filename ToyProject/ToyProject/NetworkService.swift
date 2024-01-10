@@ -35,6 +35,7 @@ class NetworkService {
                 .value
             return repositories
         } catch {
+            print("1")
             throw handleError(error)
         }
     }
@@ -54,6 +55,7 @@ class NetworkService {
                 .value
             return user
         } catch {
+            print("2")
             throw handleError(error)
         }
     }

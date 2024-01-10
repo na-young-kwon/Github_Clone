@@ -15,31 +15,49 @@ class UserViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String?
     
-    private var repositoryUseCase = NetworkUseCase()
+    private var networkUseCase = NetworkUseCase()
+    
+    private let usecase: UserUseCase = UserUseCase()
     
     func fetchUser(forUser username: String) async {
           isLoading = true
           do {
-              user = try await repositoryUseCase.getUser(foruser: username)
+              user = try await networkUseCase.getUser(foruser: username)
               await fetchRepositories(forUser: username) // 여기서 fetchRepositories 호출
           } catch let error as NetworkError {
               errorMessage = errorMessage(for: error)
           } catch {
               errorMessage = "no_github_ID".getLocalizedString()
+              print("11")
           }
           isLoading = false
       }
 
       func fetchRepositories(forUser username: String) async {
           do {
-              repositories = try await repositoryUseCase.getRepositories(forUser: username)
+              repositories = try await networkUseCase.getRepositories(forUser: username)
               print(repositories)
           } catch let error as NetworkError {
               errorMessage = errorMessage(for: error)
           } catch {
               errorMessage = "no_github_ID".getLocalizedString()
+              print("22")
           }
       }
+    
+    func saveUser(_ userResponse: UserResponse) {
+        usecase.saveUser(userResponse)
+    }
+    
+    func fetchUser() {
+    
+    }
+    
+//    func deleteItem(at indexSet: IndexSet) {
+//        for index in indexSet {
+//            let userResponse =
+//        }
+//    }
 }
 
 extension UserViewModel {

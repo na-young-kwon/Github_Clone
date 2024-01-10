@@ -60,17 +60,16 @@ struct UserResponse: Codable, Hashable, Identifiable {
 
 
 struct RepositoryResponse: Codable, Hashable, Identifiable {
-    var id: Int = 0
-    var fullName: String = ""
-    var htmlUrl: String = ""
-    let stargazersCount: Int = 0
-    var watchersCount: Int = 0
-    var language: String = ""
-    var forksCount: Int = 0
-//    var owner: [Owner]
+    var id: Int?
+    var fullName: String?
+    var htmlUrl: String?
+    let stargazersCount: Int
+    var watchersCount: Int
+    var language: String?
+    var forksCount: Int
     
     enum CodingKeys: String, CodingKey {
-        case id
+//        case id
         case fullName = "full_name"
         case htmlUrl = "html_url"
         case stargazersCount = "stargazers_count"
