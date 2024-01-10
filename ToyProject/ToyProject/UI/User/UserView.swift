@@ -48,7 +48,7 @@ struct UserView: View {
                             Text(user.userName)
                             Text(user.bio ?? "N/A")
                             HStack {
-                                Text("follower_n".getLocalizedString(with: user.follower))
+                                Text("follower_n".getLocalizedString(with: user.followers))
                                 Text("following_n".getLocalizedString(with: user.following))
                             }
                         }
@@ -58,12 +58,12 @@ struct UserView: View {
                     
                     List(viewModel.repositories, id: \.id) { repository in
                         NavigationLink {
-                            DetailView(url: repository.htmlUrl ?? "" )
+                            DetailView(url: repository.htmlUrl )
                         } label: {
                             VStack(alignment: .leading, spacing: 20) {
                                 HStack {
                                     Image(systemName: "book")
-                                    Text(repository.fullName ?? "" )
+                                    Text(repository.fullName )
                                         .fontWeight(.bold)
                                 }
                                 HStack(spacing: 10) {
@@ -79,11 +79,7 @@ struct UserView: View {
                                         .font(.caption)
                                     Text("\(repository.forksCount)")
                                         .foregroundColor(.secondary)
-<<<<<<< HEAD
-                                    Text("language_n".getLocalizedString(with: repository.language ?? ""))
-=======
                                     Text("language_n".getLocalizedString(with: repository.language ?? "N/A"))
->>>>>>> 9db1cbef99cafaec102097283ab9bdc1c86d4e91
                                         .foregroundColor(.secondary)
                                 }
                             }

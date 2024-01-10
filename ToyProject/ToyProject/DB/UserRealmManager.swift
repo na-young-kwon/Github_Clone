@@ -22,7 +22,7 @@ class UserRealmManager {
                     id: userResponse.id,
                     userName: userResponse.userName,
                     avatarUrl: userResponse.avatarUrl,
-                    follower: userResponse.follower,
+                    follower: userResponse.followers,
                     following: userResponse.following,
                     bio: userResponse.bio ?? ""
                 )
@@ -42,7 +42,7 @@ class UserRealmManager {
                 id: $0.id,
                 userName: $0.userName,
                 avatarUrl: $0.avatarUrl,
-                follower: $0.follower,
+                followers: $0.follower,
                 following: $0.following,
                 bio: $0.bio
             )

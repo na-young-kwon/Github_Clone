@@ -8,7 +8,6 @@
 import Foundation
 import RealmSwift
 
-<<<<<<< HEAD
 //class RepositoryRealmManager {
 //    static let shared = RepositoryRealmManager()
 //    private let realm = try! Realm()
@@ -52,7 +51,6 @@ import RealmSwift
 //        }
 //    }
 //}
-=======
 class RepositoryRealmManager {
     static let shared = RepositoryRealmManager()
     private let realm = try! Realm()
@@ -109,4 +107,3 @@ class RepositoryRealmManager {
         }
     }
 }
->>>>>>> 9db1cbef99cafaec102097283ab9bdc1c86d4e91

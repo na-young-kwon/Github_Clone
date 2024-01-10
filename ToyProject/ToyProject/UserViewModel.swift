@@ -17,18 +17,13 @@ class UserViewModel: ObservableObject {
     
     private var networkUseCase = NetworkUseCase()
     
-    private let usecase: UserUseCase = UserUseCase()
+    private let repositoryUseCase: UserUseCase = UserUseCase()
     
     func fetchUser(forUser userName: String) async {
           isLoading = true
           do {
-<<<<<<< HEAD
-              user = try await networkUseCase.getUser(foruser: username)
-              await fetchRepositories(forUser: username) // 여기서 fetchRepositories 호출
-=======
-              user = try await repositoryUseCase.getUser(forUser: userName)
+              user = try await networkUseCase.getUser(forUser: userName)
               await fetchRepositories(forUser: userName) // 여기서 fetchRepositories 호출
->>>>>>> 9db1cbef99cafaec102097283ab9bdc1c86d4e91
           } catch let error as NetworkError {
               errorMessage = errorMessage(for: error)
           } catch {
@@ -40,12 +35,7 @@ class UserViewModel: ObservableObject {
 
       func fetchRepositories(forUser userName: String) async {
           do {
-<<<<<<< HEAD
-              repositories = try await networkUseCase.getRepositories(forUser: username)
-              print(repositories)
-=======
-              repositories = try await repositoryUseCase.getRepositories(forUser: userName)
->>>>>>> 9db1cbef99cafaec102097283ab9bdc1c86d4e91
+              repositories = try await networkUseCase.getRepositories(forUser: userName)
           } catch let error as NetworkError {
               errorMessage = errorMessage(for: error)
           } catch {
@@ -55,7 +45,7 @@ class UserViewModel: ObservableObject {
       }
     
     func saveUser(_ userResponse: UserResponse) {
-        usecase.saveUser(userResponse)
+        repositoryUseCase.saveUser(userResponse)
     }
     
     func fetchUser() {
