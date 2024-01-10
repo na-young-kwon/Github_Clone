@@ -18,7 +18,14 @@ class RepositoryRealmManager {
     func create(_ repository: RepositoryResponse) {
         do {
             try realm.write {
-                let repository = RepositoryForRealm(id: repository.id, htmlUrl: repository.htmlUrl, fullName: repository.fullName, starsCount: repository.stargazersCount, watchersCount: repository.watchersCount, forksCount: repository.forksCount)
+                let repository = RepositoryForRealm(
+                    id: repository.id,
+                    htmlUrl: repository.htmlUrl,
+                    fullName: repository.fullName,
+                    starsCount: repository.starsCount,
+                    watchersCount: repository.watchersCount,
+                    forksCount: repository.forksCount
+                )
                 realm.add(repository)
             }
         } catch {
@@ -28,14 +35,20 @@ class RepositoryRealmManager {
     
     // read
     func read() -> [RepositoryResponse] {
-        var repositoryResponse = [RepositoryResponse]()
         let repositoryForRealm = realm.objects(RepositoryForRealm.self)
         
-        for repository in repositoryForRealm {
-            repositoryResponse.append(RepositoryResponse(id: repository.id, fullName: repository.fullName, htmlUrl: repository.htmlUrl, watchersCount: repository.watchersCount, language: repository.language ?? "", forksCount: repository.forksCount))
+        let repositories = repositoryForRealm.map {
+            RepositoryResponse(
+                id: $0.id,
+                fullName: $0.fullName,
+                htmlUrl: $0.htmlUrl,
+                starsCount: $0.starsCount,
+                watchersCount: $0.watchersCount,
+                forksCount: $0.forksCount,
+                language: $0.language
+            )
         }
-        
-        return repositoryResponse
+        return Array(repositories)
     }
     
     // delete
