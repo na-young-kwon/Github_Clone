@@ -15,16 +15,16 @@ class UserRealmManager {
     private init() {}
     
     // create
-    func create(_ userResponse: UserResponse) {
+    func create(_ user: UserResponse) {
         do {
             try realm.write {
                 let user = UserForRealm(
-                    id: userResponse.id,
-                    userName: userResponse.userName,
-                    avatarUrl: userResponse.avatarUrl,
-                    follower: userResponse.follower,
-                    following: userResponse.following,
-                    bio: userResponse.bio ?? ""
+                    id: user.id,
+                    userName: user.userName,
+                    avatarUrl: user.avatarUrl,
+                    follower: user.follower,
+                    following: user.following,
+                    bio: user.bio ?? ""
                 )
                 realm.add(user)
             }
@@ -33,7 +33,7 @@ class UserRealmManager {
         }
     }
     
-    // read
+    // 특정 유저 반환
     func getUser(by userName: String) -> UserResponse? {
         guard let user = realm.objects(UserForRealm.self).filter("userName == [c] %@", userName).first else {
             return nil
@@ -49,17 +49,30 @@ class UserRealmManager {
         return userResponse
     }
     
+    // 모든 유저 반환
+    func getAllUsers() -> [UserResponse] {
+        let userResponse = realm.objects(UserForRealm.self).map {
+            UserResponse(
+                id: $0.id,
+                userName: $0.userName,
+                avatarUrl: $0.avatarUrl,
+                follower: $0.follower,
+                following: $0.following,
+                bio: $0.bio
+            )
+        }
+        return Array(userResponse)
+    }
+    
     // delete
-//    func delete(_ userResponse: UserResponse) {
-//        let realm = try! Realm()
-//        do {
-//            let task = realm.objects(UserForRealm.self)
-//                .where { $0.id == userResponse.id }
-//            try realm.write {
-//                realm.delete(task)
-//            }
-//        } catch {
-//            print("유저를 삭제하는 데 실패했습니다 - \(error)")
-//        }
-//    }
+    func delete(_ user: UserResponse) {
+        do {
+            let task = realm.objects(UserForRealm.self).where { $0.id == user.id }
+            try realm.write {
+                realm.delete(task)
+            }
+        } catch {
+            print("유저를 삭제하는 데 실패했습니다 - \(error)")
+        }
+    }
 }

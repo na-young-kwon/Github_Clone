@@ -8,22 +8,16 @@
 import Foundation
 
 protocol SearchDelegate {
-    func saveSearchText(_ searchHistory: SearchHistory)
-    func fetchSearchHistory() -> [SearchHistory]
-    func deleteSearchText(_ searchHistory: SearchHistory)
+    func fetchSearchHistory() -> [UserResponse]
+    func deleteSearchText(_ user: UserResponse)
 }
 
 struct SearchRepository: SearchDelegate {
-
-    func saveSearchText(_ searchHistory: SearchHistory) {
-        RealmManager.shared.create(searchHistory)
+    func fetchSearchHistory() -> [UserResponse] {
+        UserRealmManager.shared.getAllUsers()
     }
     
-    func fetchSearchHistory() -> [SearchHistory] {
-        RealmManager.shared.read()
-    }
-    
-    func deleteSearchText(_ searchHistory: SearchHistory) {
-        RealmManager.shared.delete(searchHistory)
+    func deleteSearchText(_ user: UserResponse) {
+        UserRealmManager.shared.delete(user)
     }
 }

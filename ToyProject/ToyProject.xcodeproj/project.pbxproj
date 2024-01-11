@@ -21,7 +21,6 @@
 		0875A22C2B3C09E300733C59 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875A22B2B3C09E300733C59 /* SearchViewModel.swift */; };
 		0875A22E2B3C0C5F00733C59 /* SearchUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875A22D2B3C0C5F00733C59 /* SearchUsecase.swift */; };
 		0875A2302B3C0E4700733C59 /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875A22F2B3C0E4700733C59 /* SearchRepository.swift */; };
-		0875A2372B3D003C00733C59 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875A2362B3D003C00733C59 /* RealmManager.swift */; };
 		0875A2392B3D00E400733C59 /* SearchHistoryForRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875A2382B3D00E400733C59 /* SearchHistoryForRealm.swift */; };
 		08A8638D2B3BAF56003782E1 /* ToyProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A8638C2B3BAF56003782E1 /* ToyProjectApp.swift */; };
 		08A863912B3BAF57003782E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08A863902B3BAF57003782E1 /* Assets.xcassets */; };
@@ -75,7 +74,6 @@
 		0875A22B2B3C09E300733C59 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchViewModel.swift; path = ToyProject/UI/SearchViewModel.swift; sourceTree = SOURCE_ROOT; };
 		0875A22D2B3C0C5F00733C59 /* SearchUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchUsecase.swift; path = ToyProject/Usecase/SearchUsecase.swift; sourceTree = SOURCE_ROOT; };
 		0875A22F2B3C0E4700733C59 /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchRepository.swift; path = ToyProject/DB/SearchRepository.swift; sourceTree = SOURCE_ROOT; };
-		0875A2362B3D003C00733C59 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RealmManager.swift; path = ToyProject/DB/RealmManager.swift; sourceTree = SOURCE_ROOT; };
 		0875A2382B3D00E400733C59 /* SearchHistoryForRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryForRealm.swift; sourceTree = "<group>"; };
 		08A863892B3BAF56003782E1 /* ToyProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToyProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A8638C2B3BAF56003782E1 /* ToyProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyProjectApp.swift; sourceTree = "<group>"; };
@@ -258,7 +256,6 @@
 			isa = PBXGroup;
 			children = (
 				0875A22F2B3C0E4700733C59 /* SearchRepository.swift */,
-				0875A2362B3D003C00733C59 /* RealmManager.swift */,
 				08F8647C2B4E3A04004E9E06 /* UserRealmManager.swift */,
 				08F8647E2B4E3A16004E9E06 /* RepositoryRealmManager.swift */,
 				0872FB362B4E2B1B004D9A35 /* Entity */,
@@ -431,7 +428,6 @@
 				08A863CB2B3BC408003782E1 /* UserView.swift in Sources */,
 				0875A22E2B3C0C5F00733C59 /* SearchUsecase.swift in Sources */,
 				08F8647F2B4E3A16004E9E06 /* RepositoryRealmManager.swift in Sources */,
-				0875A2372B3D003C00733C59 /* RealmManager.swift in Sources */,
 				084299C92B3BFBAF009DA780 /* SearchView.swift in Sources */,
 				0875A2392B3D00E400733C59 /* SearchHistoryForRealm.swift in Sources */,
 				0875A2282B3BFEA400733C59 /* DetailView.swift in Sources */,

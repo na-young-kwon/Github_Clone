@@ -30,7 +30,6 @@ struct SearchView: View {
                     
                     TextField("search".getLocalizedString(), text: $text) {
                         isActive = true
-                        viewModel.saveSearch(SearchHistory(text: text))
                     }
                     .frame(height: 40)
                     .padding(.bottom, 20)
@@ -46,11 +45,11 @@ struct SearchView: View {
                         .padding(.horizontal, 16)
                     
                     List {
-                        ForEach(viewModel.searchHistory, id: \.id) { data in
+                        ForEach(viewModel.searchHistory, id: \.id) { user in
                             NavigationLink {
-                                UserView(text: data.text)
+                                UserView(text: user.userName)
                             } label: {
-                                Text(data.text)
+                                Text(user.userName)
                             }
                         }
                         .onDelete(perform: viewModel.deleteItem(at:))

@@ -8,13 +8,9 @@
 import Foundation
 
 class SearchViewModel: ObservableObject {
-    @Published var searchHistory: [SearchHistory] = []
+    @Published var searchHistory: [UserResponse] = []
     
-    private let usecase: SearchUsecase = SearchUsecase()
-    
-    func saveSearch(_ searchHistory: SearchHistory) {
-        usecase.saveSearchText(searchHistory)
-    }
+    private let usecase = SearchUsecase()
     
     func fetchSearchHistory() {
         searchHistory = usecase.fetchSearchHistory()
@@ -22,8 +18,8 @@ class SearchViewModel: ObservableObject {
     
     func deleteItem(at indexSet: IndexSet) {
         for index in indexSet {
-            let searchHistoryItem = searchHistory[index]
-            usecase.deleteSearchText(searchHistoryItem)
+            let user = searchHistory[index]
+            usecase.deleteSearchText(user)
         }
         searchHistory = usecase.fetchSearchHistory()
     }

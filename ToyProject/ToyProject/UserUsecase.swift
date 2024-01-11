@@ -21,7 +21,7 @@ struct UserUsecase {
         return repository
     }
     
-    @MainActor
+    @MainActor // 여기 왜 main thread에서 안도는지 궁금..
     func getUser(forUser username: String) async throws -> UserResponse {
         if let userFromRealm = UserRealmManager.shared.getUser(by: username) {
             return userFromRealm
