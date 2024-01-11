@@ -25,7 +25,7 @@ struct UserView: View {
                     Spacer(minLength: 10)
                     HStack {
                         Spacer()
-                        if let urlString = user.avatarUrl, let url = URL(string: urlString) {
+                        if let url = URL(string: user.avatarUrl) {
                             URLImage(url) { image in
                                 image
                                     .resizable()
@@ -46,11 +46,11 @@ struct UserView: View {
                         
                         Spacer()
                         VStack(alignment: .leading, spacing: 18) {
-                            Text(user.login ?? "n/a")
+                            Text(user.userName)
                             Text(user.bio ?? "n/a")
                             HStack {
-                                Text("follower_n".getLocalizedString(with: user.followers ?? 0))
-                                Text("following_n".getLocalizedString(with: user.following ?? 0))
+                                Text("follower_n".getLocalizedString(with: user.follower))
+                                Text("following_n".getLocalizedString(with: user.following))
                             }
                         }
                         Spacer()
@@ -59,26 +59,26 @@ struct UserView: View {
                     
                     List(viewModel.repositories, id: \.id) { repository in
                         NavigationLink {
-                            DetailView(url: repository.htmlUrl ?? "")
+                            DetailView(url: repository.htmlUrl)
                         } label: {
                             VStack(alignment: .leading, spacing: 20) {
                                 HStack {
                                     Image(systemName: "book")
-                                    Text(repository.fullName ?? "")
+                                    Text(repository.fullName)
                                         .fontWeight(.bold)
                                 }
                                 HStack(spacing: 10) {
                                     Text("⭐️")
                                         .font(.caption)
-                                    Text("\(repository.stargazersCount ?? 0)")
+                                    Text("\(repository.starsCount)")
                                         .foregroundColor(.secondary)
                                     Text("👀")
                                         .font(.caption)
-                                    Text("\(repository.watchersCount ?? 0)")
+                                    Text("\(repository.watchersCount)")
                                         .foregroundColor(.secondary)
                                     Text("🍴")
                                         .font(.caption)
-                                    Text("\(repository.forksCount ?? 0)")
+                                    Text("\(repository.forksCount)")
                                         .foregroundColor(.secondary)
                                     Text("language_n".getLocalizedString(with: repository.language ?? "N/A"))
                                         .foregroundColor(.secondary)
@@ -92,8 +92,10 @@ struct UserView: View {
                 }
             }
         .onAppear {
-            Task {
-                await viewModel.fetchUser(forUser: text)
+            DispatchQueue.main.async {
+                Task {
+                    await viewModel.fetchUser(forUser: text)
+                }
             }
         }
     }
