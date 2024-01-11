@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		082F093A2B3C0A7200A29EE9 /* NetworkUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082F09392B3C0A7200A29EE9 /* NetworkUseCase.swift */; };
+		082F093A2B3C0A7200A29EE9 /* UserUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082F09392B3C0A7200A29EE9 /* UserUsecase.swift */; };
 		082F093C2B3C0B4100A29EE9 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082F093B2B3C0B4100A29EE9 /* NetworkService.swift */; };
 		084299C72B3BFBA7009DA780 /* SearchHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084299C62B3BFBA7009DA780 /* SearchHistory.swift */; };
 		084299C92B3BFBAF009DA780 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084299C82B3BFBAF009DA780 /* SearchView.swift */; };
@@ -60,7 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		082F09392B3C0A7200A29EE9 /* NetworkUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkUseCase.swift; path = ToyProject/NetworkUseCase.swift; sourceTree = SOURCE_ROOT; };
+		082F09392B3C0A7200A29EE9 /* UserUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserUsecase.swift; path = ToyProject/UserUsecase.swift; sourceTree = SOURCE_ROOT; };
 		082F093B2B3C0B4100A29EE9 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkService.swift; path = ToyProject/NetworkService.swift; sourceTree = SOURCE_ROOT; };
 		084299C62B3BFBA7009DA780 /* SearchHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchHistory.swift; path = ToyProject/UI/SearchHistory.swift; sourceTree = SOURCE_ROOT; };
 		084299C82B3BFBAF009DA780 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchView.swift; path = ToyProject/UI/SearchView.swift; sourceTree = SOURCE_ROOT; };
@@ -125,13 +125,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0872FB1B2B47E87B004D9A35 /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resource;
-			sourceTree = "<group>";
-		};
 		0872FB362B4E2B1B004D9A35 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,12 +158,9 @@
 		08A8638B2B3BAF56003782E1 /* ToyProject */ = {
 			isa = PBXGroup;
 			children = (
-				0872FB292B47F36A004D9A35 /* Localizable.strings */,
-				0872FB1B2B47E87B004D9A35 /* Resource */,
 				08A8638C2B3BAF56003782E1 /* ToyProjectApp.swift */,
+				0872FB292B47F36A004D9A35 /* Localizable.strings */,
 				08A997DF2B3BB7300014F24C /* UI */,
-				0872FB0B2B43FEED004D9A35 /* View+extension.swift */,
-				0872FB1E2B47EA45004D9A35 /* String+extension.swift */,
 				08A997E42B3BB7CD0014F24C /* Usecase */,
 				08A997E32B3BB7690014F24C /* Network */,
 				08A997E82B3BB8160014F24C /* DB */,
@@ -212,6 +202,7 @@
 				08A997E02B3BB7410014F24C /* Search */,
 				08A997E12B3BB7450014F24C /* User */,
 				08A997E22B3BB74B0014F24C /* Detail */,
+				08DB88EC2B4F7A7200631880 /* Utils */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -257,7 +248,7 @@
 		08A997E42B3BB7CD0014F24C /* Usecase */ = {
 			isa = PBXGroup;
 			children = (
-				082F09392B3C0A7200A29EE9 /* NetworkUseCase.swift */,
+				082F09392B3C0A7200A29EE9 /* UserUsecase.swift */,
 				0875A22D2B3C0C5F00733C59 /* SearchUsecase.swift */,
 			);
 			path = Usecase;
@@ -273,6 +264,15 @@
 				0872FB362B4E2B1B004D9A35 /* Entity */,
 			);
 			path = DB;
+			sourceTree = "<group>";
+		};
+		08DB88EC2B4F7A7200631880 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0872FB0B2B43FEED004D9A35 /* View+extension.swift */,
+				0872FB1E2B47EA45004D9A35 /* String+extension.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -425,7 +425,7 @@
 				0875A22A2B3BFEB400733C59 /* WebView.swift in Sources */,
 				0872FB0C2B43FEED004D9A35 /* View+extension.swift in Sources */,
 				08F8647D2B4E3A04004E9E06 /* UserRealmManager.swift in Sources */,
-				082F093A2B3C0A7200A29EE9 /* NetworkUseCase.swift in Sources */,
+				082F093A2B3C0A7200A29EE9 /* UserUsecase.swift in Sources */,
 				0875A2302B3C0E4700733C59 /* SearchRepository.swift in Sources */,
 				0872FB1F2B47EA45004D9A35 /* String+extension.swift in Sources */,
 				08A863CB2B3BC408003782E1 /* UserView.swift in Sources */,

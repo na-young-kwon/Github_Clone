@@ -15,12 +15,12 @@ class UserViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String?
     
-    private var repositoryUseCase = NetworkUseCase()
+    private var usecase = UserUsecase()
     
     func fetchUser(forUser userName: String) async {
           isLoading = true
           do {
-              user = try await repositoryUseCase.getUser(forUser: userName)
+              user = try await usecase.getUser(forUser: userName)
               await fetchRepositories(forUser: userName) // 여기서 fetchRepositories 호출
           } catch let error as NetworkError {
               errorMessage = errorMessage(for: error)
@@ -32,7 +32,7 @@ class UserViewModel: ObservableObject {
 
       func fetchRepositories(forUser userName: String) async {
           do {
-              repositories = try await repositoryUseCase.getRepositories(forUser: userName)
+              repositories = try await usecase.getRepositories(forUser: userName)
           } catch let error as NetworkError {
               errorMessage = errorMessage(for: error)
           } catch {
