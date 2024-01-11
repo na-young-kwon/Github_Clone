@@ -11,6 +11,7 @@ import Alamofire
 struct UserUsecase {
     let networkService = NetworkService()
     
+    @MainActor
     func getRepositories(forUser username: String) async throws -> [RepositoryResponse] {
         if let repo = RepositoryRealmManager.shared.getRepository(by: username) {
             return repo
@@ -20,6 +21,7 @@ struct UserUsecase {
         return repository
     }
     
+    @MainActor
     func getUser(forUser username: String) async throws -> UserResponse {
         if let userFromRealm = UserRealmManager.shared.getUser(by: username) {
             return userFromRealm

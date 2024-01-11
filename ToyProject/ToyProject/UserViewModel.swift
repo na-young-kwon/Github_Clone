@@ -8,7 +8,6 @@
 import SwiftUI
 import Alamofire
 
-@MainActor
 class UserViewModel: ObservableObject {
     @Published var user: UserResponse?
     @Published var repositories: [RepositoryResponse] = []
@@ -17,28 +16,30 @@ class UserViewModel: ObservableObject {
     
     private var usecase = UserUsecase()
     
+    @MainActor
     func fetchUser(forUser userName: String) async {
-          isLoading = true
-          do {
-              user = try await usecase.getUser(forUser: userName)
-              await fetchRepositories(forUser: userName) // 여기서 fetchRepositories 호출
-          } catch let error as NetworkError {
-              errorMessage = errorMessage(for: error)
-          } catch {
-              errorMessage = "no_github_ID".getLocalizedString()
-          }
-          isLoading = false
-      }
-
-      func fetchRepositories(forUser userName: String) async {
-          do {
-              repositories = try await usecase.getRepositories(forUser: userName)
-          } catch let error as NetworkError {
-              errorMessage = errorMessage(for: error)
-          } catch {
-              errorMessage = "no_github_ID".getLocalizedString()
-          }
-      }
+        isLoading = true
+        do {
+            user = try await usecase.getUser(forUser: userName)
+            await fetchRepositories(forUser: userName) // 여기서 fetchRepositories 호출
+        } catch let error as NetworkError {
+            errorMessage = errorMessage(for: error)
+        } catch {
+            errorMessage = "no_github_ID".getLocalizedString()
+        }
+        isLoading = false
+    }
+    
+    @MainActor
+    func fetchRepositories(forUser userName: String) async {
+        do {
+            repositories = try await usecase.getRepositories(forUser: userName)
+        } catch let error as NetworkError {
+            errorMessage = errorMessage(for: error)
+        } catch {
+            errorMessage = "no_github_ID".getLocalizedString()
+        }
+    }
 }
 
 extension UserViewModel {

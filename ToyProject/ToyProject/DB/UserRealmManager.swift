@@ -10,13 +10,12 @@ import RealmSwift
 
 class UserRealmManager {
     static let shared = UserRealmManager()
-//    private let realm = try! Realm()
+    private let realm = try! Realm()
     
     private init() {}
     
     // create
     func create(_ userResponse: UserResponse) {
-        let realm = try! Realm()
         do {
             try realm.write {
                 let user = UserForRealm(
@@ -36,7 +35,6 @@ class UserRealmManager {
     
     // read
     func getUser(by userName: String) -> UserResponse? {
-        let realm = try! Realm()
         guard let user = realm.objects(UserForRealm.self).filter("userName == [c] %@", userName).first else {
             return nil
         }
