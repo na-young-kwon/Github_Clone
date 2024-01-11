@@ -51,7 +51,8 @@ class UserRealmManager {
     
     // 모든 유저 반환
     func getAllUsers() -> [UserResponse] {
-        let userResponse = realm.objects(UserForRealm.self).map {
+        let sortedUsers = realm.objects(UserForRealm.self).sorted(byKeyPath: "createdAt", ascending: true)
+        let userResponse = sortedUsers.map {
             UserResponse(
                 id: $0.id,
                 userName: $0.userName,

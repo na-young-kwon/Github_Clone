@@ -15,14 +15,16 @@ class UserForRealm: Object {
     @Persisted var follower: Int = 0
     @Persisted var following: Int = 0
     @Persisted var bio: String = ""
+    @Persisted var createdAt: Date
     
-    convenience init(id: Int, userName: String, avatarUrl: String, follower: Int, following: Int, bio: String) {
+    convenience init(id: Int, userName: String, avatarUrl: String, follower: Int, following: Int, bio: String, createdAt: Date = Date()) {
         self.init()
         self.id = id
-        self.avatarUrl = avatarUrl
         self.userName = userName
-        self.bio = bio
+        self.avatarUrl = avatarUrl
         self.follower = follower
         self.following = following
+        self.bio = bio
+        self.createdAt = createdAt
     }
 }
