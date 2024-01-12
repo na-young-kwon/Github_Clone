@@ -7,6 +7,8 @@
 
 import Foundation
 
+// 작성자: nayoung kwon
+
 struct RepositoryResponse: Decodable, Hashable {
     let id: Int
     let user: User

@@ -8,6 +8,8 @@
 import Foundation
 import RealmSwift
 
+// 작성자: nayoung kwon
+
 class RepositoryRealmManager {
     static let shared = RepositoryRealmManager()
     private let realm = try! Realm()

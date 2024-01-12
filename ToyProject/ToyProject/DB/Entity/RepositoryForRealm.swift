@@ -8,6 +8,8 @@
 import Foundation
 import RealmSwift
 
+// 작성자: nayoung kwon
+
 class RepositoryForRealm: Object {
     @Persisted(primaryKey: true) var id: Int
     @Persisted var userName: String = ""

@@ -8,6 +8,8 @@
 import SwiftUI
 import Alamofire
 
+// 마지막 수정자: nayoung kwon
+
 class UserViewModel: ObservableObject {
     @Published var user: UserResponse?
     @Published var repositories: [RepositoryResponse] = []

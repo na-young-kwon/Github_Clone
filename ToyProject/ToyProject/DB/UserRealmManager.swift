@@ -2,11 +2,13 @@
 //  UserRealmManager.swift
 //  ToyProject
 //
-//  Created by woosub kim  on 1/10/24.
+//  Created by nayoung kwon  on 1/10/24.
 //
 
 import Foundation
 import RealmSwift
+
+// 작성자: nayoung kwon
 
 class UserRealmManager {
     static let shared = UserRealmManager()
@@ -24,7 +26,8 @@ class UserRealmManager {
                     avatarUrl: user.avatarUrl,
                     follower: user.follower,
                     following: user.following,
-                    bio: user.bio ?? ""
+                    bio: user.bio ?? "",
+                    createdAt: Date()
                 )
                 realm.add(user)
             }
