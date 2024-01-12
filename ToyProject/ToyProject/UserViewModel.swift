@@ -24,20 +24,23 @@ class UserViewModel: ObservableObject {
         isLoading = true
         do {
             user = try await networkUseCase.getUser(forUser: userName)
-            await fetchRepositories(forUser: userName) // 여기서 fetchRepositories 호출
+            await fetchRepositories(forUser: userName)
+            guard let user = user else { return }
+            saveUser(user)
         } catch let error as NetworkError {
             errorMessage = errorMessage(for: error)
         } catch {
             errorMessage = "no_github_ID".getLocalizedString()
         }
-        saveUser(user!)
-//        saveRepo(repositories.)
         isLoading = false
     }
     
     func fetchRepositories(forUser userName: String) async {
         do {
             repositories = try await networkUseCase.getRepositories(forUser: userName)
+            for repository in repositories {
+                saveRepository(repository)
+            }
         } catch let error as NetworkError {
             errorMessage = errorMessage(for: error)
         } catch {
@@ -49,8 +52,8 @@ class UserViewModel: ObservableObject {
         userUseCase.saveUser(userResponse)
     }
     
-    func fetchUser() {
-        
+    func saveRepository(_ repositoryResponse: RepositoryResponse) {
+        repoUseCase.saveUser(repositoryResponse)
     }
     
 }

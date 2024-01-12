@@ -24,25 +24,3 @@ struct UserResponse: Codable, Hashable {
     }
     
 }
-
-
-//struct RepositoryResponse: Codable, Hashable, Identifiable {
-//    var id: Int?
-//    var fullName: String?
-//    var htmlUrl: String?
-//    let stargazersCount: Int
-//    var watchersCount: Int
-//    var language: String?
-//    var forksCount: Int
-//    
-//    enum CodingKeys: String, CodingKey {
-////        case id
-//        case fullName = "full_name"
-//        case htmlUrl = "html_url"
-//        case stargazersCount = "stargazers_count"
-//        case watchersCount = "watchers_count"
-//        case language
-//        case forksCount = "forks_count"
-//        case follower = "followers"
-//    }
-//}

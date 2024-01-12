@@ -21,10 +21,12 @@ class RepositoryRealmManager {
                 let repository = RepositoryForRealm(
                     id: repository.id,
                     htmlUrl: repository.htmlUrl,
+                    userName: repository.user.name,
                     fullName: repository.fullName,
                     starsCount: repository.starsCount,
                     watchersCount: repository.watchersCount,
-                    forksCount: repository.forksCount
+                    forksCount: repository.forksCount,
+                    language: repository.language
                 )
                 realm.add(repository)
             }
@@ -39,7 +41,8 @@ class RepositoryRealmManager {
         
         let repositories = repositoryForRealm.map {
             RepositoryResponse(
-                id: $0.id,
+                id: $0.id, 
+                user: RepositoryResponse.User(name: $0.userName),
                 fullName: $0.fullName,
                 htmlUrl: $0.htmlUrl,
                 starsCount: $0.starsCount,

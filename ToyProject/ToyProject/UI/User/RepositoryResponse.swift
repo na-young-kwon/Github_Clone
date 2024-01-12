@@ -9,6 +9,7 @@ import Foundation
 
 struct RepositoryResponse: Decodable, Hashable {
     let id: Int
+    let user: User
     let fullName: String
     let htmlUrl: String
     let starsCount: Int
@@ -18,10 +19,19 @@ struct RepositoryResponse: Decodable, Hashable {
     
     enum CodingKeys: String, CodingKey {
         case id, language
+        case user = "owner"
         case starsCount = "stargazers_count"
         case watchersCount = "watchers"
         case forksCount = "forks_count"
         case fullName = "full_name"
         case htmlUrl = "html_url"
+    }
+    
+    struct User: Decodable, Hashable {
+        let name: String
+        
+        enum CodingKeys: String, CodingKey {
+            case name = "login"
+        }
     }
 }
