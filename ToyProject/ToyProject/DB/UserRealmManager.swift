@@ -33,11 +33,13 @@ class UserRealmManager {
         }
     }
     
-    // 특정 유저 반환
+    // read - 특정 유저 반환
     func getUser(by userName: String) -> UserResponse? {
         guard let user = realm.objects(UserForRealm.self).filter("userName == [c] %@", userName).first else {
             return nil
         }
+        updateCreatedTime(user: user)
+        
         let userResponse = UserResponse(
             id: user.id,
             userName: user.userName,
@@ -49,7 +51,7 @@ class UserRealmManager {
         return userResponse
     }
     
-    // 모든 유저 반환
+    // read - 모든 유저 반환
     func getAllUsers() -> [UserResponse] {
         let sortedUsers = realm.objects(UserForRealm.self).sorted(byKeyPath: "createdAt", ascending: true)
         let userResponse = sortedUsers.map {
@@ -63,6 +65,17 @@ class UserRealmManager {
             )
         }
         return Array(userResponse)
+    }
+    
+    // update
+    private func updateCreatedTime(user: UserForRealm) {
+        do {
+            try realm.write {
+                user.createdAt = Date()
+            }
+        } catch {
+            print("유저 정보 업데이트를 실패했습니다 - \(error)")
+        }
     }
     
     // delete
