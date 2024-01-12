@@ -1,5 +1,5 @@
 //
-//  RepositoryForRealm.swift
+//  Repository.swift
 //  ToyProject
 //
 //  Created by nayoung kwon on 1/10/24.
@@ -10,7 +10,7 @@ import RealmSwift
 
 // 작성자: nayoung kwon
 
-class RepositoryForRealm: Object {
+class Repository: Object {
     @Persisted(primaryKey: true) var id: Int
     @Persisted var userName: String = ""
     @Persisted var htmlUrl: String = ""

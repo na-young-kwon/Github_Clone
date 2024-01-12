@@ -12,26 +12,24 @@ import RealmSwift
 
 class RepositoryRealmManager {
     static let shared = RepositoryRealmManager()
-    private let realm = try! Realm()
+//    private let realm = try! Realm()
     
     private init() {}
     
     // create
-    func create(_ repositories: [RepositoryResponse]) {
+    func create(_ repositories: [RepositoryDTO]) {
+        let realm = try! Realm()
         do {
             try realm.write {
-                let repos = repositories.map {
-                    RepositoryForRealm(
-                        id: $0.id,
-                        userName: $0.user.name,
-                        htmlUrl: $0.htmlUrl,
-                        fullName: $0.fullName,
-                        starsCount: $0.starsCount,
-                        watchersCount: $0.watchersCount,
-                        forksCount: $0.forksCount,
-                        language: $0.language
-                    )
-                }
+                let repos = repositories.map { Repository(id: $0.id,
+                                                          userName: $0.user.name,
+                                                          htmlUrl: $0.htmlUrl,
+                                                          fullName: $0.fullName,
+                                                          starsCount: $0.starsCount,
+                                                          watchersCount: $0.watchersCount,
+                                                          forksCount: $0.forksCount,
+                                                          language: $0.language
+                )}
                 realm.add(repos)
             }
         } catch {
@@ -40,24 +38,12 @@ class RepositoryRealmManager {
     }
     
     // read
-    func getRepository(by userName: String) -> [RepositoryResponse]? {
-        let repoFromRealm = realm.objects(RepositoryForRealm.self).filter("userName == [c] %@", userName)
+    func getRepository(by userName: String) -> [Repository]? {
+        let realm = try! Realm()
+        let repositories = realm.objects(Repository.self).filter("userName == [c] %@", userName)
         
-        guard !repoFromRealm.isEmpty else {
+        guard !repositories.isEmpty else {
             return nil
-        }
-        
-        let repositories = repoFromRealm.map {
-            RepositoryResponse(
-                id: $0.id,
-                user: RepositoryResponse.User(name: $0.userName),
-                fullName: $0.fullName,
-                htmlUrl: $0.htmlUrl,
-                starsCount: $0.starsCount,
-                watchersCount: $0.watchersCount,
-                forksCount: $0.forksCount,
-                language: $0.language
-            )
         }
         return Array(repositories)
     }

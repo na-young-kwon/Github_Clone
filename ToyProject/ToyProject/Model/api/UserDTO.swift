@@ -1,5 +1,5 @@
 //
-//  UserResponse.swift
+//  UserDTO.swift
 //  ToyProject
 //
 //  Created by woosub kim on 12/27/23.
@@ -9,7 +9,7 @@ import Foundation
 
 // 작성자: nayoung kwon
 
-struct UserResponse: Decodable, Hashable {
+struct UserDTO: Decodable {
     let id: Int
     let userName: String
     let avatarUrl: String

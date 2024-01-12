@@ -1,5 +1,5 @@
 //
-//  RepositoryResponse.swift
+//  RepositoryDTO.swift
 //  ToyProject
 //
 //  Created by nayoung kwon on 1/10/24.
@@ -9,7 +9,7 @@ import Foundation
 
 // 작성자: nayoung kwon
 
-struct RepositoryResponse: Decodable, Hashable {
+struct RepositoryDTO: Decodable {
     let id: Int
     let user: User
     let fullName: String
@@ -29,7 +29,7 @@ struct RepositoryResponse: Decodable, Hashable {
         case htmlUrl = "html_url"
     }
     
-    struct User: Decodable, Hashable {
+    struct User: Decodable {
         let name: String
         
         enum CodingKeys: String, CodingKey {

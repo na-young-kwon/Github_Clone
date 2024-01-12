@@ -11,8 +11,8 @@ import Alamofire
 // 마지막 수정자: nayoung kwon
 
 class UserViewModel: ObservableObject {
-    @Published var user: UserResponse?
-    @Published var repositories: [RepositoryResponse] = []
+    @Published var user: UserVo?
+    @Published var repositories: [RepositoryVo] = []
     @Published var isLoading = false
     @Published var errorMessage: String?
     
@@ -35,7 +35,7 @@ class UserViewModel: ObservableObject {
     @MainActor
     func fetchRepositories(forUser userName: String) async {
         do {
-            repositories = try await usecase.getRepositories(forUser: userName)
+            repositories = try await usecase.getRepositoryList(forUser: userName)
         } catch let error as NetworkError {
             errorMessage = errorMessage(for: error)
         } catch {

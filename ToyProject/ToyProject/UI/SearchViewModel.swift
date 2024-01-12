@@ -8,7 +8,7 @@
 import Foundation
 
 class SearchViewModel: ObservableObject {
-    @Published var searchHistory: [UserResponse] = []
+    @Published var searchHistory: [UserVo] = []
     
     private let usecase = SearchUsecase()
     

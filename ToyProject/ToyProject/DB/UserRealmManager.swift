@@ -12,22 +12,22 @@ import RealmSwift
 
 class UserRealmManager {
     static let shared = UserRealmManager()
-    private let realm = try! Realm()
+//    private let realm = try! Realm()
     
     private init() {}
     
     // create
-    func create(_ user: UserResponse) {
+    func create(_ user: UserDTO) {
+        let realm = try! Realm()
         do {
             try realm.write {
-                let user = UserForRealm(
-                    id: user.id,
-                    userName: user.userName,
-                    avatarUrl: user.avatarUrl,
-                    follower: user.follower,
-                    following: user.following,
-                    bio: user.bio ?? "",
-                    createdAt: Date()
+                let user = User(id: user.id,
+                                userName: user.userName,
+                                avatarUrl: user.avatarUrl,
+                                follower: user.follower,
+                                following: user.following,
+                                bio: user.bio ?? "",
+                                createdAt: Date()
                 )
                 realm.add(user)
             }
@@ -37,41 +37,25 @@ class UserRealmManager {
     }
     
     // read - 특정 유저 반환
-    func getUser(by userName: String) -> UserResponse? {
-        guard let user = realm.objects(UserForRealm.self).filter("userName == [c] %@", userName).first else {
+    func getUser(by userName: String) -> User? {
+        let realm = try! Realm()
+        guard let user = realm.objects(User.self).filter("userName == [c] %@", userName).first else {
             return nil
         }
         updateCreatedTime(user: user)
-        
-        let userResponse = UserResponse(
-            id: user.id,
-            userName: user.userName,
-            avatarUrl: user.avatarUrl,
-            follower: user.follower,
-            following: user.following,
-            bio: user.bio
-        )
-        return userResponse
+        return user
     }
     
     // read - 모든 유저 반환
-    func getAllUsers() -> [UserResponse] {
-        let sortedUsers = realm.objects(UserForRealm.self).sorted(byKeyPath: "createdAt", ascending: true)
-        let userResponse = sortedUsers.map {
-            UserResponse(
-                id: $0.id,
-                userName: $0.userName,
-                avatarUrl: $0.avatarUrl,
-                follower: $0.follower,
-                following: $0.following,
-                bio: $0.bio
-            )
-        }
-        return Array(userResponse)
+    func getAllUsers() -> [User] {
+        let realm = try! Realm()
+        let users = realm.objects(User.self).sorted(byKeyPath: "createdAt", ascending: true)
+        return Array(users)
     }
     
     // update
-    private func updateCreatedTime(user: UserForRealm) {
+    private func updateCreatedTime(user: User) {
+        let realm = try! Realm()
         do {
             try realm.write {
                 user.createdAt = Date()
@@ -82,9 +66,10 @@ class UserRealmManager {
     }
     
     // delete
-    func delete(_ user: UserResponse) {
+    func delete(_ user: UserVo) {
+        let realm = try! Realm()
         do {
-            let task = realm.objects(UserForRealm.self).where { $0.id == user.id }
+            let task = realm.objects(User.self).where { $0.id == user.id }
             try realm.write {
                 realm.delete(task)
             }

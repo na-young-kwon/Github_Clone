@@ -12,24 +12,21 @@ import Alamofire
 
 struct UserUsecase {
     let networkService = NetworkService()
+    let repository = UserRepository()
     
-    @MainActor
-    func getRepositories(forUser username: String) async throws -> [RepositoryResponse] {
-        if let repo = RepositoryRealmManager.shared.getRepository(by: username) {
-            return repo
+//    @MainActor // 여기 왜 main thread에서 안도는지 궁금..
+    func getUser(forUser username: String) async throws -> UserVo {
+        if let user = repository.getUser(by: username) {
+            return user
         }
-        let repository = try await networkService.fetchRepositories(forUser: username)
-        RepositoryRealmManager.shared.create(repository)
-        return repository
+        return try await repository.fetchUser(by: username)
     }
     
-    @MainActor // 여기 왜 main thread에서 안도는지 궁금..
-    func getUser(forUser username: String) async throws -> UserResponse {
-        if let userFromRealm = UserRealmManager.shared.getUser(by: username) {
-            return userFromRealm
+//    @MainActor
+    func getRepositoryList(forUser username: String) async throws -> [RepositoryVo] {
+        if let repositoryList = repository.getRepositoryList(forUser: username) {
+            return repositoryList
         }
-        let userFromServer = try await networkService.fetchUser(forUser: username)
-        UserRealmManager.shared.create(userFromServer)
-        return userFromServer
+        return try await repository.fetchRepositories(forUser: username)
     }
 }

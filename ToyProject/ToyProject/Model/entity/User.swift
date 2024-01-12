@@ -1,5 +1,5 @@
 //
-//  UserForRealm.swift
+//  User.swift
 //  ToyProject
 //
 //  Created by nayoung kwon on 1/10/24.
@@ -10,7 +10,7 @@ import RealmSwift
 
 // 작성자: nayoung kwon
 
-class UserForRealm: Object {
+class User: Object {
     @Persisted(primaryKey: true) var id: Int
     @Persisted var userName: String = ""
     @Persisted var avatarUrl: String = ""
