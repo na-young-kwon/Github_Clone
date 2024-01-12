@@ -11,11 +11,11 @@ import Alamofire
 struct NetworkUseCase {
     let networkService = NetworkService()
     
-    func getRepositories(forUser username: String) async throws -> [RepositoryResponse] {
-        return try await networkService.fetchRepositories(forUser: username)
-    }
-    
     func getUser(forUser username: String) async throws -> UserResponse {
         return try await networkService.fetchUser(forUser: username)
+    }
+    
+    func getRepositories(forUser username: String) async throws -> [RepositoryResponse] {
+        return try await networkService.fetchRepositories(forUser: username)
     }
 }

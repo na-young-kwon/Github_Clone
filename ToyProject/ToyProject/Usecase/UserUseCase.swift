@@ -18,6 +18,10 @@ struct UserUseCase {
         return userRepository.fetchUser(userName)
     }
     
+    func fetchUsers() -> [UserResponse] {
+        return userRepository.fetchUsers()
+    }
+    
     func deleteUser(_ userName: String) {
         userRepository.deleteUser(userName)
     }

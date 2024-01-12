@@ -14,9 +14,15 @@ struct RepoUseCase {
         repoRepository.saveRepository(repositoryResponse)
     }
     
-    func fetchUser(_ userName: String) -> [RepositoryResponse] {
+    func fetchRepository(_ userName: String) -> [RepositoryResponse] {
         return repoRepository.fetchRepository(userName)
     }
     
- 
+    func fetchRepositories() -> [RepositoryResponse] {
+        repoRepository.fetchRepositories()
+    }
+
+    func deletRepository(_ userName: String) {
+        repoRepository.deleteRepository(userName)
+    }
 }

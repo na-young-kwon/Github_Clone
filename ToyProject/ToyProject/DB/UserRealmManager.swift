@@ -14,7 +14,7 @@ class UserRealmManager {
     
     private init() {}
     
-    /// Create
+    /// Realm에 유저 Create
     func create(_ userResponse: UserResponse) {
         do {
             try realm.write {
@@ -33,10 +33,9 @@ class UserRealmManager {
         }
     }
     
-    /// Read
+    /// Realm에 특정 유저 Read
     func read(_ userName: String) -> [UserResponse] {
         let userResponseForRealm = realm.objects(UserForRealm.self).filter("userName =[c] %@", userName)
-        
         return userResponseForRealm.map { realmObject in
             UserResponse(
                 id: realmObject.id,
@@ -49,7 +48,7 @@ class UserRealmManager {
         }
     }
     
-    /// 모든 유저 Read
+    /// Realm에 모든 유저 Read
     func readAll() -> [UserResponse] {
         let users = realm.objects(UserForRealm.self)
         return users.map { UserResponse(
@@ -62,7 +61,7 @@ class UserRealmManager {
         }
     }
     
-    /// Delete
+    /// Realm에 특정 유저 Delete
     func delete(_ userName: String) {
         do {
             let userToDelete = realm.objects(UserForRealm.self).filter("userName =[c] %@", userName)

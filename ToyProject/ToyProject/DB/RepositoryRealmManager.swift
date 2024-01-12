@@ -14,7 +14,7 @@ class RepositoryRealmManager {
     
     private init() {}
     
-    /// Create
+    /// Realm에 레포지토리 Create
     func create(_ repository: RepositoryResponse) {
         do {
             try realm.write {
@@ -35,10 +35,9 @@ class RepositoryRealmManager {
         }
     }
     
-    /// Read
+    /// Realm에 특정 레포지토리 Read
     func read(_ userName: String) -> [RepositoryResponse] {
         let repositoryForRealm = realm.objects(RepositoryForRealm.self).filter("userName =[c] %@", userName)
-        
         return repositoryForRealm.map { realmObject in
             RepositoryResponse(
                 id: realmObject.id,
@@ -53,7 +52,7 @@ class RepositoryRealmManager {
         }
     }
     
-    /// 모든 Repo  Read
+    /// Realm에 모든 레포지토리 Read
     func readAll() -> [RepositoryResponse] {
         let repositoryForRealm = realm.objects(RepositoryForRealm.self)
         return repositoryForRealm.map { realmObject in
@@ -70,7 +69,7 @@ class RepositoryRealmManager {
         }
     }
     
-    /// Delete
+    /// Realm에 특정 레포지토리 Read
     func delete(_ userName: String) {
         do {
             let repositoryToDelete = realm.objects(RepositoryForRealm.self).filter("userName =[c] %@", userName)

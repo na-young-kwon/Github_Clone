@@ -15,21 +15,17 @@ class UserViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String?
     
-    private var networkUseCase = NetworkUseCase()
-    
+    private let networkUseCase: NetworkUseCase = NetworkUseCase()
     private let userUseCase: UserUseCase = UserUseCase()
     private let repoUseCase: RepoUseCase = RepoUseCase()
     
     func networkFetchUser(forUser userName: String) async {
         isLoading = true
-
         let savedUsers = fetchUser(userName)
         
         if savedUsers.isEmpty {
-            // Realm에 데이터가 없으면 네트워크에서 데이터를 가져옴
             do {
                 user = try await networkUseCase.getUser(forUser: userName)
-                
                 await networkFetchRepositories(forUser: userName)
                 guard let fetchedUser = user else { return }
                 saveUser(fetchedUser)
@@ -39,25 +35,20 @@ class UserViewModel: ObservableObject {
                 errorMessage = "no_github_ID".getLocalizedString()
             }
         } else {
-            // Realm에 데이터가 있으면 그 데이터를 사용
             user = savedUsers.first
             await networkFetchRepositories(forUser: userName)
         }
-
         isLoading = false
     }
-
     
     func networkFetchRepositories(forUser userName: String) async {
-        // Realm에서 사용자의 저장소 데이터를 먼저 확인
         let savedRepositories = fetchRepositories(userName)
         
         if savedRepositories.isEmpty {
-            // 데이터가 없으면 API 호출
             do {
                 repositories = try await networkUseCase.getRepositories(forUser: userName)
                 for repository in repositories {
-                    saveRepository(repository)  // 새로운 데이터 저장
+                    saveRepository(repository)
                 }
             } catch let error as NetworkError {
                 errorMessage = errorMessage(for: error)
@@ -65,27 +56,35 @@ class UserViewModel: ObservableObject {
                 errorMessage = "no_github_ID".getLocalizedString()
             }
         } else {
-            // 저장된 데이터 사용
             repositories = savedRepositories
         }
     }
     
+    /// 유저를 Realm에 저장하는 함수
+    /// - Parameter userResponse: 네트워크통신을 통한 유저를 Realm에 저장
     func saveUser(_ userResponse: UserResponse) {
         userUseCase.saveUser(userResponse)
     }
     
+    /// 레포지토리를 Realm에 저장하는 함수
+    /// - Parameter userResponse: 네트워크통신을 통한 레포지토리를 Realm에 저장
     func saveRepository(_ repositoryResponse: RepositoryResponse) {
         repoUseCase.saveRepository(repositoryResponse)
     }
     
+    /// userName에 맞는 특정 유저를 Realm에서 불러오는 함수
+    /// - Parameter userName: userName
+    /// - Returns: userName에 해당하는 UserResponse
     func fetchUser(_ userName: String) -> [UserResponse] {
         userUseCase.fetchUser(userName)
     }
     
+    /// userName에 맞는 특정 레포지토리를 Realm에서 불러오는 함수
+    /// - Parameter userName: 특정 userName
+    /// - Returns: userName에 해당하는 [RepositoryResponse]
     func fetchRepositories(_ userName: String) -> [RepositoryResponse] {
-        repoUseCase.fetchUser(userName)
+        repoUseCase.fetchRepository(userName)
     }
-    
 }
 
 extension UserViewModel {

@@ -8,7 +8,7 @@
 import Alamofire
 import SwiftUI
 
-// 네트워크 오류를 나타내는 커스텀 열거형
+/// 네트워크 오류를 나타내는 커스텀 열거형
 enum NetworkError: Error {
     case badURL
     case serverError(Int)
@@ -21,23 +21,6 @@ struct Constants {
 }
 
 class NetworkService {
-    
-    // 레포지토리 목록을 받아오는 함수
-    func fetchRepositories(forUser username: String) async throws -> [RepositoryResponse] {
-        let urlString = "\(Constants.userURL)\(username)/repos"
-        guard let url = URL(string: urlString) else {
-            throw NetworkError.badURL
-        }
-        
-        do {
-            let repositories: [RepositoryResponse] = try await AF.request(url)
-                .serializingDecodable([RepositoryResponse].self)
-                .value
-            return repositories
-        } catch {
-            throw handleError(error)
-        }
-    }
     
     /// 유저의 종합정보를 받아오는 함수
     /// - Parameter username: 유저이름
@@ -58,10 +41,29 @@ class NetworkService {
         }
     }
     
-    // 에러 처리 함수
+    /// 유저의 레포지토리정보를 받아오는 함수
+    /// - Parameter username: 유저이름
+    /// - Returns: [RepositoryResponse]
+    func fetchRepositories(forUser username: String) async throws -> [RepositoryResponse] {
+        let urlString = "\(Constants.userURL)\(username)/repos"
+        guard let url = URL(string: urlString) else {
+            throw NetworkError.badURL
+        }
+        
+        do {
+            let repositories: [RepositoryResponse] = try await AF.request(url)
+                .serializingDecodable([RepositoryResponse].self)
+                .value
+            return repositories
+        } catch {
+            throw handleError(error)
+        }
+    }
+    
+    /// 에러 처리 함수
     private func handleError(_ error: Error) -> NetworkError {
         if let afError = error.asAFError {
-            // Alamofire 오류 분석 및 사용자 친화적인 메시지로 변환
+            /// Alamofire 오류 분석 및 사용자 친화적인 메시지로 변환
             switch afError {
             case .responseValidationFailed(reason: .unacceptableStatusCode(let code)):
                 return .serverError(code)

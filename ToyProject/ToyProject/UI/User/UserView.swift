@@ -18,7 +18,6 @@ struct UserView: View {
                 ProgressView()
                     .frame(width: 120, height: 120)
             }  else if let errorMessage = viewModel.errorMessage {
-                // 오류 메시지가 있을 경우 표시
                 Text(errorMessage)
                     .foregroundColor(.primary)
             } else if let user = viewModel.user {
