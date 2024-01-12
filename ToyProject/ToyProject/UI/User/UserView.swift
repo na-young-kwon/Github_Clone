@@ -58,7 +58,7 @@ struct UserView: View {
                     
                     List(viewModel.repositories, id: \.id) { repository in
                         NavigationLink {
-                            DetailView(url: repository.htmlUrl )
+                            DetailView(url: repository.htmlUrl)
                         } label: {
                             VStack(alignment: .leading, spacing: 20) {
                                 HStack {

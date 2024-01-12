@@ -10,7 +10,7 @@ import Foundation
 protocol RepoDelegate {
     func saveRepository(_ repositoryResponse: RepositoryResponse)
     func fetchRepository(_ userName: String) -> [RepositoryResponse]
-    func deleteRepository(_ repositoryResponse: RepositoryResponse)
+
 }
 
 struct RepoRepository: RepoDelegate {
@@ -23,7 +23,5 @@ struct RepoRepository: RepoDelegate {
         RepositoryRealmManager.shared.read(userName)
     }
     
-    func deleteRepository(_ repositoryResponse: RepositoryResponse) {
-        RepositoryRealmManager.shared.delete(repositoryResponse)
-    }
+
 }

@@ -18,7 +18,5 @@ struct RepoUseCase {
         return repoRepository.fetchRepository(userName)
     }
     
-    func deleteRepository(_ repositoryResponse: RepositoryResponse) {
-        repoRepository.deleteRepository(repositoryResponse)
-    }
+ 
 }

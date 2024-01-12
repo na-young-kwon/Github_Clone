@@ -8,24 +8,27 @@
 import Foundation
 
 class SearchViewModel: ObservableObject {
-    @Published var searchHistory: [SearchHistory] = []
-    var user: [UserResponse] = []
+    @Published var users: [UserResponse] = []
+    @Published var repositories: [RepositoryResponse] = []
     
-    private let usecase: SearchUsecase = SearchUsecase()
-    
-    func saveSearch(_ searchHistory: SearchHistory) {
-        usecase.saveSearchText(searchHistory)
+    /// 모든 user  fetch
+    func fetchUsers() {
+        users = UserRealmManager.shared.readAll()
     }
     
-    func fetchSearchHistory() {
-        searchHistory = usecase.fetchSearchHistory()        
+    /// 모든 repositories fetch
+    func fetchRepositories() {
+        repositories = RepositoryRealmManager.shared.readAll()
     }
     
-    func deleteItem(at indexSet: IndexSet) {
-        for index in indexSet {
-            let searchHistoryItem = searchHistory[index]
-            usecase.deleteSearchText(searchHistoryItem)
+    /// 특정 user 와 repositories 삭제
+    func deleteUserAndRepositories(at offsets: IndexSet) {
+        offsets.forEach { index in
+            let userNameToDelete = users[index].userName
+            UserRealmManager.shared.delete(userNameToDelete)
+            RepositoryRealmManager.shared.delete(userNameToDelete)
         }
-        searchHistory = usecase.fetchSearchHistory()
+        fetchUsers()
+        fetchRepositories()
     }
 }

@@ -22,5 +22,4 @@ struct UserResponse: Codable, Hashable {
         case followers
         case following
     }
-    
 }

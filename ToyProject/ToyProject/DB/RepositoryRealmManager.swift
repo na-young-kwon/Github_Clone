@@ -14,7 +14,7 @@ class RepositoryRealmManager {
     
     private init() {}
     
-    // create
+    /// Create
     func create(_ repository: RepositoryResponse) {
         do {
             try realm.write {
@@ -35,7 +35,7 @@ class RepositoryRealmManager {
         }
     }
     
-    // read
+    /// Read
     func read(_ userName: String) -> [RepositoryResponse] {
         let repositoryForRealm = realm.objects(RepositoryForRealm.self).filter("userName =[c] %@", userName)
         
@@ -53,16 +53,32 @@ class RepositoryRealmManager {
         }
     }
     
-    // delete
-    func delete(_ repository: RepositoryResponse) {
+    /// 모든 Repo  Read
+    func readAll() -> [RepositoryResponse] {
+        let repositoryForRealm = realm.objects(RepositoryForRealm.self)
+        return repositoryForRealm.map { realmObject in
+            RepositoryResponse(
+                id: realmObject.id,
+                user: RepositoryResponse.User(name: realmObject.userName),
+                fullName: realmObject.fullName,
+                htmlUrl: realmObject.htmlUrl,
+                starsCount: realmObject.starsCount,
+                watchersCount: realmObject.watchersCount,
+                forksCount: realmObject.forksCount,
+                language: realmObject.language
+            )
+        }
+    }
+    
+    /// Delete
+    func delete(_ userName: String) {
         do {
-            let task = realm.objects(RepositoryForRealm.self)
-                .where { $0.id == repository.id }
+            let repositoryToDelete = realm.objects(RepositoryForRealm.self).filter("userName =[c] %@", userName)
             try realm.write {
-                realm.delete(task)
+                realm.delete(repositoryToDelete)
             }
         } catch {
-            print("유저를 삭제하는 데 실패했습니다 - \(error)")
+            print("레포지토리를 삭제하는 데 실패 - \(userName)")
         }
     }
 }
