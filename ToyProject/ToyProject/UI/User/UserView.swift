@@ -92,7 +92,7 @@ struct UserView: View {
             }
         .onAppear {
             Task {
-                await viewModel.fetchUser(forUser: text)
+                await viewModel.networkFetchUser(forUser: text)
             }
         }
     }

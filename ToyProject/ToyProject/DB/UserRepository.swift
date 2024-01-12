@@ -9,7 +9,7 @@ import Foundation
 
 protocol UserDelegate {
     func saveUser(_ userResponse: UserResponse)
-    func fetchUser() -> [UserResponse]
+    func fetchUser(_ userName: String) -> [UserResponse]
     func deleteUser(_ userResponse: UserResponse)
 }
 
@@ -18,8 +18,8 @@ struct UserRepository: UserDelegate {
         UserRealmManager.shared.create(userResponse)
     }
     
-    func fetchUser() -> [UserResponse] {
-        UserRealmManager.shared.read()
+    func fetchUser(_ userName: String) -> [UserResponse] {
+        UserRealmManager.shared.read(userName)
     }
     
     func deleteUser(_ userResponse: UserResponse) {

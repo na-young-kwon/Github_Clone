@@ -20,31 +20,53 @@ class UserViewModel: ObservableObject {
     private let userUseCase: UserUseCase = UserUseCase()
     private let repoUseCase: RepoUseCase = RepoUseCase()
     
-    func fetchUser(forUser userName: String) async {
+    func networkFetchUser(forUser userName: String) async {
         isLoading = true
-        do {
-            user = try await networkUseCase.getUser(forUser: userName)
-            await fetchRepositories(forUser: userName)
-            guard let user = user else { return }
-            saveUser(user)
-        } catch let error as NetworkError {
-            errorMessage = errorMessage(for: error)
-        } catch {
-            errorMessage = "no_github_ID".getLocalizedString()
+
+        let savedUsers = fetchUser(userName)
+        
+        if savedUsers.isEmpty {
+            // Realm에 데이터가 없으면 네트워크에서 데이터를 가져옴
+            do {
+                user = try await networkUseCase.getUser(forUser: userName)
+                
+                await networkFetchRepositories(forUser: userName)
+                guard let fetchedUser = user else { return }
+                saveUser(fetchedUser)
+            } catch let error as NetworkError {
+                errorMessage = errorMessage(for: error)
+            } catch {
+                errorMessage = "no_github_ID".getLocalizedString()
+            }
+        } else {
+            // Realm에 데이터가 있으면 그 데이터를 사용
+            user = savedUsers.first
+            await networkFetchRepositories(forUser: userName)
         }
+
         isLoading = false
     }
+
     
-    func fetchRepositories(forUser userName: String) async {
-        do {
-            repositories = try await networkUseCase.getRepositories(forUser: userName)
-            for repository in repositories {
-                saveRepository(repository)
+    func networkFetchRepositories(forUser userName: String) async {
+        // Realm에서 사용자의 저장소 데이터를 먼저 확인
+        let savedRepositories = fetchRepositories(userName)
+        
+        if savedRepositories.isEmpty {
+            // 데이터가 없으면 API 호출
+            do {
+                repositories = try await networkUseCase.getRepositories(forUser: userName)
+                for repository in repositories {
+                    saveRepository(repository)  // 새로운 데이터 저장
+                }
+            } catch let error as NetworkError {
+                errorMessage = errorMessage(for: error)
+            } catch {
+                errorMessage = "no_github_ID".getLocalizedString()
             }
-        } catch let error as NetworkError {
-            errorMessage = errorMessage(for: error)
-        } catch {
-            errorMessage = "no_github_ID".getLocalizedString()
+        } else {
+            // 저장된 데이터 사용
+            repositories = savedRepositories
         }
     }
     
@@ -53,7 +75,15 @@ class UserViewModel: ObservableObject {
     }
     
     func saveRepository(_ repositoryResponse: RepositoryResponse) {
-        repoUseCase.saveUser(repositoryResponse)
+        repoUseCase.saveRepository(repositoryResponse)
+    }
+    
+    func fetchUser(_ userName: String) -> [UserResponse] {
+        userUseCase.fetchUser(userName)
+    }
+    
+    func fetchRepositories(_ userName: String) -> [RepositoryResponse] {
+        repoUseCase.fetchUser(userName)
     }
     
 }

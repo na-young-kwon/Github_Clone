@@ -34,20 +34,19 @@ class UserRealmManager {
     }
     
     // read
-    func read() -> [UserResponse] {
-        let userResponseForRealm = realm.objects(UserForRealm.self)
+    func read(_ userName: String) -> [UserResponse] {
+        let userResponseForRealm = realm.objects(UserForRealm.self).filter("userName =[c] %@", userName)
  
-        let users = userResponseForRealm.map {
+        return userResponseForRealm.map { realmObject in
             UserResponse(
-                id: $0.id,
-                userName: $0.userName,
-                avatarUrl: $0.avatarUrl,
-                followers: $0.follower,
-                following: $0.following,
-                bio: $0.bio
+                id: realmObject.id,
+                userName: realmObject.userName,
+                avatarUrl: realmObject.avatarUrl,
+                followers: realmObject.follower,
+                following: realmObject.following,
+                bio: realmObject.bio
             )
         }
-        return Array(users)
     }
     
     // delete

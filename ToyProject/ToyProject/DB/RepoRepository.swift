@@ -8,21 +8,22 @@
 import Foundation
 
 protocol RepoDelegate {
-    func saveUser(_ userResponse: RepositoryResponse)
-    func fetchUser() -> [RepositoryResponse]
-    func deleteUser(_ userResponse: RepositoryResponse)
+    func saveRepository(_ repositoryResponse: RepositoryResponse)
+    func fetchRepository(_ userName: String) -> [RepositoryResponse]
+    func deleteRepository(_ repositoryResponse: RepositoryResponse)
 }
 
 struct RepoRepository: RepoDelegate {
-    func saveUser(_ repoResponse: RepositoryResponse) {
-        RepositoryRealmManager.shared.create(repoResponse)
+    
+    func saveRepository(_ repositoryResponse: RepositoryResponse) {
+        RepositoryRealmManager.shared.create(repositoryResponse)
     }
     
-    func fetchUser() -> [RepositoryResponse] {
-        RepositoryRealmManager.shared.read()
+    func fetchRepository(_ userName: String) -> [RepositoryResponse] {
+        RepositoryRealmManager.shared.read(userName)
     }
     
-    func deleteUser(_ userResponse: RepositoryResponse) {
-        RepositoryRealmManager.shared.delete(userResponse)
+    func deleteRepository(_ repositoryResponse: RepositoryResponse) {
+        RepositoryRealmManager.shared.delete(repositoryResponse)
     }
 }

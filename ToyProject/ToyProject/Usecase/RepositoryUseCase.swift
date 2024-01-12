@@ -10,15 +10,15 @@ import Foundation
 struct RepoUseCase {
     private let repoRepository: RepoRepository = RepoRepository()
     
-    func saveUser(_ repoResponse: RepositoryResponse) {
-        repoRepository.saveUser(repoResponse)
+    func saveRepository(_ repositoryResponse: RepositoryResponse) {
+        repoRepository.saveRepository(repositoryResponse)
     }
     
-    func fetchUser() -> [RepositoryResponse] {
-        return repoRepository.fetchUser()
+    func fetchUser(_ userName: String) -> [RepositoryResponse] {
+        return repoRepository.fetchRepository(userName)
     }
     
-    func deleteUser(_ repoResponse: RepositoryResponse) {
-        repoRepository.deleteUser(repoResponse)
+    func deleteRepository(_ repositoryResponse: RepositoryResponse) {
+        repoRepository.deleteRepository(repositoryResponse)
     }
 }

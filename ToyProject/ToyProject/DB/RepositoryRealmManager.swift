@@ -28,7 +28,7 @@ class RepositoryRealmManager {
                     forksCount: repository.forksCount,
                     language: repository.language
                 )
-                realm.add(repository)
+                realm.add(repository, update: .modified)
             }
         } catch {
             print("유저를 생성하는 데 실패했습니다 - \(error)")
@@ -36,22 +36,21 @@ class RepositoryRealmManager {
     }
     
     // read
-    func read() -> [RepositoryResponse] {
-        let repositoryForRealm = realm.objects(RepositoryForRealm.self)
+    func read(_ userName: String) -> [RepositoryResponse] {
+        let repositoryForRealm = realm.objects(RepositoryForRealm.self).filter("userName =[c] %@", userName)
         
-        let repositories = repositoryForRealm.map {
+        return repositoryForRealm.map { realmObject in
             RepositoryResponse(
-                id: $0.id, 
-                user: RepositoryResponse.User(name: $0.userName),
-                fullName: $0.fullName,
-                htmlUrl: $0.htmlUrl,
-                starsCount: $0.starsCount,
-                watchersCount: $0.watchersCount,
-                forksCount: $0.forksCount,
-                language: $0.language
+                id: realmObject.id,
+                user: RepositoryResponse.User(name: realmObject.userName),
+                fullName: realmObject.fullName,
+                htmlUrl: realmObject.htmlUrl,
+                starsCount: realmObject.starsCount,
+                watchersCount: realmObject.watchersCount,
+                forksCount: realmObject.forksCount,
+                language: realmObject.language
             )
         }
-        return Array(repositories)
     }
     
     // delete
