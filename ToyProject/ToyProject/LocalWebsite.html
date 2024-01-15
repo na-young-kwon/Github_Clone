@@ -31,14 +31,14 @@
         
         // This function sends a simple json value to iOS app
         function sendJsonValueToIOS() {
-            // Here iOSNative is the name we passed from iOS app
-            window.webkit.messageHandlers.iOSNative.postMessage({Name : "웹으로 부터 전해진 JSON 데이터."});
+            // Here callBackHandler is the name we passed from iOS app
+            window.webkit.messageHandlers.callBackHandler.postMessage({Apple : "Cider"});
         }
     
         // This function sends a string value to iOS app
         function sendStringValueToIOS() {
-            // Here iOSNative is the name we passed from iOS app
-            window.webkit.messageHandlers.iOSNative.postMessage("웹으로 부터 전해진 String 데이터.");
+            // Here callBackHandler is the name we passed from iOS app
+            window.webkit.messageHandlers.callBackHandler.postMessage("Banana");
         }
     
         function valueGotFromIOS(value) {

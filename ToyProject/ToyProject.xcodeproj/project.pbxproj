@@ -34,6 +34,8 @@
 		08A863CB2B3BC408003782E1 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A863CA2B3BC408003782E1 /* UserView.swift */; };
 		08A863CF2B3BF321003782E1 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A863CE2B3BF321003782E1 /* UserResponse.swift */; };
 		08A863D12B3BF401003782E1 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A863D02B3BF401003782E1 /* UserViewModel.swift */; };
+		08DB89072B54FFBA00631880 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DB89062B54FFBA00631880 /* DetailViewModel.swift */; };
+		08DB89092B5502CA00631880 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DB89082B5502CA00631880 /* Loader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,8 @@
 		08A863CA2B3BC408003782E1 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserView.swift; path = ToyProject/UI/User/UserView.swift; sourceTree = SOURCE_ROOT; };
 		08A863CE2B3BF321003782E1 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserResponse.swift; path = ToyProject/UserResponse.swift; sourceTree = SOURCE_ROOT; };
 		08A863D02B3BF401003782E1 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserViewModel.swift; path = ToyProject/UserViewModel.swift; sourceTree = SOURCE_ROOT; };
+		08DB89062B54FFBA00631880 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		08DB89082B5502CA00631880 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,7 @@
 		08A863802B3BAF56003782E1 = {
 			isa = PBXGroup;
 			children = (
+				08DB89082B5502CA00631880 /* Loader.swift */,
 				08A8638B2B3BAF56003782E1 /* ToyProject */,
 				08A8639D2B3BAF57003782E1 /* ToyProjectTests */,
 				08A863A72B3BAF57003782E1 /* ToyProjectUITests */,
@@ -208,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				0875A2272B3BFEA400733C59 /* DetailView.swift */,
+				08DB89062B54FFBA00631880 /* DetailViewModel.swift */,
 				0875A2292B3BFEB400733C59 /* WebView.swift */,
 			);
 			path = Detail;
@@ -383,6 +389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08DB89072B54FFBA00631880 /* DetailViewModel.swift in Sources */,
 				08A8638D2B3BAF56003782E1 /* ToyProjectApp.swift in Sources */,
 				0875A22A2B3BFEB400733C59 /* WebView.swift in Sources */,
 				0872FB0C2B43FEED004D9A35 /* View+extension.swift in Sources */,
@@ -390,6 +397,7 @@
 				0875A2302B3C0E4700733C59 /* SearchRepository.swift in Sources */,
 				08A863CB2B3BC408003782E1 /* UserView.swift in Sources */,
 				0875A22E2B3C0C5F00733C59 /* SearchUsecase.swift in Sources */,
+				08DB89092B5502CA00631880 /* Loader.swift in Sources */,
 				0875A2372B3D003C00733C59 /* RealmManager.swift in Sources */,
 				084299C92B3BFBAF009DA780 /* SearchView.swift in Sources */,
 				0875A2392B3D00E400733C59 /* SearchHistoryForRealm.swift in Sources */,

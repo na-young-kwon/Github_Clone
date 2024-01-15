@@ -9,7 +9,7 @@ import SwiftUI
 import WebKit
 
 protocol WebViewHandlerDelegate {
-    func receivedJsonValueFromWebView(value: [String: Any?])
+    func receivedJsonValueFromWebView(json: [String: Any?])
     func receivedStringValueFromWebView(value: String)
 }
 
@@ -21,9 +21,12 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate {
     let url: URL
     var urlType: WebUrlType
     
-    func receivedJsonValueFromWebView(value: [String : Any?]) {
+    func receivedJsonValueFromWebView(json: [String : Any?]) {
         // VM 에서 이 메서드를 호출해서 View를 바꾸도록 구현
-        print("웹에서 JSON 데이터 받음: \(value)")
+        guard let functionName = json["Name"] as? String else {
+            return
+        }
+        print("웹에서 JSON 데이터 받음: \(functionName)")
     }
     
     func receivedStringValueFromWebView(value: String) {
@@ -31,12 +34,16 @@ struct WebView: UIViewRepresentable, WebViewHandlerDelegate {
         print("웹에서 String 데이터 받음: \(value)")
     }
     
+    func didStartProvisionalNavigation() {
+        print("✅ didStartProvisionalNavigation ✅")
+    }
+    
     func makeUIView(context: Context) -> WKWebView {
         let preferences = WKPreferences()
         preferences.javaScriptEnabled = true // 이거 꼭 해줘야 자바스크립트 메서드 호출 가능
         
         let config = WKWebViewConfiguration()
-        config.userContentController.add(context.coordinator, name: "iOSNative")
+        config.userContentController.add(context.coordinator, name: "callBackHandler")
         config.preferences = preferences
         
         let webView = WKWebView(frame: .zero, configuration: config)
@@ -70,12 +77,13 @@ extension WebView {
         
         init(_ parent: WebView) {
             self.parent = parent
+            self.delegate = parent
         }
         
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-            // 앱 -> 웹
+            // 앱에서 -> 웹으로
             // 언제 호출해야 하는지를 모르겠음
-            let value = "앱에서 전달한 데이터!!"
+            let value = "아이폰 14 프로"
             webView.evaluateJavaScript("valueGotFromIOS('\(value)');") { result, error in
                 if let error = error {
                     print("Error Calling from JS function: \(error)")
@@ -87,42 +95,36 @@ extension WebView {
         
         // MARK: WKNavigationDelegate
         
-        // navigationAction
-        // 1. 처음에 action으로 요청할때 해당 navigation request를 허용하거나 거부
-//        func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-//            print("1. ")
-//        }
-//        
-//        // 2. 1번에서 decisionHandler(.allow)로 허가 났으면 navigation 시작
-//        func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-//            print("2. ")
-//        }
-//        
-//        func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, preferences: WKWebpagePreferences, decisionHandler: @escaping (WKNavigationActionPolicy, WKWebpagePreferences) -> Void) {
-//            print("3. ")
-//        }
-//        
-//        // pass value to web (JS -> iOS)
-//        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-//            
-//            // 1.
-//            webView.evaluateJavaScript("document.title") { response, error in
-//                guard let error = error else {
-//                    print("error getting title")
-//                    return
-//                }
-//                guard let title = response as? String else {
-//                    return
-//                }
-//                parent.
-//            }
-//            
-//            
-//            let javascriptFunction = "valueFromIOS"
-//            // page loaded so no need to show loader anymore
-//            webView.evaluateJavaScript("", completionHandler: <#T##((Any?, Error?) -> Void)?##((Any?, Error?) -> Void)?##(Any?, Error?) -> Void#>)
-//        }
+        // This function is essential for intercepting every navigation in the webview
+        func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+            // Suppose you don't want your user to go a restricted site
+            if let host = navigationAction.request.url?.host {
+                if host == "restricted.com" {
+                    // This cancels the navigation
+                    decisionHandler(.cancel)
+                }
+            }
+            // This allows the navigation
+            decisionHandler(.allow)
+        }
+      
+          // 2. decisionHandler(.allow)로 허가 났으면 navigation 시작
+        func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+            // Show loader
+        }
         
+        func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
+            // Hides loader
+        }
+        
+        func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+            // Hides loader
+        }
+        
+        func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+            // Hides loader
+        }
+
     }
 }
 
@@ -130,9 +132,9 @@ extension WebView {
 extension WebView.Coordinator: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         
-        if message.name == "iOSNative" { // ios에서 메시지 핸들러를 추가할 때 지정한 이름
+        if message.name == "callBackHandler" { // ios에서 메시지 핸들러를 추가할 때 지정한 이름
             if let body = message.body as? [String: Any?] {
-                delegate?.receivedJsonValueFromWebView(value: body)
+                delegate?.receivedJsonValueFromWebView(json: body)
             } else if let body = message.body as? String {
                 delegate?.receivedStringValueFromWebView(value: body)
             }
