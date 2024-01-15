@@ -12,13 +12,15 @@ import RealmSwift
 
 class UserRealmManager {
     static let shared = UserRealmManager()
-//    private let realm = try! Realm()
+    
+    var realm: Realm {
+        return Realm.open(configuration: Realm.userConfiguration)
+    }
     
     private init() {}
     
     // create
     func create(_ user: UserDTO) {
-        let realm = try! Realm()
         do {
             try realm.write {
                 let user = User(id: user.id,
@@ -38,7 +40,6 @@ class UserRealmManager {
     
     // read - 특정 유저 반환
     func getUser(by userName: String) -> User? {
-        let realm = try! Realm()
         guard let user = realm.objects(User.self).filter("userName == [c] %@", userName).first else {
             return nil
         }
@@ -48,14 +49,12 @@ class UserRealmManager {
     
     // read - 모든 유저 반환
     func getAllUsers() -> [User] {
-        let realm = try! Realm()
         let users = realm.objects(User.self).sorted(byKeyPath: "createdAt", ascending: true)
         return Array(users)
     }
     
     // update
     private func updateCreatedTime(user: User) {
-        let realm = try! Realm()
         do {
             try realm.write {
                 user.createdAt = Date()
@@ -67,14 +66,13 @@ class UserRealmManager {
     
     // delete
     func delete(_ user: UserVo) {
-        let realm = try! Realm()
         do {
             let task = realm.objects(User.self).where { $0.id == user.id }
             try realm.write {
                 realm.delete(task)
             }
         } catch {
-            print("유저를 삭제하는 데 실패했습니다 - \(error)")
+            print("유저를 삭제하는데 실패했습니다 - \(error)")
         }
     }
 }

@@ -12,13 +12,15 @@ import RealmSwift
 
 class RepositoryRealmManager {
     static let shared = RepositoryRealmManager()
-//    private let realm = try! Realm()
+    
+    var realm: Realm {
+        return Realm.open(configuration: Realm.repositoryConfiguration)
+    }
     
     private init() {}
     
     // create
     func create(_ repositories: [RepositoryDTO]) {
-        let realm = try! Realm()
         do {
             try realm.write {
                 let repos = repositories.map { Repository(id: $0.id,
@@ -39,7 +41,6 @@ class RepositoryRealmManager {
     
     // read
     func getRepository(by userName: String) -> [Repository]? {
-        let realm = try! Realm()
         let repositories = realm.objects(Repository.self).filter("userName == [c] %@", userName)
         
         guard !repositories.isEmpty else {
