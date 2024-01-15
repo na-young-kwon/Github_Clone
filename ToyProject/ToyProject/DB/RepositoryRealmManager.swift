@@ -2,12 +2,13 @@
 //  RepositoryRealmManager.swift
 //  ToyProject
 //
-//  Created by woosub kim  on 1/10/24.
+//  Created by woosub kim  on 1/12/24.
 //
 
 import Foundation
 import RealmSwift
 
+/// created by 김우섭
 class RepositoryRealmManager {
     static let shared = RepositoryRealmManager()
     private let realm = try! Realm()

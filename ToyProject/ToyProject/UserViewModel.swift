@@ -2,7 +2,7 @@
 //  UserViewModel.swift
 //  ToyProject
 //
-//  Created by woosub kim on 12/27/23.
+//  Created by woosub kim on 1/12/24.
 //
 
 import SwiftUI
@@ -60,18 +60,21 @@ class UserViewModel: ObservableObject {
         }
     }
     
+    ///  Created by 김우섭
     /// 유저를 Realm에 저장하는 함수
     /// - Parameter userResponse: 네트워크통신을 통한 유저를 Realm에 저장
     func saveUser(_ userResponse: UserResponse) {
         userUseCase.saveUser(userResponse)
     }
     
+    ///  Created by 김우섭
     /// 레포지토리를 Realm에 저장하는 함수
     /// - Parameter userResponse: 네트워크통신을 통한 레포지토리를 Realm에 저장
     func saveRepository(_ repositoryResponse: RepositoryResponse) {
         repoUseCase.saveRepository(repositoryResponse)
     }
     
+    ///  Created by 김우섭
     /// userName에 맞는 특정 유저를 Realm에서 불러오는 함수
     /// - Parameter userName: userName
     /// - Returns: userName에 해당하는 UserResponse
@@ -79,6 +82,7 @@ class UserViewModel: ObservableObject {
         userUseCase.fetchUser(userName)
     }
     
+    ///  Created by 김우섭
     /// userName에 맞는 특정 레포지토리를 Realm에서 불러오는 함수
     /// - Parameter userName: 특정 userName
     /// - Returns: userName에 해당하는 [RepositoryResponse]

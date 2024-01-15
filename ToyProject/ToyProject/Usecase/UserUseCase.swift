@@ -2,11 +2,12 @@
 //  UserUseCase.swift
 //  ToyProject
 //
-//  Created by woosub kim  on 1/10/24.
+//  Created by woosub kim on 1/12/24.
 //
 
 import Foundation
 
+/// created by 김우섭
 struct UserUseCase {
     private let userRepository: UserRepository = UserRepository()
     

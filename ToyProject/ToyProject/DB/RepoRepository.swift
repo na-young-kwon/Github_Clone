@@ -2,11 +2,12 @@
 //  RepoRepository.swift
 //  ToyProject
 //
-//  Created by woosub kim  on 1/10/24.
+//  Created by woosub kim  on 1/12/24.
 //
 
 import Foundation
 
+/// created by 김우섭
 protocol RepoDelegate {
     func saveRepository(_ repositoryResponse: RepositoryResponse)
     func fetchRepository(_ userName: String) -> [RepositoryResponse]

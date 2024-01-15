@@ -2,7 +2,7 @@
 //  UserNetwork.swift
 //  ToyProject
 //
-//  Created by woosub kim on 12/27/23.
+//  Created by woosub kim on 1/12/24.
 //
 
 import Alamofire
@@ -22,6 +22,7 @@ struct Constants {
 
 class NetworkService {
     
+    /// created by 김우섭
     /// 유저의 종합정보를 받아오는 함수
     /// - Parameter username: 유저이름
     /// - Returns: UserResponse
@@ -41,6 +42,7 @@ class NetworkService {
         }
     }
     
+    /// created by 김우섭
     /// 유저의 레포지토리정보를 받아오는 함수
     /// - Parameter username: 유저이름
     /// - Returns: [RepositoryResponse]
@@ -60,6 +62,7 @@ class NetworkService {
         }
     }
     
+    /// created by 김우섭
     /// 에러 처리 함수
     private func handleError(_ error: Error) -> NetworkError {
         if let afError = error.asAFError {

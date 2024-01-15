@@ -2,7 +2,7 @@
 //  RepositoryResponse.swift
 //  ToyProject
 //
-//  Created by nayoung kwon on 1/10/24.
+//  Created by woosub kim on 1/12/24.
 //
 
 import Foundation
