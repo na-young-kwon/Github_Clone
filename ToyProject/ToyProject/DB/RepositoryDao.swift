@@ -34,7 +34,8 @@ struct RepositoryDao {
     }
     
     func getRepository(by userName: String) -> [Repository] {
-        let repositories = realm.objects(Repository.self).filter("userName == [c] %@", userName)
+        let query = "userName == [c] %@"
+        let repositories = realm.objects(Repository.self).filter(query, userName)
 
         if repositories.isEmpty {
             return []
@@ -44,7 +45,8 @@ struct RepositoryDao {
     
     func delete(_ user: UserVo) {
         do {
-            let task = realm.objects(Repository.self).where { $0.userName == user.userName }
+            let query = "userName == %@"
+            let task = realm.objects(Repository.self).filter(query, user.userName)
             try realm.write {
                 realm.delete(task)
             }

@@ -20,7 +20,8 @@ struct UserDao {
     }
     
     func getUser(by userName: String) -> User? {
-        guard let user = realm.objects(User.self).filter("userName == [c] %@", userName).first else {
+        let query = "userName == [c] %@"
+        guard let user = realm.objects(User.self).filter(query, userName).first else {
             return nil
         }
         updateUserCreatedTime(user: user)
@@ -57,7 +58,8 @@ struct UserDao {
   
     func delete(_ user: UserVo) {
         do {
-            let task = realm.objects(User.self).where { $0.id == user.id }
+            let query = "id == %@"
+            let task = realm.objects(User.self).filter(query, user.id)
             try realm.write {
                 realm.delete(task)
             }
