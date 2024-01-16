@@ -8,13 +8,13 @@
 import Foundation
 
 struct SearchUsecase {
-    private let repository: SearchRepository = SearchRepository()
+    private let repository: UserRepository = UserRepository()
 
-    func fetchSearchHistory() -> [UserVo] {
-        return repository.fetchSearchHistory()
+    func getAllUsers() -> [UserVo] {
+        return repository.getAllUsers()
     }
     
-    func deleteSearchText(_ user: UserVo) {
-        repository.deleteSearchText(user)
+    func deleteUser(_ user: UserVo) {
+        repository.deleteUser(user)
     }
 }

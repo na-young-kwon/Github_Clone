@@ -40,11 +40,11 @@ class RepositoryRealmManager {
     }
     
     // read
-    func getRepository(by userName: String) -> [Repository]? {
+    func getRepository(by userName: String) -> [Repository] {
         let repositories = realm.objects(Repository.self).filter("userName == [c] %@", userName)
-        
-        guard !repositories.isEmpty else {
-            return nil
+
+        if repositories.isEmpty {
+            return []
         }
         return Array(repositories)
     }

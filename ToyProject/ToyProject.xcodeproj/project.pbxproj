@@ -19,7 +19,6 @@
 		0875A22A2B3BFEB400733C59 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875A2292B3BFEB400733C59 /* WebView.swift */; };
 		0875A22C2B3C09E300733C59 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875A22B2B3C09E300733C59 /* SearchViewModel.swift */; };
 		0875A22E2B3C0C5F00733C59 /* SearchUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875A22D2B3C0C5F00733C59 /* SearchUsecase.swift */; };
-		0875A2302B3C0E4700733C59 /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875A22F2B3C0E4700733C59 /* SearchRepository.swift */; };
 		08A8638D2B3BAF56003782E1 /* ToyProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A8638C2B3BAF56003782E1 /* ToyProjectApp.swift */; };
 		08A863912B3BAF57003782E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08A863902B3BAF57003782E1 /* Assets.xcassets */; };
 		08A863952B3BAF57003782E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08A863942B3BAF57003782E1 /* Preview Assets.xcassets */; };
@@ -34,6 +33,7 @@
 		08A863CB2B3BC408003782E1 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A863CA2B3BC408003782E1 /* UserView.swift */; };
 		08A863D12B3BF401003782E1 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A863D02B3BF401003782E1 /* UserViewModel.swift */; };
 		08D0190A2B5524BF0024E589 /* Realm+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D019092B5524BF0024E589 /* Realm+extension.swift */; };
+		08D0190C2B5611970024E589 /* RepoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D0190B2B5611970024E589 /* RepoRepository.swift */; };
 		08DB88EB2B4E642D00631880 /* RepositoryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DB88EA2B4E642D00631880 /* RepositoryDTO.swift */; };
 		08DB88FA2B5106BA00631880 /* RepositoryVo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DB88F92B5106BA00631880 /* RepositoryVo.swift */; };
 		08DB88FC2B5106CA00631880 /* UserVo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DB88FB2B5106CA00631880 /* UserVo.swift */; };
@@ -74,7 +74,6 @@
 		0875A2292B3BFEB400733C59 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WebView.swift; path = ToyProject/UI/WebView.swift; sourceTree = SOURCE_ROOT; };
 		0875A22B2B3C09E300733C59 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchViewModel.swift; path = ToyProject/UI/SearchViewModel.swift; sourceTree = SOURCE_ROOT; };
 		0875A22D2B3C0C5F00733C59 /* SearchUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchUsecase.swift; path = ToyProject/Usecase/SearchUsecase.swift; sourceTree = SOURCE_ROOT; };
-		0875A22F2B3C0E4700733C59 /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchRepository.swift; path = ToyProject/Repository/SearchRepository.swift; sourceTree = SOURCE_ROOT; };
 		08A863892B3BAF56003782E1 /* ToyProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToyProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A8638C2B3BAF56003782E1 /* ToyProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyProjectApp.swift; sourceTree = "<group>"; };
 		08A863902B3BAF57003782E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,6 +87,7 @@
 		08A863CA2B3BC408003782E1 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserView.swift; path = ToyProject/UI/User/UserView.swift; sourceTree = SOURCE_ROOT; };
 		08A863D02B3BF401003782E1 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserViewModel.swift; path = ToyProject/UserViewModel.swift; sourceTree = SOURCE_ROOT; };
 		08D019092B5524BF0024E589 /* Realm+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+extension.swift"; sourceTree = "<group>"; };
+		08D0190B2B5611970024E589 /* RepoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoRepository.swift; sourceTree = "<group>"; };
 		08DB88EA2B4E642D00631880 /* RepositoryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDTO.swift; sourceTree = "<group>"; };
 		08DB88F92B5106BA00631880 /* RepositoryVo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryVo.swift; sourceTree = "<group>"; };
 		08DB88FB2B5106CA00631880 /* UserVo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVo.swift; sourceTree = "<group>"; };
@@ -305,8 +305,8 @@
 		08DB88FF2B510B7700631880 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				0875A22F2B3C0E4700733C59 /* SearchRepository.swift */,
 				08DB89002B510B9700631880 /* UserRepository.swift */,
+				08D0190B2B5611970024E589 /* RepoRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -463,11 +463,11 @@
 				0872FB0C2B43FEED004D9A35 /* View+extension.swift in Sources */,
 				08F8647D2B4E3A04004E9E06 /* UserRealmManager.swift in Sources */,
 				082F093A2B3C0A7200A29EE9 /* UserUsecase.swift in Sources */,
-				0875A2302B3C0E4700733C59 /* SearchRepository.swift in Sources */,
 				08D0190A2B5524BF0024E589 /* Realm+extension.swift in Sources */,
 				0872FB1F2B47EA45004D9A35 /* String+extension.swift in Sources */,
 				08A863CB2B3BC408003782E1 /* UserView.swift in Sources */,
 				08DB88FC2B5106CA00631880 /* UserVo.swift in Sources */,
+				08D0190C2B5611970024E589 /* RepoRepository.swift in Sources */,
 				0875A22E2B3C0C5F00733C59 /* SearchUsecase.swift in Sources */,
 				08F8647F2B4E3A16004E9E06 /* RepositoryRealmManager.swift in Sources */,
 				084299C92B3BFBAF009DA780 /* SearchView.swift in Sources */,

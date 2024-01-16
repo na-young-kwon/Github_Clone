@@ -10,6 +10,19 @@ import Foundation
 struct UserRepository {
     let networkService = NetworkService()
     
+    func getAllUsers() -> [UserVo] {
+        let users = UserRealmManager.shared.getAllUsers()
+        
+        let userVo = users.map { UserVo(id: $0.id,
+                                         userName: $0.userName,
+                                         avatarUrl: $0.avatarUrl,
+                                         follower: $0.follower,
+                                         following: $0.following,
+                                         bio: $0.bio
+        )}
+        return userVo
+    }
+    
     // DB에서 유저 데이터 가져오는 메서드
     func getUser(by name: String) -> UserVo? {
         guard let user = UserRealmManager.shared.getUser(by: name) else {
@@ -23,23 +36,6 @@ struct UserRepository {
                             bio: user.bio
         )
         return userVo
-    }
-    
-    // DB에서 레포지토리 데이터 가져오는 메서드
-    func getRepositoryList(forUser name: String) -> [RepositoryVo]? {
-        guard let repositoryList = RepositoryRealmManager.shared.getRepository(by: name) else {
-            return nil
-        }
-        let repoVo = repositoryList.map { RepositoryVo(id: $0.id,
-                                                       userName: $0.userName,
-                                                       fullName: $0.fullName,
-                                                       htmlUrl: $0.htmlUrl,
-                                                       starsCount: $0.starsCount,
-                                                       watchersCount: $0.watchersCount,
-                                                       forksCount: $0.forksCount,
-                                                       language: $0.language
-        )}
-        return repoVo
     }
     
     // API통신을 통해 유저 데이터 가져오는 메서드
@@ -57,20 +53,7 @@ struct UserRepository {
         return userVo
     }
     
-    // API통신을 통해 레포지토리 데이터 가져오는 메서드
-    func fetchRepositories(forUser name: String) async throws -> [RepositoryVo] {
-        let repositoryList = try await networkService.fetchRepositories(forUser: name)
-        RepositoryRealmManager.shared.create(repositoryList)
-        
-        let repositoryVo = repositoryList.map { RepositoryVo(id: $0.id,
-                                                             userName: $0.user.name,
-                                                             fullName: $0.fullName,
-                                                             htmlUrl: $0.htmlUrl,
-                                                             starsCount: $0.starsCount,
-                                                             watchersCount: $0.watchersCount,
-                                                             forksCount: $0.forksCount,
-                                                             language: $0.language
-        )}
-        return repositoryVo
+    func deleteUser(_ user: UserVo) {
+        UserRealmManager.shared.delete(user)
     }
 }
