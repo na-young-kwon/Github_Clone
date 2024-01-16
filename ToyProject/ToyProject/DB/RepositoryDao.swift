@@ -41,4 +41,15 @@ struct RepositoryDao {
         }
         return Array(repositories)
     }
+    
+    func delete(_ user: UserVo) {
+        do {
+            let task = realm.objects(Repository.self).where { $0.userName == user.userName }
+            try realm.write {
+                realm.delete(task)
+            }
+        } catch {
+            print("레포지토리를 삭제하는데 실패했습니다 - \(error)")
+        }
+    }
 }

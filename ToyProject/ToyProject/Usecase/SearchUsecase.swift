@@ -10,8 +10,8 @@ import Foundation
 struct SearchUsecase {
     private let repository: UserRepository = UserRepository()
 
-    func getAllUsers() -> [UserVo] {
-        return repository.getAllUsers()
+    func getAllUser() -> [UserVo] {
+        return repository.getAllUser()
     }
     
     func deleteUser(_ user: UserVo) {

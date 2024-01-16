@@ -13,7 +13,7 @@ class SearchViewModel: ObservableObject {
     private let usecase = SearchUsecase()
     
     func fetchSearchHistory() {
-        searchHistory = usecase.getAllUsers()
+        searchHistory = usecase.getAllUser()
     }
     
     func deleteItem(at indexSet: IndexSet) {
@@ -21,6 +21,6 @@ class SearchViewModel: ObservableObject {
             let user = searchHistory[index]
             usecase.deleteUser(user)
         }
-        searchHistory = usecase.getAllUsers()
+        searchHistory = usecase.getAllUser()
     }
 }

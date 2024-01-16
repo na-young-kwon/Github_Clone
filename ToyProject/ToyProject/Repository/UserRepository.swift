@@ -9,10 +9,11 @@ import Foundation
 
 struct UserRepository {
     private let networkService = NetworkService()
-    private let dao = UserDao()
+    private let userDao: UserDao = UserDao()
+    private let repoDao: RepositoryDao = RepositoryDao()
     
-    func getAllUsers() -> [UserVo] {
-        let users = dao.getAllUser()
+    func getAllUser() -> [UserVo] {
+        let users = userDao.getAllUser()
         
         let userVo = users.map { UserVo(id: $0.id,
                                          userName: $0.userName,
@@ -26,7 +27,7 @@ struct UserRepository {
     
     // DB에서 유저 데이터 가져오는 메서드
     func getUser(by name: String) -> UserVo? {
-        guard let user = dao.getUser(by: name) else {
+        guard let user = userDao.getUser(by: name) else {
             return nil
         }
         let userVo = UserVo(id: user.id,
@@ -42,7 +43,7 @@ struct UserRepository {
     // API통신을 통해 유저 데이터 가져오는 메서드
     func fetchUser(by name: String) async throws -> UserVo {
         let user = try await networkService.fetchUser(forUser: name)
-        dao.create(user)
+        userDao.create(user)
         
         let userVo = UserVo(id: user.id,
                             userName: user.userName,
@@ -55,6 +56,7 @@ struct UserRepository {
     }
     
     func deleteUser(_ user: UserVo) {
-        dao.delete(user)
+        userDao.delete(user)
+        repoDao.delete(user)
     }
 }
