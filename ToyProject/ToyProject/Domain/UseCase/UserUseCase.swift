@@ -11,15 +11,15 @@ import Foundation
 struct UserUseCase {
     private let userRepository: UserRepository = UserRepository()
     
-    func saveUser(_ userResponse: UserResponse) {
+    func saveUser(_ userResponse: UserDTO) {
         userRepository.saveUser(userResponse)
     }
     
-    func fetchUser(_ userName: String) -> [UserResponse] {
+    func fetchUser(_ userName: String) -> [UserDTO] {
         return userRepository.fetchUser(userName)
     }
     
-    func fetchUsers() -> [UserResponse] {
+    func fetchUsers() -> [UserDTO] {
         return userRepository.fetchUsers()
     }
     

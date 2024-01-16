@@ -11,15 +11,15 @@ import Foundation
 struct RepoUseCase {
     private let repoRepository: RepoRepository = RepoRepository()
     
-    func saveRepository(_ repositoryResponse: RepositoryResponse) {
+    func saveRepository(_ repositoryResponse: RepositoryDTO) {
         repoRepository.saveRepository(repositoryResponse)
     }
     
-    func fetchRepository(_ userName: String) -> [RepositoryResponse] {
+    func fetchRepository(_ userName: String) -> [RepositoryDTO] {
         return repoRepository.fetchRepository(userName)
     }
     
-    func fetchRepositories() -> [RepositoryResponse] {
+    func fetchRepositories() -> [RepositoryDTO] {
         repoRepository.fetchRepositories()
     }
 

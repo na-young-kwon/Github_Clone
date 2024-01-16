@@ -26,15 +26,15 @@ class NetworkService {
     /// 유저의 종합정보를 받아오는 함수
     /// - Parameter username: 유저이름
     /// - Returns: UserResponse
-    func fetchUser(forUser username: String) async throws -> UserResponse {
+    func fetchUser(forUser username: String) async throws -> UserDTO {
         let urlString = "\(Constants.userURL)\(username)"
         guard let url = URL(string: urlString) else {
             throw NetworkError.badURL
         }
         
         do {
-            let user: UserResponse = try await AF.request(url)
-                .serializingDecodable(UserResponse.self)
+            let user: UserDTO = try await AF.request(url)
+                .serializingDecodable(UserDTO.self)
                 .value
             return user
         } catch {
@@ -46,15 +46,15 @@ class NetworkService {
     /// 유저의 레포지토리정보를 받아오는 함수
     /// - Parameter username: 유저이름
     /// - Returns: [RepositoryResponse]
-    func fetchRepositories(forUser username: String) async throws -> [RepositoryResponse] {
+    func fetchRepositories(forUser username: String) async throws -> [RepositoryDTO] {
         let urlString = "\(Constants.userURL)\(username)/repos"
         guard let url = URL(string: urlString) else {
             throw NetworkError.badURL
         }
         
         do {
-            let repositories: [RepositoryResponse] = try await AF.request(url)
-                .serializingDecodable([RepositoryResponse].self)
+            let repositories: [RepositoryDTO] = try await AF.request(url)
+                .serializingDecodable([RepositoryDTO].self)
                 .value
             return repositories
         } catch {

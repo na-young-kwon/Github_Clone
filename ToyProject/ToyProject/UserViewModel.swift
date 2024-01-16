@@ -10,8 +10,8 @@ import Alamofire
 
 @MainActor
 class UserViewModel: ObservableObject {
-    @Published var user: UserResponse?
-    @Published var repositories: [RepositoryResponse] = []
+    @Published var user: UserDTO?
+    @Published var repositories: [RepositoryDTO] = []
     @Published var isLoading = false
     @Published var errorMessage: String?
     
@@ -63,14 +63,14 @@ class UserViewModel: ObservableObject {
     ///  Created by 김우섭
     /// 유저를 Realm에 저장하는 함수
     /// - Parameter userResponse: 네트워크통신을 통한 유저를 Realm에 저장
-    func saveUser(_ userResponse: UserResponse) {
+    func saveUser(_ userResponse: UserDTO) {
         userUseCase.saveUser(userResponse)
     }
     
     ///  Created by 김우섭
     /// 레포지토리를 Realm에 저장하는 함수
     /// - Parameter userResponse: 네트워크통신을 통한 레포지토리를 Realm에 저장
-    func saveRepository(_ repositoryResponse: RepositoryResponse) {
+    func saveRepository(_ repositoryResponse: RepositoryDTO) {
         repoUseCase.saveRepository(repositoryResponse)
     }
     
@@ -78,7 +78,7 @@ class UserViewModel: ObservableObject {
     /// userName에 맞는 특정 유저를 Realm에서 불러오는 함수
     /// - Parameter userName: userName
     /// - Returns: userName에 해당하는 UserResponse
-    func fetchUser(_ userName: String) -> [UserResponse] {
+    func fetchUser(_ userName: String) -> [UserDTO] {
         userUseCase.fetchUser(userName)
     }
     
@@ -86,7 +86,7 @@ class UserViewModel: ObservableObject {
     /// userName에 맞는 특정 레포지토리를 Realm에서 불러오는 함수
     /// - Parameter userName: 특정 userName
     /// - Returns: userName에 해당하는 [RepositoryResponse]
-    func fetchRepositories(_ userName: String) -> [RepositoryResponse] {
+    func fetchRepositories(_ userName: String) -> [RepositoryDTO] {
         repoUseCase.fetchRepository(userName)
     }
 }

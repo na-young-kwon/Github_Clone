@@ -8,8 +8,8 @@
 import Foundation
 
 class SearchViewModel: ObservableObject {
-    @Published var users: [UserResponse] = []
-    @Published var repositories: [RepositoryResponse] = []
+    @Published var users: [UserDTO] = []
+    @Published var repositories: [RepositoryDTO] = []
     
     private let userUseCase = UserUseCase()
     private let repoUseCase = RepoUseCase()
