@@ -18,6 +18,8 @@
 		0875A2282B3BFEA400733C59 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875A2272B3BFEA400733C59 /* DetailView.swift */; };
 		0875A22A2B3BFEB400733C59 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875A2292B3BFEB400733C59 /* WebView.swift */; };
 		0875A22C2B3C09E300733C59 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0875A22B2B3C09E300733C59 /* SearchViewModel.swift */; };
+		087E0A9E2B5621610022C1ED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087E0A9D2B5621610022C1ED /* User.swift */; };
+		087E0AA02B5621680022C1ED /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087E0A9F2B5621680022C1ED /* Repository.swift */; };
 		08A8638D2B3BAF56003782E1 /* ToyProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A8638C2B3BAF56003782E1 /* ToyProjectApp.swift */; };
 		08A863912B3BAF57003782E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08A863902B3BAF57003782E1 /* Assets.xcassets */; };
 		08A863952B3BAF57003782E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08A863942B3BAF57003782E1 /* Preview Assets.xcassets */; };
@@ -30,8 +32,8 @@
 		08A863C52B3BB0C5003782E1 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 08A863C42B3BB0C5003782E1 /* URLImage */; };
 		08A863C72B3BB0C5003782E1 /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = 08A863C62B3BB0C5003782E1 /* URLImageStore */; };
 		08A863CB2B3BC408003782E1 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A863CA2B3BC408003782E1 /* UserView.swift */; };
-		08A863CF2B3BF321003782E1 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A863CE2B3BF321003782E1 /* UserResponse.swift */; };
 		08A863D12B3BF401003782E1 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A863D02B3BF401003782E1 /* UserViewModel.swift */; };
+		08A930302B54BAB4003960F2 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A9302F2B54BAB4003960F2 /* UserResponse.swift */; };
 		08DB88EB2B4E642D00631880 /* RepositoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DB88EA2B4E642D00631880 /* RepositoryResponse.swift */; };
 		08F8647D2B4E3A04004E9E06 /* UserRealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F8647C2B4E3A04004E9E06 /* UserRealmManager.swift */; };
 		08F8647F2B4E3A16004E9E06 /* RepositoryRealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F8647E2B4E3A16004E9E06 /* RepositoryRealmManager.swift */; };
@@ -59,8 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		082F09392B3C0A7200A29EE9 /* NetworkUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkUseCase.swift; path = ToyProject/NetworkUseCase.swift; sourceTree = SOURCE_ROOT; };
-		082F093B2B3C0B4100A29EE9 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkService.swift; path = ToyProject/NetworkService.swift; sourceTree = SOURCE_ROOT; };
+		082F09392B3C0A7200A29EE9 /* NetworkUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkUseCase.swift; path = ToyProject/Domain/UseCase/NetworkUseCase.swift; sourceTree = SOURCE_ROOT; };
+		082F093B2B3C0B4100A29EE9 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkService.swift; path = ToyProject/Data/Network/NetworkService.swift; sourceTree = SOURCE_ROOT; };
 		084299C82B3BFBAF009DA780 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchView.swift; path = ToyProject/UI/SearchView.swift; sourceTree = SOURCE_ROOT; };
 		0872FB0B2B43FEED004D9A35 /* View+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+extension.swift"; sourceTree = "<group>"; };
 		0872FB1E2B47EA45004D9A35 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
@@ -71,6 +73,8 @@
 		0875A2272B3BFEA400733C59 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailView.swift; path = ToyProject/UI/DetailView.swift; sourceTree = SOURCE_ROOT; };
 		0875A2292B3BFEB400733C59 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WebView.swift; path = ToyProject/UI/WebView.swift; sourceTree = SOURCE_ROOT; };
 		0875A22B2B3C09E300733C59 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchViewModel.swift; path = ToyProject/UI/SearchViewModel.swift; sourceTree = SOURCE_ROOT; };
+		087E0A9D2B5621610022C1ED /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		087E0A9F2B5621680022C1ED /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		08A863892B3BAF56003782E1 /* ToyProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToyProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A8638C2B3BAF56003782E1 /* ToyProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyProjectApp.swift; sourceTree = "<group>"; };
 		08A863902B3BAF57003782E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,8 +86,8 @@
 		08A863A82B3BAF57003782E1 /* ToyProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyProjectUITests.swift; sourceTree = "<group>"; };
 		08A863AA2B3BAF57003782E1 /* ToyProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		08A863CA2B3BC408003782E1 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserView.swift; path = ToyProject/UI/User/UserView.swift; sourceTree = SOURCE_ROOT; };
-		08A863CE2B3BF321003782E1 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserResponse.swift; path = ToyProject/UserResponse.swift; sourceTree = SOURCE_ROOT; };
 		08A863D02B3BF401003782E1 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserViewModel.swift; path = ToyProject/UserViewModel.swift; sourceTree = SOURCE_ROOT; };
+		08A9302F2B54BAB4003960F2 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		08DB88EA2B4E642D00631880 /* RepositoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryResponse.swift; sourceTree = "<group>"; };
 		08F8647C2B4E3A04004E9E06 /* UserRealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRealmManager.swift; sourceTree = "<group>"; };
 		08F8647E2B4E3A16004E9E06 /* RepositoryRealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryRealmManager.swift; sourceTree = "<group>"; };
@@ -123,20 +127,98 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0872FB1B2B47E87B004D9A35 /* Resource */ = {
+		087E0A972B561F880022C1ED /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				087E0A9A2B561FB80022C1ED /* RealmData(PersistentStorages) */,
+				087E0A992B561FA80022C1ED /* Network */,
+				087E0A982B561F9D0022C1ED /* Repositories */,
 			);
-			path = Resource;
+			path = Data;
 			sourceTree = "<group>";
 		};
-		0872FB362B4E2B1B004D9A35 /* Entity */ = {
+		087E0A982B561F9D0022C1ED /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				08F8647C2B4E3A04004E9E06 /* UserRealmManager.swift */,
+				08F8647E2B4E3A16004E9E06 /* RepositoryRealmManager.swift */,
+				08F864862B4E8A40004E9E06 /* RepoRepository.swift */,
+				08F864802B4E6266004E9E06 /* UserRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		087E0A992B561FA80022C1ED /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				082F093B2B3C0B4100A29EE9 /* NetworkService.swift */,
+				087E0AA22B5622510022C1ED /* DataMapping */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		087E0A9A2B561FB80022C1ED /* RealmData(PersistentStorages) */ = {
 			isa = PBXGroup;
 			children = (
 				0872FB372B4E2BBC004D9A35 /* UserForRealm.swift */,
 				0872FB392B4E2BC7004D9A35 /* RepositoryForRealm.swift */,
 			);
-			path = Entity;
+			path = "RealmData(PersistentStorages)";
+			sourceTree = "<group>";
+		};
+		087E0A9B2B56214C0022C1ED /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				087E0AA12B5621E00022C1ED /* UseCase */,
+				087E0A9C2B5621500022C1ED /* Entities */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		087E0A9C2B5621500022C1ED /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				087E0A9D2B5621610022C1ED /* User.swift */,
+				087E0A9F2B5621680022C1ED /* Repository.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		087E0AA12B5621E00022C1ED /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				082F09392B3C0A7200A29EE9 /* NetworkUseCase.swift */,
+				08F864822B4E6310004E9E06 /* UserUseCase.swift */,
+				08F864842B4E8A15004E9E06 /* RepositoryUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		087E0AA22B5622510022C1ED /* DataMapping */ = {
+			isa = PBXGroup;
+			children = (
+				08DB88EA2B4E642D00631880 /* RepositoryResponse.swift */,
+				08A9302F2B54BAB4003960F2 /* UserResponse.swift */,
+			);
+			path = DataMapping;
+			sourceTree = "<group>";
+		};
+		087E0AA32B5625020022C1ED /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0872FB292B47F36A004D9A35 /* Localizable.strings */,
+				08A863902B3BAF57003782E1 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		087E0AA42B5625170022C1ED /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0872FB0B2B43FEED004D9A35 /* View+extension.swift */,
+				0872FB1E2B47EA45004D9A35 /* String+extension.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		08A863802B3BAF56003782E1 = {
@@ -162,16 +244,12 @@
 		08A8638B2B3BAF56003782E1 /* ToyProject */ = {
 			isa = PBXGroup;
 			children = (
-				0872FB292B47F36A004D9A35 /* Localizable.strings */,
-				0872FB1B2B47E87B004D9A35 /* Resource */,
 				08A8638C2B3BAF56003782E1 /* ToyProjectApp.swift */,
 				08A997DF2B3BB7300014F24C /* UI */,
-				0872FB0B2B43FEED004D9A35 /* View+extension.swift */,
-				0872FB1E2B47EA45004D9A35 /* String+extension.swift */,
-				08A997E42B3BB7CD0014F24C /* Usecase */,
-				08A997E32B3BB7690014F24C /* Network */,
-				08A997E82B3BB8160014F24C /* DB */,
-				08A863902B3BAF57003782E1 /* Assets.xcassets */,
+				087E0A9B2B56214C0022C1ED /* Domain */,
+				087E0A972B561F880022C1ED /* Data */,
+				087E0AA42B5625170022C1ED /* Common */,
+				087E0AA32B5625020022C1ED /* Resources */,
 				08A863922B3BAF57003782E1 /* ToyProject.entitlements */,
 				08A863932B3BAF57003782E1 /* Preview Content */,
 			);
@@ -227,8 +305,6 @@
 			children = (
 				08A863CA2B3BC408003782E1 /* UserView.swift */,
 				08A863D02B3BF401003782E1 /* UserViewModel.swift */,
-				08A863CE2B3BF321003782E1 /* UserResponse.swift */,
-				08DB88EA2B4E642D00631880 /* RepositoryResponse.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -240,36 +316,6 @@
 				0875A2292B3BFEB400733C59 /* WebView.swift */,
 			);
 			path = Detail;
-			sourceTree = "<group>";
-		};
-		08A997E32B3BB7690014F24C /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				082F093B2B3C0B4100A29EE9 /* NetworkService.swift */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		08A997E42B3BB7CD0014F24C /* Usecase */ = {
-			isa = PBXGroup;
-			children = (
-				082F09392B3C0A7200A29EE9 /* NetworkUseCase.swift */,
-				08F864822B4E6310004E9E06 /* UserUseCase.swift */,
-				08F864842B4E8A15004E9E06 /* RepositoryUseCase.swift */,
-			);
-			path = Usecase;
-			sourceTree = "<group>";
-		};
-		08A997E82B3BB8160014F24C /* DB */ = {
-			isa = PBXGroup;
-			children = (
-				08F864862B4E8A40004E9E06 /* RepoRepository.swift */,
-				08F864802B4E6266004E9E06 /* UserRepository.swift */,
-				08F8647C2B4E3A04004E9E06 /* UserRealmManager.swift */,
-				08F8647E2B4E3A16004E9E06 /* RepositoryRealmManager.swift */,
-				0872FB362B4E2B1B004D9A35 /* Entity */,
-			);
-			path = DB;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -425,7 +471,9 @@
 				08F8647D2B4E3A04004E9E06 /* UserRealmManager.swift in Sources */,
 				082F093A2B3C0A7200A29EE9 /* NetworkUseCase.swift in Sources */,
 				0872FB1F2B47EA45004D9A35 /* String+extension.swift in Sources */,
+				087E0AA02B5621680022C1ED /* Repository.swift in Sources */,
 				08A863CB2B3BC408003782E1 /* UserView.swift in Sources */,
+				087E0A9E2B5621610022C1ED /* User.swift in Sources */,
 				08F864832B4E6310004E9E06 /* UserUseCase.swift in Sources */,
 				08F8647F2B4E3A16004E9E06 /* RepositoryRealmManager.swift in Sources */,
 				08F864852B4E8A15004E9E06 /* RepositoryUseCase.swift in Sources */,
@@ -435,8 +483,8 @@
 				08A863D12B3BF401003782E1 /* UserViewModel.swift in Sources */,
 				082F093C2B3C0B4100A29EE9 /* NetworkService.swift in Sources */,
 				0875A22C2B3C09E300733C59 /* SearchViewModel.swift in Sources */,
-				08A863CF2B3BF321003782E1 /* UserResponse.swift in Sources */,
 				0872FB3A2B4E2BC7004D9A35 /* RepositoryForRealm.swift in Sources */,
+				08A930302B54BAB4003960F2 /* UserResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
