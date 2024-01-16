@@ -8,11 +8,12 @@
 import Foundation
 
 struct RepoRepository {
-    let networkService = NetworkService()
+    private let networkService = NetworkService()
+    private let dao = RepositoryDao()
     
     // DB에서 레포지토리 데이터 가져오는 메서드
     func getRepositoryList(forUser name: String) -> [RepositoryVo] {
-        let repositoryList = RepositoryRealmManager.shared.getRepository(by: name)
+        let repositoryList = dao.getRepository(by: name)
         if repositoryList.isEmpty {
             return []
         }
@@ -32,7 +33,7 @@ struct RepoRepository {
     // API통신을 통해 레포지토리 데이터 가져오는 메서드
     func fetchRepositories(forUser name: String) async throws -> [RepositoryVo] {
         let repositoryList = try await networkService.fetchRepositories(forUser: name)
-        RepositoryRealmManager.shared.create(repositoryList)
+        dao.create(repositoryList)
         
         let repositoryVo = repositoryList.map { RepositoryVo(id: $0.id,
                                                              userName: $0.user.name,

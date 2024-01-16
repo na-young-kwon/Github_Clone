@@ -1,25 +1,19 @@
 //
-//  RepositoryRealmManager.swift
+//  RepositoryDao.swift
 //  ToyProject
 //
-//  Created by woosub kim  on 1/10/24.
+//  Created by nayoung kwon on 1/16/24.
 //
 
 import Foundation
 import RealmSwift
 
-// 작성자: nayoung kwon
-
-class RepositoryRealmManager {
-    static let shared = RepositoryRealmManager()
+struct RepositoryDao {
     
-    var realm: Realm {
+    private var realm: Realm {
         return Realm.open(configuration: Realm.repositoryConfiguration)
     }
     
-    private init() {}
-    
-    // create
     func create(_ repositories: [RepositoryDTO]) {
         do {
             try realm.write {
@@ -39,7 +33,6 @@ class RepositoryRealmManager {
         }
     }
     
-    // read
     func getRepository(by userName: String) -> [Repository] {
         let repositories = realm.objects(Repository.self).filter("userName == [c] %@", userName)
 

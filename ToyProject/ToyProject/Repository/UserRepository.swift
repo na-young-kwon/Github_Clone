@@ -8,10 +8,11 @@
 import Foundation
 
 struct UserRepository {
-    let networkService = NetworkService()
+    private let networkService = NetworkService()
+    private let dao = UserDao()
     
     func getAllUsers() -> [UserVo] {
-        let users = UserRealmManager.shared.getAllUsers()
+        let users = dao.getAllUser()
         
         let userVo = users.map { UserVo(id: $0.id,
                                          userName: $0.userName,
@@ -25,7 +26,7 @@ struct UserRepository {
     
     // DB에서 유저 데이터 가져오는 메서드
     func getUser(by name: String) -> UserVo? {
-        guard let user = UserRealmManager.shared.getUser(by: name) else {
+        guard let user = dao.getUser(by: name) else {
             return nil
         }
         let userVo = UserVo(id: user.id,
@@ -41,7 +42,7 @@ struct UserRepository {
     // API통신을 통해 유저 데이터 가져오는 메서드
     func fetchUser(by name: String) async throws -> UserVo {
         let user = try await networkService.fetchUser(forUser: name)
-        UserRealmManager.shared.create(user)
+        dao.create(user)
         
         let userVo = UserVo(id: user.id,
                             userName: user.userName,
@@ -54,6 +55,6 @@ struct UserRepository {
     }
     
     func deleteUser(_ user: UserVo) {
-        UserRealmManager.shared.delete(user)
+        dao.delete(user)
     }
 }
