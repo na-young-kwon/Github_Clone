@@ -93,7 +93,14 @@ struct UserView: View {
         .onAppear {
             Task {
                 await viewModel.fetchUser(forUser: text)
+                await viewModel.fetchRepositories(forUser: text)
             }
+        }
+        .alert(isPresented: $viewModel.showAlert) {
+            Alert(title: Text("저장 실패"), 
+                  message: Text("검색어 저장에 실패했습니다."),
+                  dismissButton: .default(Text("확인"))
+            )
         }
     }
 }

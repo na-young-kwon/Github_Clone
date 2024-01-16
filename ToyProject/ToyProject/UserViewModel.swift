@@ -14,6 +14,7 @@ class UserViewModel: ObservableObject {
     @Published var user: UserVo?
     @Published var repositories: [RepositoryVo] = []
     @Published var isLoading = false
+    @Published var showAlert = false
     @Published var errorMessage: String?
     
     private var usecase = UserUsecase()
@@ -26,6 +27,9 @@ class UserViewModel: ObservableObject {
             await fetchRepositories(forUser: userName) // 여기서 fetchRepositories 호출
         } catch let error as NetworkError {
             errorMessage = errorMessage(for: error)
+        } catch RealmError.failToCreateUser(user: let user) {
+            self.user = user
+            showAlert = true
         } catch {
             errorMessage = "no_github_ID".getLocalizedString()
         }

@@ -29,7 +29,7 @@ struct RepositoryDao {
                 realm.add(repos)
             }
         } catch {
-            print("유저를 생성하는 데 실패했습니다 - \(error)")
+            print("레포지토리를 저장하는 데 실패했습니다 - \(error)")
         }
     }
     

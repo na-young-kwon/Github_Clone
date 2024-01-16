@@ -36,6 +36,7 @@
 		08D0190C2B5611970024E589 /* RepoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D0190B2B5611970024E589 /* RepoRepository.swift */; };
 		08D0190E2B5616E50024E589 /* UserDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D0190D2B5616E50024E589 /* UserDao.swift */; };
 		08D019102B5616F40024E589 /* RepositoryDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D0190F2B5616F40024E589 /* RepositoryDao.swift */; };
+		08D019122B5667510024E589 /* RealmError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D019112B5667510024E589 /* RealmError.swift */; };
 		08DB88EB2B4E642D00631880 /* RepositoryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DB88EA2B4E642D00631880 /* RepositoryDTO.swift */; };
 		08DB88FA2B5106BA00631880 /* RepositoryVo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DB88F92B5106BA00631880 /* RepositoryVo.swift */; };
 		08DB88FC2B5106CA00631880 /* UserVo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DB88FB2B5106CA00631880 /* UserVo.swift */; };
@@ -90,6 +91,7 @@
 		08D0190B2B5611970024E589 /* RepoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoRepository.swift; sourceTree = "<group>"; };
 		08D0190D2B5616E50024E589 /* UserDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDao.swift; sourceTree = "<group>"; };
 		08D0190F2B5616F40024E589 /* RepositoryDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDao.swift; sourceTree = "<group>"; };
+		08D019112B5667510024E589 /* RealmError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmError.swift; sourceTree = "<group>"; };
 		08DB88EA2B4E642D00631880 /* RepositoryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDTO.swift; sourceTree = "<group>"; };
 		08DB88F92B5106BA00631880 /* RepositoryVo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryVo.swift; sourceTree = "<group>"; };
 		08DB88FB2B5106CA00631880 /* UserVo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVo.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 			children = (
 				08D0190D2B5616E50024E589 /* UserDao.swift */,
 				08D0190F2B5616F40024E589 /* RepositoryDao.swift */,
+				08D019112B5667510024E589 /* RealmError.swift */,
 			);
 			path = DB;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				08A863CB2B3BC408003782E1 /* UserView.swift in Sources */,
 				08DB88FC2B5106CA00631880 /* UserVo.swift in Sources */,
 				08D0190C2B5611970024E589 /* RepoRepository.swift in Sources */,
+				08D019122B5667510024E589 /* RealmError.swift in Sources */,
 				0875A22E2B3C0C5F00733C59 /* SearchUsecase.swift in Sources */,
 				084299C92B3BFBAF009DA780 /* SearchView.swift in Sources */,
 				08DB88FE2B51075000631880 /* UserDTO.swift in Sources */,

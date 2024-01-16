@@ -42,16 +42,16 @@ struct UserRepository {
     
     // API통신을 통해 유저 데이터 가져오는 메서드
     func fetchUser(by name: String) async throws -> UserVo {
-        let user = try await networkService.fetchUser(forUser: name)
-        userDao.create(user)
+        let userDTO = try await networkService.fetchUser(forUser: name)
         
-        let userVo = UserVo(id: user.id,
-                            userName: user.userName,
-                            avatarUrl: user.avatarUrl,
-                            follower: user.follower,
-                            following: user.following,
-                            bio: user.bio
+        let userVo = UserVo(id: userDTO.id,
+                            userName: userDTO.userName,
+                            avatarUrl: userDTO.avatarUrl,
+                            follower: userDTO.follower,
+                            following: userDTO.following,
+                            bio: userDTO.bio
         )
+        try userDao.create(userVo)
         return userVo
     }
     
