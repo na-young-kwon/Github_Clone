@@ -36,6 +36,16 @@ class UserViewModel: ObservableObject {
             }
         } else {
             user = savedUser
+            do {
+                let fetchedUserDTO = try await networkUseCase.getUser(forUser: userName)
+                let fetchedUserVO = UserDTO.toVO(fetchedUserDTO)
+                user = fetchedUserVO
+                saveUser(fetchedUserVO)
+            } catch let error as NetworkError {
+                errorMessage = errorMessage(for: error)
+            } catch {
+                errorMessage = "no_github_ID".getLocalizedString()
+            }
         }
         isLoading = false
     }
@@ -58,6 +68,18 @@ class UserViewModel: ObservableObject {
             }
         } else {
             repositories = savedRepositories
+            do {
+                let fetchedRepositoryDTOs = try await networkUseCase.getRepositories(forUser: userName)
+                let fetchedRepositories = fetchedRepositoryDTOs.map(RepositoryDTO.toVO)
+                repositories = fetchedRepositories
+                for repositoryVO in fetchedRepositories {
+                    saveRepository(repositoryVO)
+                }
+            } catch let error as NetworkError {
+                errorMessage = errorMessage(for: error)
+            } catch {
+                errorMessage = "no_github_ID".getLocalizedString()
+            }
         }
     }
     

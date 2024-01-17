@@ -13,7 +13,7 @@ struct RepoUseCase {
     
     func saveRepository(_ repositoryVO: RepositoryVO) {
         let repoDTO = RepositoryDTO(vo: repositoryVO)
-        repoRepository.saveRepository(repoDTO)
+        repoRepository.saveRepository([repoDTO])
     }
     
     func fetchRepository(_ userName: String) -> [RepositoryVO] {

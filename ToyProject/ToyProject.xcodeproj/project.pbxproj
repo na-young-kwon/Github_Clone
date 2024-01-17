@@ -133,16 +133,8 @@
 				087E0AAF2B56811F0022C1ED /* APIResponse */,
 				087E0AB02B5682F40022C1ED /* RealmDataStorage */,
 				087E0A992B561FA80022C1ED /* Network */,
-				087E0A982B561F9D0022C1ED /* Repositories */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		087E0A982B561F9D0022C1ED /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Repositories;
 			sourceTree = "<group>";
 		};
 		087E0A992B561FA80022C1ED /* Network */ = {
