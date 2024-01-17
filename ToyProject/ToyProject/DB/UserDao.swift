@@ -38,7 +38,7 @@ struct UserDao {
                                 avatarUrl: userVo.avatarUrl,
                                 follower: userVo.follower,
                                 following: userVo.following,
-                                bio: userVo.bio ?? "",
+                                bio: userVo.bio,
                                 createdAt: Date()
                 )
                 realm.add(user, update: .modified)

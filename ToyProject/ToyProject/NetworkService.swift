@@ -14,6 +14,7 @@ enum NetworkError: Error {
     case serverError(Int)
     case connectionError(Error)
     case unknownError
+    case decodingError(Error)
 }
 
 struct Constants {
@@ -32,7 +33,6 @@ class NetworkService {
         do {
             var request = URLRequest(url: url)
             request.cachePolicy = .reloadIgnoringLocalCacheData
-            request.headers = ["Authorization": "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"]
             
             let repositories = try await AF
                 .request(request)
@@ -56,7 +56,6 @@ class NetworkService {
         do {
             var request = URLRequest(url: url)
             request.cachePolicy = .reloadIgnoringLocalCacheData
-            request.headers = ["Authorization": "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"]
             
             let user = try await AF
                 .request(request)
@@ -73,10 +72,12 @@ class NetworkService {
         if let afError = error.asAFError {
             // Alamofire 오류 분석 및 사용자 친화적인 메시지로 변환
             switch afError {
-            case .responseValidationFailed(reason: .unacceptableStatusCode(let code)):
+            case let .responseValidationFailed(reason: .unacceptableStatusCode(code)):
                 return .serverError(code)
-            case .sessionTaskFailed(let error):
+            case let .sessionTaskFailed(error):
                 return .connectionError(error)
+            case let .responseSerializationFailed(reason: .decodingFailed(error: error)):
+                return .decodingError(error)
             default:
                 return .unknownError
             }
