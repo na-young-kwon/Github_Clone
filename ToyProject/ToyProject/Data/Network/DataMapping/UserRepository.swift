@@ -9,19 +9,19 @@ import Foundation
 
 /// created by 김우섭
 protocol UserDelegate {
-    func saveUser(_ userResponse: UserDTO)
-    func fetchUser(_ userName: String) -> [UserDTO]
+    func saveUser(_ userDTO: UserDTO)
+    func fetchUser(_ userName: String) -> UserDTO? 
     func fetchUsers() -> [UserDTO]
     func deleteUser(_ userName: String)
 }
 
 struct UserRepository: UserDelegate {
     
-    func saveUser(_ userResponse: UserDTO) {
-        UserRealmManager.shared.create(userResponse)
+    func saveUser(_ userDTO: UserDTO) {
+        UserRealmManager.shared.create(userDTO)
     }
     
-    func fetchUser(_ userName: String) -> [UserDTO] {
+    func fetchUser(_ userName: String) -> UserDTO? {
         UserRealmManager.shared.read(userName)
     }
     

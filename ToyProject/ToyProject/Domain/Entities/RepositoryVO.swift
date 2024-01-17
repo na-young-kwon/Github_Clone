@@ -17,7 +17,20 @@ struct RepositoryVO: Hashable, Identifiable {
     let forksCount: Int
     let language: String?
     
-    struct User: Decodable, Hashable {
+    struct User: Hashable {
         let name: String
+    }
+}
+
+extension RepositoryVO {
+    init(dto: RepositoryDTO) {
+        self.id = dto.id
+        self.user = User(name: dto.user.name)
+        self.fullName = dto.fullName
+        self.htmlUrl = dto.htmlUrl
+        self.starsCount = dto.starsCount
+        self.watchersCount = dto.watchersCount
+        self.forksCount = dto.forksCount
+        self.language = dto.language
     }
 }

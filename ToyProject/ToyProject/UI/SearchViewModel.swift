@@ -8,8 +8,8 @@
 import Foundation
 
 class SearchViewModel: ObservableObject {
-    @Published var users: [UserDTO] = []
-    @Published var repositories: [RepositoryDTO] = []
+    @Published var users: [UserVO] = []
+    @Published var repositories: [RepositoryVO] = []
     
     private let userUseCase = UserUseCase()
     private let repoUseCase = RepoUseCase()
@@ -18,7 +18,7 @@ class SearchViewModel: ObservableObject {
     /// 모든 User  fetch
     func fetchUsers() {
         users = userUseCase.fetchUsers()
-    }
+    }    
     
     ///  Created by 김우섭
     /// 모든 Repositories fetch

@@ -9,7 +9,7 @@ import Foundation
 
 /// created by 김우섭
 protocol RepoDelegate {
-    func saveRepository(_ repositoryResponse: RepositoryDTO)
+    func saveRepository(_ repositoryDTO: RepositoryDTO)
     func fetchRepository(_ userName: String) -> [RepositoryDTO]
     func fetchRepositories() -> [RepositoryDTO]
     func deleteRepository(_ userName: String)
@@ -17,8 +17,8 @@ protocol RepoDelegate {
 
 struct RepoRepository: RepoDelegate {
     
-    func saveRepository(_ repositoryResponse: RepositoryDTO) {
-        RepositoryRealmManager.shared.create(repositoryResponse)
+    func saveRepository(_ repositoryDTO: RepositoryDTO) {
+        RepositoryRealmManager.shared.create(repositoryDTO)
     }
     
     func fetchRepository(_ userName: String) -> [RepositoryDTO] {

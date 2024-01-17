@@ -27,7 +27,7 @@ class UserRealmManager {
                     following: userResponse.following,
                     bio: userResponse.bio ?? ""
                 )
-                realm.add(user)
+                realm.add(user, update: .modified)
             }
         } catch {
             print("유저를 생성하는 데 실패했습니다 - \(error)")
@@ -35,18 +35,18 @@ class UserRealmManager {
     }
     
     /// Realm에 특정 유저 Read
-    func read(_ userName: String) -> [UserDTO] {
-        let userResponseForRealm = realm.objects(UserForRealm.self).filter("userName =[c] %@", userName)
-        return userResponseForRealm.map { realmObject in
-            UserDTO(
-                id: realmObject.id,
-                userName: realmObject.userName,
-                avatarUrl: realmObject.avatarUrl,
-                followers: realmObject.follower,
-                following: realmObject.following,
-                bio: realmObject.bio
-            )
-        }
+    func read(_ userName: String) -> UserDTO? {
+        let userResponseForRealm = realm.objects(UserForRealm.self).filter("userName =[c] %@", userName).first
+        guard let userResponseForRealm = userResponseForRealm else { return nil }
+        let userDTO = UserDTO(
+            id: userResponseForRealm.id,
+            userName: userResponseForRealm.userName,
+            avatarUrl: userResponseForRealm.avatarUrl,
+            followers: userResponseForRealm.follower,
+            following: userResponseForRealm.following,
+            bio: userResponseForRealm.bio
+        )
+        return userDTO
     }
     
     /// Realm에 모든 유저 Read

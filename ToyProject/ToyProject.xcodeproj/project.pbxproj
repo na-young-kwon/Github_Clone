@@ -130,7 +130,7 @@
 		087E0A972B561F880022C1ED /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				087E0AAF2B56811F0022C1ED /* API */,
+				087E0AAF2B56811F0022C1ED /* APIResponse */,
 				087E0AB02B5682F40022C1ED /* RealmDataStorage */,
 				087E0A992B561FA80022C1ED /* Network */,
 				087E0A982B561F9D0022C1ED /* Repositories */,
@@ -211,13 +211,13 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		087E0AAF2B56811F0022C1ED /* API */ = {
+		087E0AAF2B56811F0022C1ED /* APIResponse */ = {
 			isa = PBXGroup;
 			children = (
-				08DB88EA2B4E642D00631880 /* RepositoryDTO.swift */,
 				08A9302F2B54BAB4003960F2 /* UserDTO.swift */,
+				08DB88EA2B4E642D00631880 /* RepositoryDTO.swift */,
 			);
-			path = API;
+			path = APIResponse;
 			sourceTree = "<group>";
 		};
 		087E0AB02B5682F40022C1ED /* RealmDataStorage */ = {
