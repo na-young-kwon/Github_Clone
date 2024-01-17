@@ -15,25 +15,35 @@ class UserRealmManager {
     
     private init() {}
     
-    /// Realm에 유저 Create
-    func create(_ userResponse: UserDTO) {
+    /// Realm에 유저 Create & Update
+    func create(_ userDTO: UserDTO) {
         do {
             try realm.write {
-                let user = UserForRealm(
-                    id: userResponse.id,
-                    userName: userResponse.userName,
-                    avatarUrl: userResponse.avatarUrl,
-                    follower: userResponse.followers,
-                    following: userResponse.following,
-                    bio: userResponse.bio ?? ""
-                )
-                realm.add(user, update: .modified)
+                if let existingUser = realm.objects(UserForRealm.self).filter("userName =[c] %@", userDTO.userName).first {
+                    // 기존 객체가 있으면 정보 업데이트
+                    existingUser.id = userDTO.id
+                    existingUser.avatarUrl = userDTO.avatarUrl
+                    existingUser.follower = userDTO.followers
+                    existingUser.following = userDTO.following
+                    existingUser.bio = userDTO.bio ?? ""
+                } else {
+                    // 없으면 새 객체 생성
+                    let newUser = UserForRealm(
+                        id: userDTO.id,
+                        userName: userDTO.userName,
+                        avatarUrl: userDTO.avatarUrl,
+                        follower: userDTO.followers,
+                        following: userDTO.following,
+                        bio: userDTO.bio ?? ""
+                    )
+                    realm.add(newUser, update: .modified)
+                }
             }
         } catch {
-            print("유저를 생성하는 데 실패했습니다 - \(error)")
+            print("유저 정보를 업데이트하는 데 실패했습니다 - \(error)")
         }
     }
-    
+
     /// Realm에 특정 유저 Read
     func read(_ userName: String) -> UserDTO? {
         let userResponseForRealm = realm.objects(UserForRealm.self).filter("userName =[c] %@", userName).first

@@ -19,18 +19,6 @@ class UserViewModel: ObservableObject {
     private let userUseCase: UserUseCase = UserUseCase()
     private let repoUseCase: RepoUseCase = RepoUseCase()
     
-    /*
-     1. 저장된 유저를 읽어온다.
-     2. 저장된 유저가 Realm에 있는 지 없는 지 확인한다.
-     3. 있으면 읽어온 유저가 유저이다.
-     4. 없으면 network를 해서 유저를 불러오고, 그 DTO를 VO에 넣고
-     5. 유저를 fetchedVO로 할당하고, 그 유저를 저장한다.
-     여기서 이슈 🚨
-     ✋🏻 그러면 DB에 데이터가 있을 때, 그 DB 데이터는 업데이트가 안되고, 계속 그 데이터만 불러올텐데,
-     서버의 Data가 업데이트됐을 때, 그 DB 데이터는 어떻게 업데이트 시킬 껀데?
-     */
-    
-    
     func networkFetchUser(forUser userName: String) async {
         isLoading = true
         let savedUser = userUseCase.fetchUser(userName)
@@ -48,16 +36,6 @@ class UserViewModel: ObservableObject {
             }
         } else {
             user = savedUser
-            do {
-                let fetchedUserDTO = try await networkUseCase.getUser(forUser: userName)
-                let fetchedUserVO = UserDTO.toVO(fetchedUserDTO)
-                user = fetchedUserVO
-                saveUser(fetchedUserVO)
-            } catch let error as NetworkError {
-                errorMessage = errorMessage(for: error)
-            } catch {
-                errorMessage = "no_github_ID".getLocalizedString()
-            }
         }
         isLoading = false
     }
@@ -80,18 +58,6 @@ class UserViewModel: ObservableObject {
             }
         } else {
             repositories = savedRepositories
-            do {
-                let fetchedRepositoryDTOs = try await networkUseCase.getRepositories(forUser: userName)
-                let fetchedRepositories = fetchedRepositoryDTOs.map(RepositoryDTO.toVO)
-                repositories = fetchedRepositories
-                for repositoryVO in fetchedRepositories {
-                    saveRepository(repositoryVO)
-                }
-            } catch let error as NetworkError {
-                errorMessage = errorMessage(for: error)
-            } catch {
-                errorMessage = "no_github_ID".getLocalizedString()
-            }
         }
     }
     

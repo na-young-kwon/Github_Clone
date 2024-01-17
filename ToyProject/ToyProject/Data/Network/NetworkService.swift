@@ -27,13 +27,17 @@ class NetworkService {
     /// - Parameter username: 유저이름
     /// - Returns: UserResponse
     func fetchUser(forUser username: String) async throws -> UserDTO {
-        let urlString = "\(Constants.userURL)\(username)"
-        guard let url = URL(string: urlString) else {
+        guard let url = URL(string: "\(Constants.userURL)\(username)") else {
             throw NetworkError.badURL
         }
         
+        var urlRequest = URLRequest(url: url)
+        
+        let token = "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"
+        urlRequest.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
         do {
-            let user: UserDTO = try await AF.request(url)
+            let user: UserDTO = try await AF.request(urlRequest)
                 .serializingDecodable(UserDTO.self)
                 .value
             return user
@@ -47,10 +51,14 @@ class NetworkService {
     /// - Parameter username: 유저이름
     /// - Returns: [RepositoryResponse]
     func fetchRepositories(forUser username: String) async throws -> [RepositoryDTO] {
-        let urlString = "\(Constants.userURL)\(username)/repos"
-        guard let url = URL(string: urlString) else {
+        guard let url = URL(string: "\(Constants.userURL)\(username)/repos") else {
             throw NetworkError.badURL
         }
+        
+        var urlRequest = URLRequest(url: url)
+        
+        let token = "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"
+        urlRequest.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
         do {
             let repositories: [RepositoryDTO] = try await AF.request(url)
@@ -60,6 +68,7 @@ class NetworkService {
         } catch {
             throw handleError(error)
         }
+
     }
     
     /// created by 김우섭
