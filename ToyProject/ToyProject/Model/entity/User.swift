@@ -29,16 +29,4 @@ class User: Object {
         self.bio = bio
         self.createdAt = createdAt
     }
-    
-    override func isEqual(_ object: Any?) -> Bool {
-        if let user = object as? User {
-            return self.id == user.id
-            && self.avatarUrl == user.avatarUrl
-            && self.follower == user.follower
-            && self.following == user.following
-            && self.bio == user.bio
-        } else {
-            return false
-        }
-    }
 }

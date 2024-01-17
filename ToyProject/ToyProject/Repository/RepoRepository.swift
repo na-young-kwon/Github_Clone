@@ -31,11 +31,10 @@ struct RepoRepository {
     }
     
     // API통신을 통해 레포지토리 데이터 가져오는 메서드
-    func fetchRepositories(forUser name: String) async throws -> [RepositoryVo] {
-        let repositoryList = try await networkService.fetchRepositories(forUser: name)
-        dao.create(repositoryList)
+    func fetchRepositoryList(forUser name: String) async throws -> [RepositoryVo] {
+        let repositoryDTO = try await networkService.fetchRepositories(forUser: name)
         
-        let repositoryVo = repositoryList.map { RepositoryVo(id: $0.id,
+        let repositoryVo = repositoryDTO.map { RepositoryVo(id: $0.id,
                                                              userName: $0.user.name,
                                                              fullName: $0.fullName,
                                                              htmlUrl: $0.htmlUrl,
@@ -44,6 +43,7 @@ struct RepoRepository {
                                                              forksCount: $0.forksCount,
                                                              language: $0.language
         )}
+        try dao.create(repositoryVo)
         return repositoryVo
     }
 }

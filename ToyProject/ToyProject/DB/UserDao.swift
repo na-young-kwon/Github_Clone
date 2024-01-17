@@ -28,24 +28,24 @@ struct UserDao {
         return user
     }
     
-    func create(_ user: UserVo) throws {
+    func create(_ userVo: UserVo) throws {
         do {
             try realm.write {
                 // 강제로 에러 발생시키기 위한 코드 (catch 블록의 작동을 확인하기 위한 테스트 목적)
-//                throw NSError(domain: "com.example", code: 999, userInfo: nil)
-                let user = User(id: user.id,
-                                userName: user.userName,
-                                avatarUrl: user.avatarUrl,
-                                follower: user.follower,
-                                following: user.following,
-                                bio: user.bio ?? "",
+                // throw NSError(domain: "com.example", code: 999, userInfo: nil)
+                let user = User(id: userVo.id,
+                                userName: userVo.userName,
+                                avatarUrl: userVo.avatarUrl,
+                                follower: userVo.follower,
+                                following: userVo.following,
+                                bio: userVo.bio ?? "",
                                 createdAt: Date()
                 )
-                realm.add(user)
+                realm.add(user, update: .modified)
             }
         } catch {
             print("유저를 저장하는 데 실패했습니다 - \(error)")
-            throw RealmError.failToCreateUser(user: user)
+            throw RealmError.failToCreateUser(user: userVo)
         }
     }
 

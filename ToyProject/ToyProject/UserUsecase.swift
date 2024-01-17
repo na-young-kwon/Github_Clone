@@ -13,19 +13,19 @@ struct UserUsecase {
     let userRepository: UserRepository = UserRepository()
     let repoRepository: RepoRepository = RepoRepository()
     
-    func getUser(forUser username: String) async throws -> UserVo {
-        if let user = userRepository.getUser(by: username) {
-            return user
-        }
+    func getUser(forUser username: String) -> UserVo? {
+        return userRepository.getUser(by: username)
+    }
+    
+    func fetchUser(forUser username: String) async throws -> UserVo {
         return try await userRepository.fetchUser(by: username)
     }
     
-    func getRepositoryList(forUser username: String) async throws -> [RepositoryVo] {
-        let repositoryList = repoRepository.getRepositoryList(forUser: username)
-        
-        if !repositoryList.isEmpty {
-            return repositoryList
-        }
-        return try await repoRepository.fetchRepositories(forUser: username)
+    func getRepositoryList(forUser username: String) -> [RepositoryVo] {
+        return repoRepository.getRepositoryList(forUser: username)
+    }
+    
+    func fetchRepositoryList(forUser username: String) async throws -> [RepositoryVo] {
+        return try await repoRepository.fetchRepositoryList(forUser: username)
     }
 }

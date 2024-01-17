@@ -14,11 +14,11 @@ struct RepositoryDao {
         return Realm.open(configuration: Realm.repositoryConfiguration)
     }
     
-    func create(_ repositories: [RepositoryDTO]) {
+    func create(_ repositories: [RepositoryVo]) throws {
         do {
             try realm.write {
                 let repos = repositories.map { Repository(id: $0.id,
-                                                          userName: $0.user.name,
+                                                          userName: $0.userName,
                                                           htmlUrl: $0.htmlUrl,
                                                           fullName: $0.fullName,
                                                           starsCount: $0.starsCount,
@@ -26,10 +26,11 @@ struct RepositoryDao {
                                                           forksCount: $0.forksCount,
                                                           language: $0.language
                 )}
-                realm.add(repos)
+                realm.add(repos, update: .modified)
             }
         } catch {
             print("레포지토리를 저장하는 데 실패했습니다 - \(error)")
+            throw RealmError.failToCreateRepository
         }
     }
     

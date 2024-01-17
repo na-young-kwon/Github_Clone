@@ -30,7 +30,12 @@ class NetworkService {
         }
         
         do {
-            let repositories = try await AF.request(url)
+            var request = URLRequest(url: url)
+            request.cachePolicy = .reloadIgnoringLocalCacheData
+            request.headers = ["Authorization": "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"]
+            
+            let repositories = try await AF
+                .request(request)
                 .serializingDecodable([RepositoryDTO].self)
                 .value
             return repositories
@@ -49,7 +54,12 @@ class NetworkService {
         }
         
         do {
-            let user = try await AF.request(url)
+            var request = URLRequest(url: url)
+            request.cachePolicy = .reloadIgnoringLocalCacheData
+            request.headers = ["Authorization": "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"]
+            
+            let user = try await AF
+                .request(request)
                 .serializingDecodable(UserDTO.self)
                 .value
             return user
@@ -65,8 +75,8 @@ class NetworkService {
             switch afError {
             case .responseValidationFailed(reason: .unacceptableStatusCode(let code)):
                 return .serverError(code)
-            case .sessionTaskFailed(let underlyingError):
-                return .connectionError(underlyingError)
+            case .sessionTaskFailed(let error):
+                return .connectionError(error)
             default:
                 return .unknownError
             }

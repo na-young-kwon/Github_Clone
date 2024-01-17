@@ -17,14 +17,17 @@ class UserViewModel: ObservableObject {
     @Published var showAlert = false
     @Published var errorMessage: String?
     
-    private var usecase = UserUsecase()
+    private let usecase = UserUsecase()
+        
+    func getUser(forUser userName: String) {
+        user = usecase.getUser(forUser: userName)
+    }
     
     @MainActor
-    func fetchUser(forUser userName: String) async {
+    func updateUser(forUser userName: String) async {
         isLoading = true
         do {
-            user = try await usecase.getUser(forUser: userName)
-            await fetchRepositories(forUser: userName) // 여기서 fetchRepositories 호출
+            user = try await usecase.fetchUser(forUser: userName)
         } catch let error as NetworkError {
             errorMessage = errorMessage(for: error)
         } catch RealmError.failToCreateUser(user: let user) {
@@ -36,15 +39,23 @@ class UserViewModel: ObservableObject {
         isLoading = false
     }
     
+    func getRepository(forUser userName: String) {
+        repositories = usecase.getRepositoryList(forUser: userName)
+    }
+    
     @MainActor
-    func fetchRepositories(forUser userName: String) async {
+    func updateRepository(forUser userName: String) async {
+        isLoading = true
         do {
-            repositories = try await usecase.getRepositoryList(forUser: userName)
+            repositories = try await usecase.fetchRepositoryList(forUser: userName)
         } catch let error as NetworkError {
             errorMessage = errorMessage(for: error)
+        } catch RealmError.failToCreateRepository {
+            print("레포지터리 저장 실패")
         } catch {
             errorMessage = "no_github_ID".getLocalizedString()
         }
+        isLoading = false
     }
 }
 
