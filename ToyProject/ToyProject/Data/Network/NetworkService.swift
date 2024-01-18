@@ -35,6 +35,7 @@ class NetworkService {
         
         let token = "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"
         urlRequest.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequest.cachePolicy = .reloadIgnoringLocalCacheData
         
         do {
             let user: UserDTO = try await AF.request(urlRequest)
@@ -59,6 +60,7 @@ class NetworkService {
         
         let token = "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"
         urlRequest.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequest.cachePolicy = .reloadIgnoringLocalCacheData
         
         do {
             let repositories: [RepositoryDTO] = try await AF.request(url)

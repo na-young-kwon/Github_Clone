@@ -91,8 +91,8 @@ struct UserView: View {
             }
         .onAppear {
             Task {
-                await viewModel.networkFetchUser(forUser: text)
-                await viewModel.networkFetchRepositories(forUser: text)
+                await viewModel.checkUser(userName: text)
+                await viewModel.checkRepository(userName: text)
             }
         }
     }

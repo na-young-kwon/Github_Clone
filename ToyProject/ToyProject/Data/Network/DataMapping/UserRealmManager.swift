@@ -21,7 +21,7 @@ class UserRealmManager {
             try realm.write {
                 if let existingUser = realm.objects(UserForRealm.self).filter("userName =[c] %@", userDTO.userName).first {
                     // 기존 객체가 있으면 정보 업데이트
-                    existingUser.id = userDTO.id
+//                    existingUser.id = userDTO.id
                     existingUser.avatarUrl = userDTO.avatarUrl
                     existingUser.follower = userDTO.followers
                     existingUser.following = userDTO.following

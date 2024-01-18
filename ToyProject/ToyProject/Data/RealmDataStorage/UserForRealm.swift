@@ -26,4 +26,8 @@ class UserForRealm: Object {
         self.follower = follower
         self.following = following
     }
+    
+    override class func primaryKey() -> String? {
+         "id"
+    }
 }
