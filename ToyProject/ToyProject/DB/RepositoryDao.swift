@@ -14,11 +14,6 @@ struct RepositoryDao {
         return Realm.open(configuration: Realm.repositoryConfiguration)
     }
     
-    private func getAllRepository() -> [Repository] {
-        let repository = realm.objects(Repository.self)
-        return Array(repository)
-    }
-    
     func getRepository(by userName: String) -> [Repository] {
         let query = "userName == [c] %@"
         let repositories = realm.objects(Repository.self).filter(query, userName)
@@ -54,6 +49,23 @@ struct RepositoryDao {
             }
         } catch {
             print("레포지토리를 삭제하는데 실패했습니다 - \(error)")
+        }
+    }
+    
+    func compareAndDelete(username: String, repos: [RepositoryVo]) {
+        let repoFromRealm = Set(getRepository(by: username).map { $0.id })
+        let repoFromAPI = Set(repos.map { $0.id })
+        let itemToDelete = repoFromRealm.subtracting(repoFromAPI)
+        
+        do {
+            try realm.write {
+                itemToDelete.forEach { id in
+                    let item = realm.objects(Repository.self).filter("id == %@", id)
+                    realm.delete(item)
+                }
+            }
+        } catch {
+            print("레포지토리를 삭제하는데 데 실패했습니다 - \(error)")
         }
     }
 }
