@@ -37,7 +37,6 @@ class UserViewModel: ObservableObject {
             user = fetchedUserVO
             saveUser(fetchedUserVO)
         } catch let error as NetworkError {
-//            dbFetchUser(userName: userName)
             errorMessage = errorMessage(for: error)
         } catch {
             errorMessage = "no_github_ID".getLocalizedString()
@@ -66,7 +65,6 @@ class UserViewModel: ObservableObject {
             
             repositories = fetchedRepositoryVO
         } catch let error as NetworkError {
-//            dbFetchRepository(userName: userName)
             errorMessage = errorMessage(for: error)
         } catch {
             errorMessage = "no_github_ID".getLocalizedString()
