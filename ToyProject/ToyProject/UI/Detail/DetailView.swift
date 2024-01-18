@@ -2,17 +2,23 @@
 //  DetailView.swift
 //  ToyProject
 //
-//  Created by SNPLAB on 12/27/23.
+//  Created by woosub kim  on 1/18/24.
 //
 
 import SwiftUI
 
 struct DetailView: View {
+    let url: String
+    
     var body: some View {
-        WebView(url: URL(string: "https://github.com/na-young-kwon")!)
+        if let url = URL(string: url) {
+            WebView(url: url)
+        } else {
+            Text("invalid_repository".getLocalizedString())
+        }
     }
 }
 
 #Preview {
-    DetailView()
+    DetailView(url: "https://github.com/na-young-kwon/Github_Clone/commits/Feature/Search-User/")
 }

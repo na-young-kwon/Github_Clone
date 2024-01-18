@@ -2,7 +2,7 @@
 //  SearchView.swift
 //  ToyProject
 //
-//  Created by SNPLAB on 12/27/23.
+//  Created by woosub kim  on 1/18/24.
 //
 
 import SwiftUI
@@ -15,52 +15,60 @@ struct SearchView: View {
     var body: some View {
         NavigationView {
             
-            VStack(alignment: .leading) {
-                
+            VStack {
                 NavigationLink(isActive: $isActive) {
-                    UserView()
+                    UserView(text: text)
                 } label: {
                     EmptyView()
                 }
                 
-                Text("깃헙 ID 검색")
-                    .font(.headline)
-                    .padding(.bottom, 10)
-                
-                TextField("search..", text: $text) {
-                    isActive = true
-                    viewModel.saveSearch(SearchHistory(text: text))
-                }
-                .frame(height: 40)
-                .padding(.bottom, 20)
-                .textFieldStyle(.roundedBorder)
-                .onAppear {
-                    UITextField.appearance().clearButtonMode = .whileEditing
-                }
-                
-                Text("최근 검색어")
-                List(viewModel.searchHistory) { data in
-                    Text(data.text)
-                }
-                .overlay(
-                    Group {
-                        if viewModel.searchHistory.isEmpty {
-                            Text("최근 검색 기록이 없습니다.")
-                        }
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("search_ID".getLocalizedString())
+                        .font(.headline)
+                        .padding(.bottom, 10)
+                    
+                    TextField("search".getLocalizedString(), text: $text) {
+                        isActive = true
                     }
-                )
-                .listStyle(.plain)
+                    .frame(height: 40)
+                    .padding(.bottom, 20)
+                    .textFieldStyle(.roundedBorder)
+                    .onAppear {
+                        UITextField.appearance().clearButtonMode = .whileEditing
+                    }
+                }
+                .padding(.horizontal, 16)
+                
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("search_history".getLocalizedString())
+                        .padding(.horizontal, 16)
+                    
+                    List {
+                        ForEach(viewModel.users, id: \.id) { user in
+                            NavigationLink {
+                                UserView(text: user.userName)
+                            } label: {
+                                Text(user.userName)
+                            }
+                        }
+                        .onDelete(perform: viewModel.deleteUserAndRepositories(at:))
+                    }
+                    .overlay(
+                        Group {
+                            if viewModel.users.isEmpty {
+                                Text("search_history_is_empty".getLocalizedString())
+                            }
+                        }
+                    )
+                    .listStyle(.plain)
+                }
             }
-            .padding(.horizontal)
             .padding(.top, 20)
+//            .onTapGesture { hideKeyboard() }
             .onAppear {
                 text = ""
-                viewModel.fetchSearchHistory()
+                viewModel.fetchUsers()
             }
         }
     }
-}
-
-#Preview {
-    SearchView()
 }

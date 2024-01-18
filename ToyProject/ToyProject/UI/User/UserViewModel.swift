@@ -2,7 +2,7 @@
 //  UserViewModel.swift
 //  ToyProject
 //
-//  Created by woosub kim on 1/12/24.
+//  Created by woosub kim  on 1/18/24.
 //
 
 import SwiftUI
@@ -117,3 +117,4 @@ extension UserViewModel {
         }
     }
 }
+
