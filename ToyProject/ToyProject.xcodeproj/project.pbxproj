@@ -34,8 +34,8 @@
 		08A863D12B3BF401003782E1 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A863D02B3BF401003782E1 /* UserViewModel.swift */; };
 		08A930302B54BAB4003960F2 /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A9302F2B54BAB4003960F2 /* UserDTO.swift */; };
 		08DB88EB2B4E642D00631880 /* RepositoryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DB88EA2B4E642D00631880 /* RepositoryDTO.swift */; };
-		08F8647D2B4E3A04004E9E06 /* UserRealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F8647C2B4E3A04004E9E06 /* UserRealmManager.swift */; };
-		08F8647F2B4E3A16004E9E06 /* RepositoryRealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F8647E2B4E3A16004E9E06 /* RepositoryRealmManager.swift */; };
+		08F8647D2B4E3A04004E9E06 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F8647C2B4E3A04004E9E06 /* UserDAO.swift */; };
+		08F8647F2B4E3A16004E9E06 /* RepositoryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F8647E2B4E3A16004E9E06 /* RepositoryDAO.swift */; };
 		08F864812B4E6266004E9E06 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F864802B4E6266004E9E06 /* UserRepository.swift */; };
 		08F864832B4E6310004E9E06 /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F864822B4E6310004E9E06 /* UserUseCase.swift */; };
 		08F864852B4E8A15004E9E06 /* RepositoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F864842B4E8A15004E9E06 /* RepositoryUseCase.swift */; };
@@ -87,8 +87,8 @@
 		08A863D02B3BF401003782E1 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserViewModel.swift; path = ToyProject/UserViewModel.swift; sourceTree = SOURCE_ROOT; };
 		08A9302F2B54BAB4003960F2 /* UserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
 		08DB88EA2B4E642D00631880 /* RepositoryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDTO.swift; sourceTree = "<group>"; };
-		08F8647C2B4E3A04004E9E06 /* UserRealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRealmManager.swift; sourceTree = "<group>"; };
-		08F8647E2B4E3A16004E9E06 /* RepositoryRealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryRealmManager.swift; sourceTree = "<group>"; };
+		08F8647C2B4E3A04004E9E06 /* UserDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
+		08F8647E2B4E3A16004E9E06 /* RepositoryDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDAO.swift; sourceTree = "<group>"; };
 		08F864802B4E6266004E9E06 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		08F864822B4E6310004E9E06 /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
 		08F864842B4E8A15004E9E06 /* RepositoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryUseCase.swift; sourceTree = "<group>"; };
@@ -176,8 +176,8 @@
 			children = (
 				08F864862B4E8A40004E9E06 /* RepoRepository.swift */,
 				08F864802B4E6266004E9E06 /* UserRepository.swift */,
-				08F8647C2B4E3A04004E9E06 /* UserRealmManager.swift */,
-				08F8647E2B4E3A16004E9E06 /* RepositoryRealmManager.swift */,
+				08F8647C2B4E3A04004E9E06 /* UserDAO.swift */,
+				08F8647E2B4E3A16004E9E06 /* RepositoryDAO.swift */,
 			);
 			path = DataMapping;
 			sourceTree = "<group>";
@@ -465,13 +465,13 @@
 				08DB88EB2B4E642D00631880 /* RepositoryDTO.swift in Sources */,
 				0875A22A2B3BFEB400733C59 /* WebView.swift in Sources */,
 				0872FB0C2B43FEED004D9A35 /* View+extension.swift in Sources */,
-				08F8647D2B4E3A04004E9E06 /* UserRealmManager.swift in Sources */,
+				08F8647D2B4E3A04004E9E06 /* UserDAO.swift in Sources */,
 				0872FB1F2B47EA45004D9A35 /* String+extension.swift in Sources */,
 				087E0AA02B5621680022C1ED /* RepositoryVO.swift in Sources */,
 				08A863CB2B3BC408003782E1 /* UserView.swift in Sources */,
 				087E0A9E2B5621610022C1ED /* UserVO.swift in Sources */,
 				08F864832B4E6310004E9E06 /* UserUseCase.swift in Sources */,
-				08F8647F2B4E3A16004E9E06 /* RepositoryRealmManager.swift in Sources */,
+				08F8647F2B4E3A16004E9E06 /* RepositoryDAO.swift in Sources */,
 				08F864852B4E8A15004E9E06 /* RepositoryUseCase.swift in Sources */,
 				084299C92B3BFBAF009DA780 /* SearchView.swift in Sources */,
 				08F864872B4E8A40004E9E06 /* RepoRepository.swift in Sources */,

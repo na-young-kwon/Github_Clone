@@ -37,7 +37,7 @@ struct RepositoryDTO: Decodable, Hashable {
 }
 
 extension RepositoryDTO {
-    static func toVO(_ dto: RepositoryDTO) -> RepositoryVO {
+    static func toVO(dto: RepositoryDTO) -> RepositoryVO {
         return RepositoryVO(
             id: dto.id,
             user: RepositoryVO.User(name: dto.user.name),

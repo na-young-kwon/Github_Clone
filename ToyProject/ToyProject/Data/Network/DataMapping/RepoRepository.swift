@@ -18,18 +18,18 @@ protocol RepoDelegate {
 struct RepoRepository: RepoDelegate {
     
     func saveRepository(_ repositoryDTO: [RepositoryDTO]) {
-        RepositoryRealmManager.shared.create(repositoryDTO)
+        RepositoryDAO.shared.create(repositoryDTO)
     }
     
     func fetchRepository(_ userName: String) -> [RepositoryDTO] {
-        RepositoryRealmManager.shared.read(userName)
+        RepositoryDAO.shared.read(userName)
     }
     
     func fetchRepositories() -> [RepositoryDTO] {
-        RepositoryRealmManager.shared.readAll()
+        RepositoryDAO.shared.readAll()
     }
     
     func deleteRepository(_ userName: String) {
-        RepositoryRealmManager.shared.delete(userName)
+        RepositoryDAO.shared.delete(userName)
     }
 }

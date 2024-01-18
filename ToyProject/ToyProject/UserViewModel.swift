@@ -18,24 +18,26 @@ class UserViewModel: ObservableObject {
     private let userUseCase: UserUseCase = UserUseCase()
     private let repoUseCase: RepoUseCase = RepoUseCase()
     
-    func checkUser(userName: String) async {
+    func dbFetchUser(userName: String) {
         let dbUser = fetchUser(userName)
-        await networkFetchUser1(userName)
+        user = dbUser
     }
     
-    func checkRepository(userName: String) async {
-        let dbRepository = fetchRepositories(userName)
-        await networkFetchRepository1(userName)
+    func dbFetchRepository(userName: String) {
+        let dbRepository = fetchRepository(userName)
+        repositories = dbRepository
+        print(dbRepository.count)
     }
     
     /// API User Fetch
-    func networkFetchUser1(_ userName: String) async {
+    func networkFetchUser(_ userName: String) async {
         do {
             let fetchedUserDTO = try await NetworkService().fetchUser(forUser: userName)
             let fetchedUserVO = UserDTO.toVO(fetchedUserDTO)
             user = fetchedUserVO
             saveUser(fetchedUserVO)
         } catch let error as NetworkError {
+//            dbFetchUser(userName: userName)
             errorMessage = errorMessage(for: error)
         } catch {
             errorMessage = "no_github_ID".getLocalizedString()
@@ -43,20 +45,34 @@ class UserViewModel: ObservableObject {
     }
     
     /// API Repository Fetch
-    func networkFetchRepository1(_ userName: String) async {
+    func networkFetchRepository(_ userName: String) async {
         do {
             let fetchRepositoryDTO = try await NetworkService().fetchRepositories(forUser: userName)
-            let fetchedRepositoryVO = fetchRepositoryDTO.map(RepositoryDTO.toVO(_:))
-            repositories = fetchedRepositoryVO
-            for repositoryVO in fetchedRepositoryVO {
-                saveRepository(repositoryVO)
+            RepositoryDAO.shared.delete(userName)
+            // DTO를 VO로 변환합니다.
+            let fetchedRepositoryVO = fetchRepositoryDTO.map { dto in
+                RepositoryVO(
+                    id: dto.id,
+                    user: RepositoryVO.User(name: dto.user.name),
+                    fullName: dto.fullName,
+                    htmlUrl: dto.htmlUrl,
+                    starsCount: dto.starsCount,
+                    watchersCount: dto.watchersCount,
+                    forksCount: dto.forksCount,
+                    language: dto.language
+                )
             }
+            fetchedRepositoryVO.forEach { saveRepository($0) }
+            
+            repositories = fetchedRepositoryVO
         } catch let error as NetworkError {
+//            dbFetchRepository(userName: userName)
             errorMessage = errorMessage(for: error)
         } catch {
             errorMessage = "no_github_ID".getLocalizedString()
         }
     }
+    
     
     /// 유저를 Realm에 저장하는 함수
     /// - Parameter userResponse: 네트워크통신을 통한 유저를 Realm에 저장
@@ -81,6 +97,10 @@ class UserViewModel: ObservableObject {
     /// - Parameter userName: 특정 userName
     /// - Returns: userName에 해당하는 [RepositoryResponse]
     func fetchRepositories(_ userName: String) -> [RepositoryVO] {
+        repoUseCase.fetchRepository(userName)
+    }
+    
+    func fetchRepository(_ userName: String) -> [RepositoryVO] {
         repoUseCase.fetchRepository(userName)
     }
 }

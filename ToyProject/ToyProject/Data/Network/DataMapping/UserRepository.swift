@@ -18,18 +18,18 @@ protocol UserDelegate {
 struct UserRepository: UserDelegate {
     
     func saveUser(_ userDTO: UserDTO) {
-        UserRealmManager.shared.create(userDTO)
+        UserDAO.shared.create(userDTO)
     }
     
     func fetchUser(_ userName: String) -> UserDTO? {
-        UserRealmManager.shared.read(userName)
+        UserDAO.shared.read(userName)
     }
     
     func fetchUsers() -> [UserDTO] {
-        UserRealmManager.shared.readAll()
+        UserDAO.shared.readAll()
     }
     
     func deleteUser(_ userName: String) {
-        UserRealmManager.shared.delete(userName)
+        UserDAO.shared.delete(userName)
     }
 }

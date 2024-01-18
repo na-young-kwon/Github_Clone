@@ -9,36 +9,36 @@ import Foundation
 import RealmSwift
 
 /// created by 김우섭
-class RepositoryRealmManager {
-    static let shared = RepositoryRealmManager()
+class RepositoryDAO {
+    static let shared = RepositoryDAO()
     private let realm = try! Realm()
     
     private init() {}
     
     /// Realm에 레포지토리 Create
     func create(_ repositoriesDTO: [RepositoryDTO]) {
-        let repositoryForRealm = repositoriesDTO.map { dto -> RepositoryForRealm in
-            return RepositoryForRealm(
-                id: dto.id,
-                htmlUrl: dto.htmlUrl,
-                userName: dto.user.name,
-                fullName: dto.fullName,
-                starsCount: dto.starsCount,
-                watchersCount: dto.starsCount,
-                forksCount: dto.forksCount,
-                language: dto.language
-            )
-        }
         do {
             try realm.write {
-                for repository in repositoryForRealm {
-                    realm.add(repository, update: .modified)
+                let repositoryForRealm = repositoriesDTO.map { dto -> RepositoryForRealm in
+                    return RepositoryForRealm(
+                        id: dto.id,
+                        htmlUrl: dto.htmlUrl,
+                        userName: dto.user.name,
+                        fullName: dto.fullName,
+                        starsCount: dto.starsCount,
+                        watchersCount: dto.starsCount,
+                        forksCount: dto.forksCount,
+                        language: dto.language
+                    )
+                }
+                repositoryForRealm.forEach {
+                    realm.add($0, update: .modified)
                 }
             }
+            
         } catch {
             print("레로지토리를 저장하는 데 실패했습니다. - \(repositoriesDTO)")
         }
-        
     }
     
     /// Realm에 특정 레포지토리 Read
@@ -86,30 +86,5 @@ class RepositoryRealmManager {
             print("레포지토리를 삭제하는 데 실패 - \(userName)")
         }
     }
-    
-    var repositoryForRealm: RepositoryForRealm?
-    
-    func update() {
-        if let repositoryForRealm = repositoryForRealm {
-            do {
-                guard let updateToRepo = realm.object(ofType: RepositoryForRealm.self, forPrimaryKey: repositoryForRealm.userName) else { return }
-                try realm.write {
-                    updateToRepo.id = repositoryForRealm.id
-                    updateToRepo.userName = repositoryForRealm.userName
-                    updateToRepo.htmlUrl = repositoryForRealm.htmlUrl
-                    updateToRepo.fullName = repositoryForRealm.fullName
-                    updateToRepo.starsCount = repositoryForRealm.starsCount
-                    updateToRepo.forksCount = repositoryForRealm.forksCount
-                    updateToRepo.language = repositoryForRealm.language
-                }
-            }
-            catch {
-                print(error)
-            }
-            
-        }
-    }
-    
-    
     
 }
