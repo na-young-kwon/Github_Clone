@@ -14,6 +14,17 @@ struct RepositoryDao {
         return Realm.open(configuration: Realm.repositoryConfiguration)
     }
     
+    private func getAllRepository() -> [Repository] {
+        let repository = realm.objects(Repository.self)
+        return Array(repository)
+    }
+    
+    func getRepository(by userName: String) -> [Repository] {
+        let query = "userName == [c] %@"
+        let repositories = realm.objects(Repository.self).filter(query, userName)
+        return Array(repositories)
+    }
+    
     func create(_ repositories: [RepositoryVo]) throws {
         do {
             try realm.write {
@@ -34,20 +45,10 @@ struct RepositoryDao {
         }
     }
     
-    func getRepository(by userName: String) -> [Repository] {
-        let query = "userName == [c] %@"
-        let repositories = realm.objects(Repository.self).filter(query, userName)
-
-        if repositories.isEmpty {
-            return []
-        }
-        return Array(repositories)
-    }
-    
-    func delete(_ user: UserVo) {
+    func delete(userName: String) {
         do {
             let query = "userName == %@"
-            let task = realm.objects(Repository.self).filter(query, user.userName)
+            let task = realm.objects(Repository.self).filter(query, userName)
             try realm.write {
                 realm.delete(task)
             }

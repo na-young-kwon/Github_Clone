@@ -56,7 +56,7 @@ struct UserRepository {
     }
     
     func deleteUser(_ user: UserVo) {
-        userDao.delete(user)
-        repoDao.delete(user)
+        userDao.delete(id: user.id)
+        repoDao.delete(userName: user.userName)
     }
 }

@@ -15,6 +15,21 @@ enum NetworkError: Error {
     case connectionError(Error)
     case unknownError
     case decodingError(Error)
+    
+//    var description: String {
+//        switch self {
+//        case .badURL:
+//            return "no_github_ID".getLocalizedString()
+//        case let .serverError(code):
+//            return "server_error".getLocalizedString(with: code)
+//        case let .connectionError(error):
+//            return "connection_error".getLocalizedString()
+//        case .unknownError:
+//            return "no_github_ID".getLocalizedString()
+//        case let .decodingError(error):
+//            return "디코딩 에러: \(error.localizedDescription)"
+//        }
+//    }
 }
 
 struct Constants {

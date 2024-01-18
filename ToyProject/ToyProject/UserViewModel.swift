@@ -24,7 +24,7 @@ class UserViewModel: ObservableObject {
     }
     
     @MainActor
-    func updateUser(forUser userName: String) async {
+    private func updateUser(forUser userName: String) async {
         isLoading = true
         do {
             user = try await usecase.fetchUser(forUser: userName)
@@ -44,7 +44,7 @@ class UserViewModel: ObservableObject {
     }
     
     @MainActor
-    func updateRepository(forUser userName: String) async {
+    private func updateRepository(forUser userName: String) async {
         isLoading = true
         do {
             repositories = try await usecase.fetchRepositoryList(forUser: userName)
@@ -56,6 +56,18 @@ class UserViewModel: ObservableObject {
             errorMessage = "no_github_ID".getLocalizedString()
         }
         isLoading = false
+    }
+    
+    func fetchUserAndRepo(forUser userName: String) async {
+        await withTaskGroup(of: Void.self) { group in
+            group.addTask {
+                await self.updateUser(forUser: userName)
+            }
+            group.addTask {
+                await self.updateRepository(forUser: userName)
+            }
+
+        }
     }
 }
 

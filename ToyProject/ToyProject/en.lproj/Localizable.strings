@@ -18,3 +18,6 @@
 "connection_error" = "Network connection error occurred";
 "server_error" = "Server error occured. error code: %d";
 "invalid_repository" = "The repository does not exist";
+"save_user_fail_title" = "Save failed";
+"save_user_fail_message" = "Failed to save search keyword";
+"ok" = "Ok";

@@ -18,3 +18,7 @@
 "connection_error" = "네트워크 연결 오류가 발생했습니다.";
 "server_error" = "서버 오류가 발생했습니다. 오류 코드: %d";
 "invalid_repository" = "존재하지 않는 레포지토리 입니다.";
+"save_user_fail_title" = "저장 실패";
+"save_user_fail_message" = "검색어 저장에 실패했습니다.";
+"ok" = "확인";
+

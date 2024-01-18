@@ -94,14 +94,13 @@ struct UserView: View {
             viewModel.getUser(forUser: text)
             viewModel.getRepository(forUser: text)
             Task {
-                await viewModel.updateUser(forUser: text)
-                await viewModel.updateRepository(forUser: text)
+                await viewModel.fetchUserAndRepo(forUser: text)
             }
         }
         .alert(isPresented: $viewModel.showAlert) {
-            Alert(title: Text("저장 실패"),
-                  message: Text("검색어 저장에 실패했습니다."),
-                  dismissButton: .default(Text("확인"))
+            Alert(title: Text("save_user_fail_title".getLocalizedString()),
+                  message: Text("save_user_fail_message".getLocalizedString()),
+                  dismissButton: .default(Text("ok".getLocalizedString()))
             )
         }
     }

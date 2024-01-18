@@ -14,9 +14,6 @@ struct RepoRepository {
     // DB에서 레포지토리 데이터 가져오는 메서드
     func getRepositoryList(forUser name: String) -> [RepositoryVo] {
         let repositoryList = dao.getRepository(by: name)
-        if repositoryList.isEmpty {
-            return []
-        }
         
         let repoVo = repositoryList.map { RepositoryVo(id: $0.id,
                                                        userName: $0.userName,

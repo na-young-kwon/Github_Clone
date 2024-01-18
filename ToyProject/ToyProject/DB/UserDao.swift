@@ -32,7 +32,7 @@ struct UserDao {
         do {
             try realm.write {
                 // 강제로 에러 발생시키기 위한 코드 (catch 블록의 작동을 확인하기 위한 테스트 목적)
-                // throw NSError(domain: "com.example", code: 999, userInfo: nil)
+//                 throw NSError(domain: "com.example", code: 999, userInfo: nil)
                 let user = User(id: userVo.id,
                                 userName: userVo.userName,
                                 avatarUrl: userVo.avatarUrl,
@@ -59,10 +59,10 @@ struct UserDao {
         }
     }
   
-    func delete(_ user: UserVo) {
+    func delete(id: Int) {
         do {
             let query = "id == %@"
-            let task = realm.objects(User.self).filter(query, user.id)
+            let task = realm.objects(User.self).filter(query, id)
             try realm.write {
                 realm.delete(task)
             }
