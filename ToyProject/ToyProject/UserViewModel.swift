@@ -19,8 +19,11 @@ class UserViewModel: ObservableObject {
     
     private let usecase = UserUsecase()
         
-    func getUser(forUser userName: String) {
+    func getUserInfo(forUser userName: String) {
         user = usecase.getUser(forUser: userName)
+        if let id = user?.id {
+            repositories = usecase.getRepositoryList(id: id)
+        }
     }
     
     @MainActor
@@ -34,6 +37,7 @@ class UserViewModel: ObservableObject {
                 errorMessage = errorMessage(for: error)
             case .decodingError(let error):
                 errorMessage = "no_github_ID".getLocalizedString()
+                print(error)
             }
         } catch RealmError.failToCreateUser(user: let user) {
             self.user = user
@@ -42,10 +46,6 @@ class UserViewModel: ObservableObject {
             errorMessage = "no_github_ID".getLocalizedString()
         }
         isLoading = false
-    }
-    
-    func getRepository(forUser userName: String) {
-        repositories = usecase.getRepositoryList(forUser: userName)
     }
     
     @MainActor
@@ -59,6 +59,7 @@ class UserViewModel: ObservableObject {
                 errorMessage = errorMessage(for: error)
             case .decodingError(let error):
                 errorMessage = "no_github_ID".getLocalizedString()
+                print(error)
             }
         } catch RealmError.failToCreateRepository {
             print("레포지터리 저장 실패")

@@ -16,17 +16,17 @@ class User: Object {
     @Persisted var avatarUrl: String = ""
     @Persisted var follower: Int = 0
     @Persisted var following: Int = 0
-    @Persisted var bio: String? = nil
+    @Persisted var biography: String? = nil
     @Persisted var createdAt: Date = Date()
     
-    convenience init(id: Int, userName: String, avatarUrl: String, follower: Int, following: Int, bio: String?, createdAt: Date) {
+    convenience init(id: Int, userName: String, avatarUrl: String, follower: Int, following: Int, biography: String?, createdAt: Date) {
         self.init()
         self.id = id
         self.userName = userName
         self.avatarUrl = avatarUrl
         self.follower = follower
         self.following = following
-        self.bio = bio
+        self.biography = biography
         self.createdAt = createdAt
     }
 }

@@ -10,13 +10,18 @@ import RealmSwift
 extension Realm {
     static var userConfiguration: Realm.Configuration {
         var configuration = Realm.Configuration()
-        configuration.schemaVersion = 0
+        configuration.schemaVersion = 1
+        configuration.migrationBlock = { migration, oldSchemaVersion in
+            if oldSchemaVersion < 1 {
+                migration.renameProperty(onType: User.className(), from: "bio", to: "biography")
+            }
+        }
         return configuration
     }
     
     static var repositoryConfiguration: Realm.Configuration {
         var configuration = Realm.Configuration()
-        configuration.schemaVersion = 0
+        configuration.schemaVersion = 1
         return configuration
     }
     

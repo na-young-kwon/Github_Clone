@@ -12,7 +12,7 @@ import RealmSwift
 
 class Repository: Object {
     @Persisted(primaryKey: true) var id: Int
-    @Persisted var userName: String = ""
+    @Persisted var ownerID: Int
     @Persisted var htmlUrl: String = ""
     @Persisted var fullName: String = ""
     @Persisted var starsCount: Int = 0
@@ -20,10 +20,10 @@ class Repository: Object {
     @Persisted var forksCount: Int = 0
     @Persisted var language: String? = nil
     
-    convenience init(id: Int, userName: String, htmlUrl: String, fullName: String, starsCount: Int, watchersCount: Int, forksCount: Int, language: String?) {
+    convenience init(id: Int, ownerID: Int, htmlUrl: String, fullName: String, starsCount: Int, watchersCount: Int, forksCount: Int, language: String?) {
         self.init()
         self.id = id
-        self.userName = userName
+        self.ownerID = ownerID
         self.htmlUrl = htmlUrl
         self.fullName = fullName
         self.starsCount = starsCount

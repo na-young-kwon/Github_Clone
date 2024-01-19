@@ -9,7 +9,7 @@ import Foundation
 
 struct RepositoryVo: Hashable {
     let id: Int
-    let userName: String
+    let ownerID: Int
     let fullName: String
     let htmlUrl: String
     let starsCount: Int

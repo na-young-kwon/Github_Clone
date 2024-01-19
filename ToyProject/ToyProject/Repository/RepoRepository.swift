@@ -12,11 +12,11 @@ struct RepoRepository {
     private let dao = RepositoryDao()
     
     // DB에서 레포지토리 데이터 가져오는 메서드
-    func getRepositoryList(forUser name: String) -> [RepositoryVo] {
-        let repositoryList = dao.getRepository(by: name)
+    func getRepositoryList(id: Int) -> [RepositoryVo] {
+        let repositoryList = dao.getRepository(by: id)
         
         let repoVo = repositoryList.map { RepositoryVo(id: $0.id,
-                                                       userName: $0.userName,
+                                                       ownerID: $0.ownerID,
                                                        fullName: $0.fullName,
                                                        htmlUrl: $0.htmlUrl,
                                                        starsCount: $0.starsCount,
@@ -32,7 +32,7 @@ struct RepoRepository {
         let repositoryDTO = try await networkService.fetchRepositories(forUser: name)
         
         let repositoryVo = repositoryDTO.map { RepositoryVo(id: $0.id,
-                                                             userName: $0.user.name,
+                                                            ownerID: $0.user.ownerID,
                                                              fullName: $0.fullName,
                                                              htmlUrl: $0.htmlUrl,
                                                              starsCount: $0.starsCount,
@@ -41,7 +41,7 @@ struct RepoRepository {
                                                              language: $0.language
         )}
         try dao.create(repositoryVo)
-        dao.compareAndDelete(username: name, repos: repositoryVo)
+//        dao.compareAndDelete(username: name, repos: repositoryVo)
         return repositoryVo
     }
 }

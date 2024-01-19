@@ -20,7 +20,7 @@ struct UserRepository {
                                          avatarUrl: $0.avatarUrl,
                                          follower: $0.follower,
                                          following: $0.following,
-                                         bio: $0.bio
+                                         bio: $0.biography
         )}
         return userVo
     }
@@ -35,7 +35,7 @@ struct UserRepository {
                             avatarUrl: user.avatarUrl,
                             follower: user.follower,
                             following: user.following,
-                            bio: user.bio
+                            bio: user.biography
         )
         return userVo
     }

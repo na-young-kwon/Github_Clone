@@ -14,9 +14,9 @@ struct RepositoryDao {
         return Realm.open(configuration: Realm.repositoryConfiguration)
     }
     
-    func getRepository(by userName: String) -> [Repository] {
-        let query = "userName == [c] %@"
-        let repositories = realm.objects(Repository.self).filter(query, userName)
+    func getRepository(by ownerID: Int) -> [Repository] {
+        let query = "ownerID == %@"
+        let repositories = realm.objects(Repository.self).filter(query, ownerID)
         return Array(repositories)
     }
     
@@ -24,7 +24,7 @@ struct RepositoryDao {
         do {
             try realm.write {
                 let repos = repositories.map { Repository(id: $0.id,
-                                                          userName: $0.userName,
+                                                          ownerID: $0.ownerID,
                                                           htmlUrl: $0.htmlUrl,
                                                           fullName: $0.fullName,
                                                           starsCount: $0.starsCount,
@@ -52,18 +52,18 @@ struct RepositoryDao {
         }
     }
     
-    func compareAndDelete(username: String, repos: [RepositoryVo]) {
-        let repoFromRealm = getRepository(by: username).map { $0.id }
-        let repoFromAPI = repos.map { $0.id }
-        let itemToDelete = Set(repoFromRealm).subtracting(Set(repoFromAPI))
-        
-        do {
-            try realm.write {
-                let item = realm.objects(Repository.self).filter { itemToDelete.contains($0.id) }
-                realm.delete(item)
-            }
-        } catch {
-            print("레포지토리를 삭제하는데 데 실패했습니다 - \(error)")
-        }
-    }
+//    func compareAndDelete(username: String, repos: [RepositoryVo]) {
+//        let repoFromRealm = getRepository(by: username).map { $0.id }
+//        let repoFromAPI = repos.map { $0.id }
+//        let itemToDelete = Set(repoFromRealm).subtracting(Set(repoFromAPI))
+//        
+//        do {
+//            try realm.write {
+//                let item = realm.objects(Repository.self).filter { itemToDelete.contains($0.id) }
+//                realm.delete(item)
+//            }
+//        } catch {
+//            print("레포지토리를 삭제하는데 데 실패했습니다 - \(error)")
+//        }
+//    }
 }

@@ -21,8 +21,8 @@ struct UserUsecase {
         return try await userRepository.fetchUser(by: username)
     }
     
-    func getRepositoryList(forUser username: String) -> [RepositoryVo] {
-        return repoRepository.getRepositoryList(forUser: username)
+    func getRepositoryList(id ownerId: Int) -> [RepositoryVo] {
+        return repoRepository.getRepositoryList(id: ownerId)
     }
     
     func fetchRepositoryList(forUser username: String) async throws -> [RepositoryVo] {

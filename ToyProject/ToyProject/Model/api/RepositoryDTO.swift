@@ -30,10 +30,10 @@ struct RepositoryDTO: Decodable {
     }
     
     struct User: Decodable {
-        let name: String
+        let ownerID: Int
         
         enum CodingKeys: String, CodingKey {
-            case name = "login"
+            case ownerID = "id"
         }
     }
 }

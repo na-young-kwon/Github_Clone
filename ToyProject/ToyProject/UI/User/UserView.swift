@@ -91,8 +91,7 @@ struct UserView: View {
             }
         }
         .onAppear {
-            viewModel.getUser(forUser: text)
-            viewModel.getRepository(forUser: text)
+            viewModel.getUserInfo(forUser: text)
             Task {
                 await viewModel.fetchUserAndRepo(forUser: text)
             }
