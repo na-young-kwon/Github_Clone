@@ -29,7 +29,12 @@ class UserViewModel: ObservableObject {
         do {
             user = try await usecase.fetchUser(forUser: userName)
         } catch let error as NetworkError {
-            errorMessage = errorMessage(for: error)
+            switch error {
+            case .badURL, .serverError, .connectionError, .unknownError:
+                errorMessage = errorMessage(for: error)
+            case .decodingError(let error):
+                errorMessage = "no_github_ID".getLocalizedString()
+            }
         } catch RealmError.failToCreateUser(user: let user) {
             self.user = user
             showAlert = true
@@ -49,7 +54,12 @@ class UserViewModel: ObservableObject {
         do {
             repositories = try await usecase.fetchRepositoryList(forUser: userName)
         } catch let error as NetworkError {
-            errorMessage = errorMessage(for: error)
+            switch error {
+            case .badURL, .serverError, .connectionError, .unknownError:
+                errorMessage = errorMessage(for: error)
+            case .decodingError(let error):
+                errorMessage = "no_github_ID".getLocalizedString()
+            }
         } catch RealmError.failToCreateRepository {
             print("레포지터리 저장 실패")
         } catch {
