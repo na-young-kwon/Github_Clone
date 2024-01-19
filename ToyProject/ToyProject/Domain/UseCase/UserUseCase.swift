@@ -11,19 +11,16 @@ import Foundation
 struct UserUseCase {
     private let userRepository: UserRepository = UserRepository()
     
+    func fetchUser(_ userName: String) async -> UserVO? {
+        await userRepository.fetchUser(userName)
+    }
+    
     func saveUser(_ userVO: UserVO) {
-        let userDTO = UserDTO(vo: userVO)
-        userRepository.saveUser(userDTO)
+        userRepository.saveUser(userVO)
     }
     
-    func fetchUser(_ userName: String) -> UserVO? {
-        let userDTOs = userRepository.fetchUser(userName)
-        return userDTOs.map(UserDTO.toVO)
-    }
-
-    
-    func fetchUsers() -> [UserVO] {
-        return userRepository.fetchUsers().map(UserDTO.toVO)
+    func readAllUser() -> [UserVO] {
+        userRepository.readAllUser()
     }
     
     func deleteUser(_ userName: String) {

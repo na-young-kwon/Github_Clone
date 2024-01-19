@@ -22,10 +22,9 @@ struct Constants {
 
 class NetworkService {
     
-    /// created by 김우섭
-    /// 유저의 종합정보를 받아오는 함수
-    /// - Parameter username: 유저이름
-    /// - Returns: UserResponse
+    static let shared = NetworkService()
+    private init() {}
+    
     func fetchUser(forUser username: String) async throws -> UserDTO {
         guard let url = URL(string: "\(Constants.userURL)\(username)") else {
             throw NetworkError.badURL
@@ -47,10 +46,6 @@ class NetworkService {
         }
     }
     
-    /// created by 김우섭
-    /// 유저의 레포지토리정보를 받아오는 함수
-    /// - Parameter username: 유저이름
-    /// - Returns: [RepositoryResponse]
     func fetchRepositories(forUser username: String) async throws -> [RepositoryDTO] {
         guard let url = URL(string: "\(Constants.userURL)\(username)/repos") else {
             throw NetworkError.badURL
@@ -72,12 +67,9 @@ class NetworkService {
         }
 
     }
-    
-    /// created by 김우섭
-    /// 에러 처리 함수
+
     private func handleError(_ error: Error) -> NetworkError {
         if let afError = error.asAFError {
-            /// Alamofire 오류 분석 및 사용자 친화적인 메시지로 변환
             switch afError {
             case .responseValidationFailed(reason: .unacceptableStatusCode(let code)):
                 return .serverError(code)

@@ -45,7 +45,7 @@ struct UserView: View {
                         Spacer()
                         VStack(alignment: .leading, spacing: 18) {
                             Text(user.userName)
-                            Text(user.bio ?? "N/A")
+                            Text(user.bio)
                             HStack {
                                 Text("follower_n".getLocalizedString(with: user.followers))
                                 Text("following_n".getLocalizedString(with: user.following))
@@ -91,8 +91,8 @@ struct UserView: View {
             }
         .onAppear {
             Task {
-                await viewModel.networkFetchUser(text)
-                await viewModel.networkFetchRepository(text)
+                await viewModel.fetchUser(text)
+                await viewModel.fetchRepository(text)
             }
         }
     }

@@ -21,16 +21,3 @@ struct RepositoryVO: Hashable, Identifiable {
         let name: String
     }
 }
-
-extension RepositoryVO {
-    init(dto: RepositoryDTO) {
-        self.id = dto.id
-        self.user = User(name: dto.user.name)
-        self.fullName = dto.fullName
-        self.htmlUrl = dto.htmlUrl
-        self.starsCount = dto.starsCount
-        self.watchersCount = dto.watchersCount
-        self.forksCount = dto.forksCount
-        self.language = dto.language
-    }
-}

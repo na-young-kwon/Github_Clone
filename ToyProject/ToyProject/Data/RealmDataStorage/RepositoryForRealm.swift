@@ -30,8 +30,5 @@ class RepositoryForRealm: Object {
         self.forksCount = forksCount
         self.language = language
     }
-    
-    override class func primaryKey() -> String? {
-         "id"
-    }
+
 }
