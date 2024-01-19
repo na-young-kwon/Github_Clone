@@ -8,12 +8,11 @@
 import SwiftUI
 import Alamofire
 
-
 class UserViewModel: ObservableObject {
     @Published var user: UserVO?
     @Published var repositories: [RepositoryVO] = []
     @Published var isLoading = false
-    @Published var errorMessage: String = ""
+    @Published var errorMessage: String?
     
     private let userUseCase: UserUseCase = UserUseCase()
     private let repoUseCase: RepoUseCase = RepoUseCase()
@@ -21,19 +20,30 @@ class UserViewModel: ObservableObject {
     @MainActor
     func fetchUser(_ userName: String) async {
         isLoading = true
-        let fetchedUser = await userUseCase.fetchUser(userName)
-        user = fetchedUser
-        guard let user = user else { return }
-        saveUser(user)
+        do {
+            user = try await userUseCase.fetchUser(userName)
+            guard let user = user else { return }
+            saveUser(user)
+        } catch let error as NetworkError {
+            errorMessage = errorMessage(for: error)
+        } catch {
+            errorMessage = "no_github_ID".getLocalizedString()
+        }
         isLoading = false
     }
     
     @MainActor
     func fetchRepository(_ userName: String) async {
         isLoading = true
-        let fetchedRepo = await repoUseCase.fetchRepository(userName)
-        repositories = fetchedRepo
-        saveRepositories(repositories)
+        do {
+            let fetchedRepo = try await repoUseCase.fetchRepository(userName)
+            repositories = fetchedRepo
+            saveRepositories(repositories)
+        } catch let error as NetworkError {
+            errorMessage = errorMessage(for: error)
+        } catch {
+            errorMessage = "no_github_ID".getLocalizedString()
+        }
         isLoading = false
     }
     

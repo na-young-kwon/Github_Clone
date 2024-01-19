@@ -15,8 +15,8 @@ struct RepoUseCase {
         repoRepository.saveRepository(repositoriesVO)
     }
     
-    func fetchRepository(_ userName: String) async -> [RepositoryVO] {
-        await repoRepository.fetchRepository(userName)
+    func fetchRepository(_ userName: String) async throws -> [RepositoryVO] {
+        try await repoRepository.fetchRepository(userName)
     }
     
     func deletRepository(_ userName: String) {

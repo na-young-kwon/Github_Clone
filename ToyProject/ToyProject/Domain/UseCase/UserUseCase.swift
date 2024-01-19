@@ -11,8 +11,8 @@ import Foundation
 struct UserUseCase {
     private let userRepository: UserRepository = UserRepository()
     
-    func fetchUser(_ userName: String) async -> UserVO? {
-        await userRepository.fetchUser(userName)
+    func fetchUser(_ userName: String) async throws -> UserVO? {
+        try await userRepository.fetchUser(userName)
     }
     
     func saveUser(_ userVO: UserVO) {

@@ -9,7 +9,7 @@ import Foundation
 
 protocol RepoDelegate {
     func saveRepository(_ repositoriesVO: [RepositoryVO])
-    func fetchRepository(_ userName: String) async -> [RepositoryVO]
+    func fetchRepository(_ userName: String) async throws -> [RepositoryVO]
     func deleteRepository(_ userName: String)
 }
 
@@ -19,7 +19,7 @@ struct RepoRepository: RepoDelegate {
         RepositoryDAO.shared.create(repositoriesVO)
     }
     
-    func fetchRepository(_ userName: String) async -> [RepositoryVO] {
+    func fetchRepository(_ userName: String) async throws -> [RepositoryVO] {
         var fetchedRepository = [RepositoryVO]()
         do {
             let fetchRepository = try await NetworkService.shared.fetchRepositories(forUser: userName).map { dto in
@@ -38,11 +38,12 @@ struct RepoRepository: RepoDelegate {
         } catch {
             print(error)
         }
+        
         return fetchedRepository
     }
     
     func deleteRepository(_ userName: String) {
         RepositoryDAO.shared.delete(userName)
     }
-
+    
 }
