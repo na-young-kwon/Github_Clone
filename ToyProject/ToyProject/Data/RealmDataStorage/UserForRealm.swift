@@ -8,7 +8,6 @@
 import Foundation
 import RealmSwift
 
-/// created by 김우섭
 class UserForRealm: Object {
     @Persisted(primaryKey: true) var id: Int
     @Persisted var userName: String = ""

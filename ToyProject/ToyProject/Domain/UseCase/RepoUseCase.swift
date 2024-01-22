@@ -7,12 +7,15 @@
 
 import Foundation
 
-/// created by 김우섭
 struct RepoUseCase {
     private let repoRepository: RepoRepository = RepoRepository()
     
     func saveRepository(_ repositoriesVO: [RepositoryVO]) {
         repoRepository.saveRepository(repositoriesVO)
+    }
+    
+    func readRepository(_ userName: String) -> [RepositoryVO] {
+        repoRepository.readRepository(userName)
     }
     
     func fetchRepository(_ userName: String) async throws -> [RepositoryVO] {

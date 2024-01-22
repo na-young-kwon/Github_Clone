@@ -8,7 +8,6 @@
 import Foundation
 import RealmSwift
 
-/// created by 김우섭
 class UserDAO {
     static let shared = UserDAO()
     private let realm = try! Realm()
@@ -33,6 +32,7 @@ class UserDAO {
         }
     }
     
+    /// 전체 유저 Read
     func readAll() -> [UserVO] {
         let userForRealm = realm.objects(UserForRealm.self)
         return userForRealm.map {
@@ -45,6 +45,13 @@ class UserDAO {
                 bio: $0.bio
             )
         }
+    }
+    
+    /// 특정 유적 Read
+    func read(_ userName: String) -> UserVO? {
+        let userForRealm = realm.objects(UserForRealm.self).filter("userName =[c] %@", userName).first
+        guard let userForRealm = userForRealm else { return nil }
+        return UserVO(id: userForRealm.id, userName: userForRealm.userName, avatarUrl: userForRealm.avatarUrl, followers: userForRealm.follower, following: userForRealm.following, bio: userForRealm.bio)
     }
     
     /// Realm에 특정 유저 Delete

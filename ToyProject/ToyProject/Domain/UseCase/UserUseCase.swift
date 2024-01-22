@@ -7,7 +7,6 @@
 
 import Foundation
 
-/// created by 김우섭
 struct UserUseCase {
     private let userRepository: UserRepository = UserRepository()
     
@@ -17,6 +16,10 @@ struct UserUseCase {
     
     func saveUser(_ userVO: UserVO) {
         userRepository.saveUser(userVO)
+    }
+    
+    func readUser(_ userName: String) -> UserVO? {
+        userRepository.readUser(userName)
     }
     
     func readAllUser() -> [UserVO] {

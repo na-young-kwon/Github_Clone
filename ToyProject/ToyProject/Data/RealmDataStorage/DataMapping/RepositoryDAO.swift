@@ -8,7 +8,6 @@
 import Foundation
 import RealmSwift
 
-/// created by 김우섭
 class RepositoryDAO {
     static let shared = RepositoryDAO()
     private let realm = try! Realm()
@@ -34,6 +33,22 @@ class RepositoryDAO {
             }
         } catch {
             print(error)
+        }
+    }
+    
+    func read(_ userName: String) -> [RepositoryVO] {
+        let repositoryForRealm = realm.objects(RepositoryForRealm.self).filter("userName =[c] %@", userName)
+        return repositoryForRealm.map { realm -> RepositoryVO in
+            RepositoryVO(
+                id: realm.id,
+                user: RepositoryVO.User(name: realm.userName),
+                fullName: realm.fullName,
+                htmlUrl: realm.htmlUrl,
+                starsCount: realm.starsCount,
+                watchersCount: realm.watchersCount,
+                forksCount: realm.forksCount,
+                language: realm.language
+            )
         }
     }
     

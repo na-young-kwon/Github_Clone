@@ -18,6 +18,29 @@ class UserViewModel: ObservableObject {
     private let repoUseCase: RepoUseCase = RepoUseCase()
     
     @MainActor
+    func checkUser(_ userName: String) async {
+        user = readUser(userName)
+        
+        if user == nil {
+            await fetchUser(userName)
+        } else {
+            await fetchUser(userName)
+        }
+    }
+    
+    @MainActor
+    func checkRepository(_ userName: String) async {
+        repositories = readRepository(userName)
+        
+        if repositories.isEmpty {
+            await fetchRepository(userName)
+        } else {
+            deleteRepository(userName)
+            await fetchRepository(userName)
+        }
+    }
+    
+    @MainActor
     func fetchUser(_ userName: String) async {
         isLoading = true
         do {
@@ -47,12 +70,24 @@ class UserViewModel: ObservableObject {
         isLoading = false
     }
     
+    func readUser(_ userName: String) -> UserVO? {
+        userUseCase.readUser(userName)
+    }
+    
+    func readRepository(_ userName: String) -> [RepositoryVO] {
+        repoUseCase.readRepository(userName)
+    }
+    
     func saveUser(_ userVO: UserVO) {
         userUseCase.saveUser(userVO)
     }
     
     func saveRepositories(_ repositoriesVO: [RepositoryVO]) {
         repoUseCase.saveRepository(repositoriesVO)
+    }
+    
+    func deleteRepository(_ userName: String) {
+        repoUseCase.deletRepository(userName)
     }
     
 }

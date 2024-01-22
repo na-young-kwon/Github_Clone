@@ -9,6 +9,7 @@ import Foundation
 
 protocol RepoDelegate {
     func saveRepository(_ repositoriesVO: [RepositoryVO])
+    func readRepository(_ userName: String) -> [RepositoryVO]
     func fetchRepository(_ userName: String) async throws -> [RepositoryVO]
     func deleteRepository(_ userName: String)
 }
@@ -17,6 +18,10 @@ struct RepoRepository: RepoDelegate {
     
     func saveRepository(_ repositoriesVO: [RepositoryVO]) {
         RepositoryDAO.shared.create(repositoriesVO)
+    }
+    
+    func readRepository(_ userName: String) -> [RepositoryVO] {
+        RepositoryDAO.shared.read(userName)
     }
     
     func fetchRepository(_ userName: String) async throws -> [RepositoryVO] {
