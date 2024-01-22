@@ -57,17 +57,21 @@ struct RepositoryDao {
         guard let ownerID = repos.first?.ownerID else {
             return
         }
-        let repoFromRealm = getRepository(by: ownerID).map { $0.id }
-        let repoFromAPI = repos.map { $0.id }
-        let itemToDelete = Set(repoFromRealm).subtracting(Set(repoFromAPI))
-        
-        do {
-            try realm.write {
-                let item = realm.objects(Repository.self).filter { itemToDelete.contains($0.id) }
-                realm.delete(item)
+        if repos.isEmpty {
+            delete(ownerID: ownerID)
+        } else {
+            let repoFromRealm = getRepository(by: ownerID).map { $0.id }
+            let repoFromAPI = repos.map { $0.id }
+            let itemToDelete = Set(repoFromRealm).subtracting(Set(repoFromAPI))
+            
+            do {
+                try realm.write {
+                    let item = realm.objects(Repository.self).filter { itemToDelete.contains($0.id) }
+                    realm.delete(item)
+                }
+            } catch {
+                print("레포지토리를 삭제하는데 데 실패했습니다 - \(error)")
             }
-        } catch {
-            print("레포지토리를 삭제하는데 데 실패했습니다 - \(error)")
         }
     }
 }
