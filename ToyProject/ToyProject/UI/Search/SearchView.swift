@@ -67,8 +67,7 @@ struct SearchView: View {
 //            .onTapGesture { hideKeyboard() }
             .onAppear {
                 text = ""
-                viewModel.readAllUser() // 왜? unused
-                
+                viewModel.readAllUser()
             }
         }
     }

@@ -9,9 +9,9 @@ import Foundation
 
 protocol RepoDelegate {
     func saveRepository(_ repositoriesVO: [RepositoryVO])
-    func readRepository(_ userName: String) -> [RepositoryVO]
+    func readRepository(_ userID: Int) -> [RepositoryVO]
     func fetchRepository(_ userName: String) async throws -> [RepositoryVO]
-    func deleteRepository(_ userName: String)
+    func deleteRepository(_ userID: Int)
 }
 
 struct RepoRepository: RepoDelegate {
@@ -20,8 +20,8 @@ struct RepoRepository: RepoDelegate {
         RepositoryDAO.shared.create(repositoriesVO)
     }
     
-    func readRepository(_ userName: String) -> [RepositoryVO] {
-        RepositoryDAO.shared.read(userName)
+    func readRepository(_ userID: Int) -> [RepositoryVO] {
+        RepositoryDAO.shared.read(userID)
     }
     
     func fetchRepository(_ userName: String) async throws -> [RepositoryVO] {
@@ -30,7 +30,7 @@ struct RepoRepository: RepoDelegate {
             let fetchRepository = try await NetworkService.shared.fetchRepositories(forUser: userName).map { dto in
                 return RepositoryVO(
                     id: dto.id,
-                    user: RepositoryVO.User(name: dto.user.name),
+                    user: RepositoryVO.User(userID: dto.user.userID),
                     fullName: dto.fullName,
                     htmlUrl: dto.htmlUrl,
                     starsCount: dto.starsCount,
@@ -47,8 +47,8 @@ struct RepoRepository: RepoDelegate {
         return fetchedRepository
     }
     
-    func deleteRepository(_ userName: String) {
-        RepositoryDAO.shared.delete(userName)
+    func deleteRepository(_ userID: Int) {
+        RepositoryDAO.shared.delete(userID)
     }
     
 }

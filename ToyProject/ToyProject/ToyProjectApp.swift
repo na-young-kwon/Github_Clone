@@ -13,6 +13,8 @@ import URLImageStore
 struct ToyProjectApp: App {
     
     private let urlImageService = URLImageService(fileStore: nil, inMemoryStore: URLImageInMemoryStore())
+    
+    let migrator = Migrator()
 
     var body: some Scene {
         

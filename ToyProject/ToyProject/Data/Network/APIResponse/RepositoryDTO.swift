@@ -28,10 +28,10 @@ struct RepositoryDTO: Codable, Hashable {
     }
     
     struct User: Codable, Hashable {
-        let name: String
+        let userID: Int
         
         enum CodingKeys: String, CodingKey {
-            case name = "login"
+            case userID = "id"
         }
     }
 }

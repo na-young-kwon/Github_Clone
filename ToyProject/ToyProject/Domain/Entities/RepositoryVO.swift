@@ -18,6 +18,6 @@ struct RepositoryVO: Hashable, Identifiable {
     let language: String?
     
     struct User: Hashable {
-        let name: String
+        let userID: Int
     }
 }

@@ -21,7 +21,7 @@ class RepositoryDAO {
                     return RepositoryForRealm(
                         id: vo.id,
                         htmlUrl: vo.htmlUrl,
-                        userName: vo.user.name,
+                        ownerID: vo.user.userID,
                         fullName: vo.fullName,
                         starsCount: vo.starsCount,
                         watchersCount: vo.watchersCount,
@@ -36,12 +36,12 @@ class RepositoryDAO {
         }
     }
     
-    func read(_ userName: String) -> [RepositoryVO] {
-        let repositoryForRealm = realm.objects(RepositoryForRealm.self).filter("userName =[c] %@", userName)
+    func read(_ userID: Int) -> [RepositoryVO] {
+        let repositoryForRealm = realm.objects(RepositoryForRealm.self).filter("ownerID == %d", userID)
         return repositoryForRealm.map { realm -> RepositoryVO in
             RepositoryVO(
                 id: realm.id,
-                user: RepositoryVO.User(name: realm.userName),
+                user: RepositoryVO.User(userID: realm.ownerID),
                 fullName: realm.fullName,
                 htmlUrl: realm.htmlUrl,
                 starsCount: realm.starsCount,
@@ -53,14 +53,14 @@ class RepositoryDAO {
     }
     
     /// Realm에 특정 레포지토리 Read
-    func delete(_ userName: String) {
+    func delete(_ userID: Int) {
         do {
-            let repositoryToDelete = realm.objects(RepositoryForRealm.self).filter("userName =[c] %@", userName)
+            let repositoryToDelete = realm.objects(RepositoryForRealm.self).filter("ownerID == %d", userID)
             try realm.write {
                 realm.delete(repositoryToDelete)
             }
         } catch {
-            print("레포지토리를 삭제하는 데 실패 - \(userName)")
+            print("레포지토리를 삭제하는 데 실패 - \(userID)")
         }
     }
     

@@ -20,24 +20,15 @@ class UserViewModel: ObservableObject {
     @MainActor
     func checkUser(_ userName: String) async {
         user = readUser(userName)
-        
-        if user == nil {
-            await fetchUser(userName)
-        } else {
-            await fetchUser(userName)
-        }
+        await fetchUser(userName)
     }
     
     @MainActor
     func checkRepository(_ userName: String) async {
-        repositories = readRepository(userName)
-        
-        if repositories.isEmpty {
-            await fetchRepository(userName)
-        } else {
-            deleteRepository(userName)
-            await fetchRepository(userName)
-        }
+        let userID = readUser(userName)?.id
+        guard let userID = userID else { return }
+        repositories = readRepository(userID)
+        await fetchRepository(userName)
     }
     
     @MainActor
@@ -46,6 +37,7 @@ class UserViewModel: ObservableObject {
         do {
             user = try await userUseCase.fetchUser(userName)
             guard let user = user else { return }
+            deleteRepository(user.id)
             saveUser(user)
         } catch let error as NetworkError {
             errorMessage = errorMessage(for: error)
@@ -74,8 +66,8 @@ class UserViewModel: ObservableObject {
         userUseCase.readUser(userName)
     }
     
-    func readRepository(_ userName: String) -> [RepositoryVO] {
-        repoUseCase.readRepository(userName)
+    func readRepository(_ userID: Int) -> [RepositoryVO] {
+        repoUseCase.readRepository(userID)
     }
     
     func saveUser(_ userVO: UserVO) {
@@ -86,8 +78,8 @@ class UserViewModel: ObservableObject {
         repoUseCase.saveRepository(repositoriesVO)
     }
     
-    func deleteRepository(_ userName: String) {
-        repoUseCase.deletRepository(userName)
+    func deleteRepository(_ userID: Int) {
+        repoUseCase.deletRepository(userID)
     }
     
 }

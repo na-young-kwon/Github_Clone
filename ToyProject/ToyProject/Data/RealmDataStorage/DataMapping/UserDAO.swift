@@ -23,7 +23,7 @@ class UserDAO {
                     avatarUrl: userVO.avatarUrl,
                     follower: userVO.followers,
                     following: userVO.following,
-                    bio: userVO.bio
+                    biography: userVO.bio
                 )
                 realm.add(userVO, update: .modified)
             }
@@ -42,7 +42,7 @@ class UserDAO {
                 avatarUrl: $0.avatarUrl,
                 followers: $0.follower,
                 following: $0.following,
-                bio: $0.bio
+                bio: $0.biography ?? "N/A"
             )
         }
     }
@@ -51,7 +51,14 @@ class UserDAO {
     func read(_ userName: String) -> UserVO? {
         let userForRealm = realm.objects(UserForRealm.self).filter("userName =[c] %@", userName).first
         guard let userForRealm = userForRealm else { return nil }
-        return UserVO(id: userForRealm.id, userName: userForRealm.userName, avatarUrl: userForRealm.avatarUrl, followers: userForRealm.follower, following: userForRealm.following, bio: userForRealm.bio)
+        return UserVO(
+            id: userForRealm.id,
+            userName: userForRealm.userName,
+            avatarUrl: userForRealm.avatarUrl,
+            followers: userForRealm.follower,
+            following: userForRealm.following,
+            bio: userForRealm.biography ?? "N/A"
+        )
     }
     
     /// Realm에 특정 유저 Delete
