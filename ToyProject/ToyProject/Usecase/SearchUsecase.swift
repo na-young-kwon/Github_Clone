@@ -14,7 +14,7 @@ struct SearchUsecase {
         return repository.getAllUser()
     }
     
-    func deleteUser(_ user: UserVo) {
-        repository.deleteUser(user)
+    func deleteUser(id: Int) {
+        repository.deleteUser(id: id)
     }
 }

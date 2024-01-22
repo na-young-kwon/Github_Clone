@@ -77,7 +77,6 @@ class UserViewModel: ObservableObject {
             group.addTask {
                 await self.updateRepository(forUser: userName)
             }
-
         }
     }
 }

@@ -41,7 +41,7 @@ struct RepoRepository {
                                                              language: $0.language
         )}
         try dao.create(repositoryVo)
-//        dao.compareAndDelete(username: name, repos: repositoryVo)
+        dao.compareAndDelete(repos: repositoryVo)
         return repositoryVo
     }
 }

@@ -40,10 +40,10 @@ struct RepositoryDao {
         }
     }
     
-    func delete(userName: String) {
+    func delete(ownerID: Int) {
         do {
-            let query = "userName == %@"
-            let task = realm.objects(Repository.self).filter(query, userName)
+            let query = "ownerID == %@"
+            let task = realm.objects(Repository.self).filter(query, ownerID)
             try realm.write {
                 realm.delete(task)
             }
@@ -52,18 +52,22 @@ struct RepositoryDao {
         }
     }
     
-//    func compareAndDelete(username: String, repos: [RepositoryVo]) {
-//        let repoFromRealm = getRepository(by: username).map { $0.id }
-//        let repoFromAPI = repos.map { $0.id }
-//        let itemToDelete = Set(repoFromRealm).subtracting(Set(repoFromAPI))
-//        
-//        do {
-//            try realm.write {
-//                let item = realm.objects(Repository.self).filter { itemToDelete.contains($0.id) }
-//                realm.delete(item)
-//            }
-//        } catch {
-//            print("레포지토리를 삭제하는데 데 실패했습니다 - \(error)")
-//        }
-//    }
+    // 레포 개수가 줄었을 때 더 이상 존재하지 않는 레포지토리를 삭제하는 메서드
+    func compareAndDelete(repos: [RepositoryVo]) {
+        guard let ownerID = repos.first?.ownerID else {
+            return
+        }
+        let repoFromRealm = getRepository(by: ownerID).map { $0.id }
+        let repoFromAPI = repos.map { $0.id }
+        let itemToDelete = Set(repoFromRealm).subtracting(Set(repoFromAPI))
+        
+        do {
+            try realm.write {
+                let item = realm.objects(Repository.self).filter { itemToDelete.contains($0.id) }
+                realm.delete(item)
+            }
+        } catch {
+            print("레포지토리를 삭제하는데 데 실패했습니다 - \(error)")
+        }
+    }
 }
