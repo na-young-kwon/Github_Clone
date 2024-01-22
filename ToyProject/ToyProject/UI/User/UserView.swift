@@ -87,7 +87,6 @@ struct UserView: View {
                 .listStyle(.plain)
             } else {
                 Text("no_github_ID".getLocalizedString())
-                Text("ha")
             }
         }
         .onAppear {
