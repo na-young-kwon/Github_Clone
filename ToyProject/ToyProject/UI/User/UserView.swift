@@ -91,8 +91,8 @@ struct UserView: View {
         }
         .onAppear {
             Task {
-                await viewModel.checkUser(text)
-                await viewModel.checkRepository(text)
+                viewModel.dbCheck(text)
+                await viewModel.apiCheck(text)
             }
         }
     }

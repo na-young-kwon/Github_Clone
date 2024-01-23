@@ -18,16 +18,15 @@ class UserViewModel: ObservableObject {
     private let repoUseCase: RepoUseCase = RepoUseCase()
     
     @MainActor
-    public func checkUser(_ userName: String) async {
+    public func dbCheck(_ userName: String) {
         user = readUser(userName)
-        await fetchUser(userName)
+        guard let user = user else { return }
+        repositories = readRepository(user.id)
     }
     
     @MainActor
-    public func checkRepository(_ userName: String) async {
-        let userID = readUser(userName)?.id
-        guard let userID = userID else { return }
-        repositories = readRepository(userID)
+    public func apiCheck(_ userName: String) async {
+        await fetchUser(userName)
         await fetchRepository(userName)
     }
     
@@ -43,7 +42,6 @@ class UserViewModel: ObservableObject {
         } catch {
             handleNetworkError(error)
         }
-        
     }
     
     @MainActor
@@ -54,8 +52,10 @@ class UserViewModel: ObservableObject {
         do {
             let fetchedRepo = try await repoUseCase.fetchRepository(userName)
             repositories = fetchedRepo
-            guard let user = user else { return }
-            deleteRepository(user.id)
+            
+            if let userID = Set(fetchedRepo.map { $0.user.userID }).first {
+                deleteRepository(userID)
+            }
             saveRepositories(repositories)
         } catch {
             handleNetworkError(error)
@@ -85,7 +85,6 @@ class UserViewModel: ObservableObject {
 }
 
 extension UserViewModel {
-    
     private func handleNetworkError(_ error: Error) {
         if let networkError = error as? NetworkError {
             errorMessage = errorMessage(for: networkError)
@@ -93,7 +92,6 @@ extension UserViewModel {
             errorMessage = "no_github_ID".getLocalizedString()
         }
     }
-    
     
     private func errorMessage(for error: NetworkError) -> String {
         switch error {
