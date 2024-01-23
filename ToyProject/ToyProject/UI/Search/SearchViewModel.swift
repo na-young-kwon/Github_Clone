@@ -14,25 +14,26 @@ class SearchViewModel: ObservableObject {
     private let userUseCase = UserUseCase()
     private let repoUseCase = RepoUseCase()
     
-    func readAllUser() {
+    public func readAllUser() {
         users = userUseCase.readAllUser()
     }
 
-    func deleteUser(_ userName: String) {
+    private func deleteUser(_ userName: String) {
         userUseCase.deleteUser(userName)
     }
     
-    func deleteRepositories(_ userID: Int) {
+    private func deleteRepositories(_ userID: Int) {
         repoUseCase.deletRepository(userID)
     }
     
-    func deleteUserAndRepositories(at offsets: IndexSet) {
+    public func deleteUserAndRepositories(at offsets: IndexSet) {
         offsets.forEach { index in
             let userToDelete = users[index].userName
             let repositoryDelete = users[index].id
             deleteUser(userToDelete)
             deleteRepositories(repositoryDelete)
         }
+        readAllUser()
     }
 }
 

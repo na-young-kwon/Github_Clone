@@ -18,13 +18,13 @@ class UserViewModel: ObservableObject {
     private let repoUseCase: RepoUseCase = RepoUseCase()
     
     @MainActor
-    func checkUser(_ userName: String) async {
+    public func checkUser(_ userName: String) async {
         user = readUser(userName)
         await fetchUser(userName)
     }
     
     @MainActor
-    func checkRepository(_ userName: String) async {
+    public func checkRepository(_ userName: String) async {
         let userID = readUser(userName)?.id
         guard let userID = userID else { return }
         repositories = readRepository(userID)
@@ -32,60 +32,70 @@ class UserViewModel: ObservableObject {
     }
     
     @MainActor
-    func fetchUser(_ userName: String) async {
+    private func fetchUser(_ userName: String) async {
         isLoading = true
+        defer { isLoading = false }
+        
         do {
             user = try await userUseCase.fetchUser(userName)
             guard let user = user else { return }
-            deleteRepository(user.id)
             saveUser(user)
-        } catch let error as NetworkError {
-            errorMessage = errorMessage(for: error)
         } catch {
-            errorMessage = "no_github_ID".getLocalizedString()
+            handleNetworkError(error)
         }
-        isLoading = false
+        
     }
     
     @MainActor
-    func fetchRepository(_ userName: String) async {
+    private func fetchRepository(_ userName: String) async {
         isLoading = true
+        defer { isLoading = false }
+        
         do {
             let fetchedRepo = try await repoUseCase.fetchRepository(userName)
             repositories = fetchedRepo
+            guard let user = user else { return }
+            deleteRepository(user.id)
             saveRepositories(repositories)
-        } catch let error as NetworkError {
-            errorMessage = errorMessage(for: error)
         } catch {
-            errorMessage = "no_github_ID".getLocalizedString()
+            handleNetworkError(error)
         }
-        isLoading = false
     }
     
-    func readUser(_ userName: String) -> UserVO? {
+    private func readUser(_ userName: String) -> UserVO? {
         userUseCase.readUser(userName)
     }
     
-    func readRepository(_ userID: Int) -> [RepositoryVO] {
+    private func readRepository(_ userID: Int) -> [RepositoryVO] {
         repoUseCase.readRepository(userID)
     }
     
-    func saveUser(_ userVO: UserVO) {
+    private func saveUser(_ userVO: UserVO) {
         userUseCase.saveUser(userVO)
     }
     
-    func saveRepositories(_ repositoriesVO: [RepositoryVO]) {
+    private func saveRepositories(_ repositoriesVO: [RepositoryVO]) {
         repoUseCase.saveRepository(repositoriesVO)
     }
     
-    func deleteRepository(_ userID: Int) {
+    private func deleteRepository(_ userID: Int) {
         repoUseCase.deletRepository(userID)
     }
     
 }
 
 extension UserViewModel {
-    func errorMessage(for error: NetworkError) -> String {
+    
+    private func handleNetworkError(_ error: Error) {
+        if let networkError = error as? NetworkError {
+            errorMessage = errorMessage(for: networkError)
+        } else {
+            errorMessage = "no_github_ID".getLocalizedString()
+        }
+    }
+    
+    
+    private func errorMessage(for error: NetworkError) -> String {
         switch error {
         case .badURL:
             return "no_github_ID".getLocalizedString()
