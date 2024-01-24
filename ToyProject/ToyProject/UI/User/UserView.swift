@@ -91,10 +91,7 @@ struct UserView: View {
             }
         }
         .onAppear {
-            viewModel.getUserInfo(forUser: text)
-            Task {
-                await viewModel.fetchUserAndRepo(forUser: text)
-            }
+            viewModel.getUser(forUser: text)
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text("save_user_fail_title".getLocalizedString()),

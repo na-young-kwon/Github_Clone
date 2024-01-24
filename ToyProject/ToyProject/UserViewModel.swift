@@ -18,11 +18,30 @@ class UserViewModel: ObservableObject {
     @Published var errorMessage: String?
     
     private let usecase = UserUsecase()
-        
-    func getUserInfo(forUser userName: String) {
-        user = usecase.getUser(forUser: userName)
-        if let id = user?.id {
-            repositories = usecase.getRepositoryList(id: id)
+  
+    func getUser(forUser userName: String) {
+        Task {
+            let user = usecase.getUser(forUser: userName)
+            
+            DispatchQueue.main.async {
+                self.user = user
+                if let id = user?.id {
+                    let repositories = self.usecase.getRepositoryList(id: id)
+                    self.repositories = repositories
+                }
+            }
+            await fetchUserAndRepo(forUser: userName)
+        }
+    }
+    
+    func fetchUserAndRepo(forUser userName: String) async {
+        await withTaskGroup(of: Void.self) { group in
+            group.addTask {
+                await self.updateUser(forUser: userName)
+            }
+            group.addTask {
+                await self.updateRepository(forUser: userName)
+            }
         }
     }
     
@@ -67,17 +86,6 @@ class UserViewModel: ObservableObject {
             errorMessage = "no_github_ID".getLocalizedString()
         }
         isLoading = false
-    }
-    
-    func fetchUserAndRepo(forUser userName: String) async {
-        await withTaskGroup(of: Void.self) { group in
-            group.addTask {
-                await self.updateUser(forUser: userName)
-            }
-            group.addTask {
-                await self.updateRepository(forUser: userName)
-            }
-        }
     }
 }
 
