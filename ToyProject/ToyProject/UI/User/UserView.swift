@@ -85,6 +85,8 @@ struct UserView: View {
                     .listStyle(.plain)
                 }
             }
+            .redacted(reason: viewModel.isLoading ? .placeholder : [])
+            
             if viewModel.isLoading {
                 ProgressView()
                     .frame(width: 120, height: 120)

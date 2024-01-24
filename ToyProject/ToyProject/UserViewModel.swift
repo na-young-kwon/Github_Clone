@@ -20,6 +20,7 @@ class UserViewModel: ObservableObject {
     private let usecase = UserUsecase()
   
     func getUser(forUser userName: String) {
+        isLoading = true
         Task {
             let user = usecase.getUser(forUser: userName)
             
@@ -47,7 +48,6 @@ class UserViewModel: ObservableObject {
     
     @MainActor
     private func updateUser(forUser userName: String) async {
-        isLoading = true
         do {
             user = try await usecase.fetchUser(forUser: userName)
         } catch let error as NetworkError {
@@ -64,12 +64,10 @@ class UserViewModel: ObservableObject {
         } catch {
             errorMessage = "no_github_ID".getLocalizedString()
         }
-        isLoading = false
     }
     
     @MainActor
     private func updateRepository(forUser userName: String) async {
-        isLoading = true
         do {
             repositories = try await usecase.fetchRepositoryList(forUser: userName)
         } catch let error as NetworkError {
