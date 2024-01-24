@@ -51,7 +51,6 @@ class NetworkService {
         
         do {
             var urlRequest = URLRequest(url: url)
-            
             let token = "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"
             urlRequest.cachePolicy = .reloadIgnoringLocalCacheData
             urlRequest.headers = ["Authorization" : "Bearer \(token)"]
@@ -64,7 +63,6 @@ class NetworkService {
         } catch {
             throw handleError(error)
         }
-        
     }
     
     private func handleError(_ error: Error) -> NetworkError {

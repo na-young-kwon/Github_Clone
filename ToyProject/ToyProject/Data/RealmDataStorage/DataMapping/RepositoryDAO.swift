@@ -52,7 +52,6 @@ class RepositoryDAO {
         }
     }
     
-    /// Realm에 특정 레포지토리 Read
     func delete(_ userID: Int) {
         do {
             let repositoryToDelete = realm.objects(RepositoryForRealm.self).filter("ownerID == %d", userID)

@@ -43,7 +43,6 @@ struct RepoRepository: RepoDelegate {
         } catch {
             print(error)
         }
-        
         return fetchedRepository
     }
     

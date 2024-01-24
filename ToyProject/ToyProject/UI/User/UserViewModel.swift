@@ -52,7 +52,7 @@ class UserViewModel: ObservableObject {
         do {
             let fetchedRepo = try await repoUseCase.fetchRepository(userName)
             repositories = fetchedRepo
-            let userID: () = Set(fetchedRepo.map { $0.user.userID }).forEach { userId in
+            Set(fetchedRepo.map { $0.user.userID }).forEach { userId in
                 deleteRepository(userId)
             }
             saveRepositories(repositories)
