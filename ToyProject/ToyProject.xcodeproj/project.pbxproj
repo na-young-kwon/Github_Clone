@@ -30,6 +30,7 @@
 		08A863CB2B3BC408003782E1 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A863CA2B3BC408003782E1 /* UserView.swift */; };
 		08A930302B54BAB4003960F2 /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A9302F2B54BAB4003960F2 /* UserDTO.swift */; };
 		08DB88EB2B4E642D00631880 /* RepositoryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DB88EA2B4E642D00631880 /* RepositoryDTO.swift */; };
+		08DBF7102B7CB270009855CB /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 08DBF70F2B7CB270009855CB /* Factory */; };
 		08E0503C2B59069D0060F09E /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0503B2B59069D0060F09E /* DetailView.swift */; };
 		08E0503F2B5906AB0060F09E /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0503E2B5906AB0060F09E /* WebView.swift */; };
 		08E050412B5906D70060F09E /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E050402B5906D70060F09E /* UserViewModel.swift */; };
@@ -105,6 +106,7 @@
 				08A863C72B3BB0C5003782E1 /* URLImageStore in Frameworks */,
 				08A863BE2B3BAFC8003782E1 /* RealmSwift in Frameworks */,
 				08A863BC2B3BAFC8003782E1 /* Realm in Frameworks */,
+				08DBF7102B7CB270009855CB /* Factory in Frameworks */,
 				08A863C52B3BB0C5003782E1 /* URLImage in Frameworks */,
 				08A863B92B3BAFB7003782E1 /* Alamofire in Frameworks */,
 			);
@@ -348,6 +350,7 @@
 				08A863BD2B3BAFC8003782E1 /* RealmSwift */,
 				08A863C42B3BB0C5003782E1 /* URLImage */,
 				08A863C62B3BB0C5003782E1 /* URLImageStore */,
+				08DBF70F2B7CB270009855CB /* Factory */,
 			);
 			productName = ToyProject;
 			productReference = 08A863892B3BAF56003782E1 /* ToyProject.app */;
@@ -426,6 +429,7 @@
 				08A863B72B3BAFB7003782E1 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				08A863BA2B3BAFC8003782E1 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				08A863C32B3BB0C5003782E1 /* XCRemoteSwiftPackageReference "url-image" */,
+				08DBF70E2B7CB270009855CB /* XCRemoteSwiftPackageReference "Factory" */,
 			);
 			productRefGroup = 08A8638A2B3BAF56003782E1 /* Products */;
 			projectDirPath = "";
@@ -891,6 +895,14 @@
 				minimumVersion = 3.1.1;
 			};
 		};
+		08DBF70E2B7CB270009855CB /* XCRemoteSwiftPackageReference "Factory" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Factory.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -918,6 +930,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 08A863C32B3BB0C5003782E1 /* XCRemoteSwiftPackageReference "url-image" */;
 			productName = URLImageStore;
+		};
+		08DBF70F2B7CB270009855CB /* Factory */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 08DBF70E2B7CB270009855CB /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
