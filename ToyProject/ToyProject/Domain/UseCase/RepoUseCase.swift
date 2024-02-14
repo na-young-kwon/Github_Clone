@@ -6,9 +6,17 @@
 //
 
 import Foundation
+import Factory
 
-struct RepoUseCase {
-    private let repoRepository: RepoRepository = RepoRepository()
+protocol RepoUseCaseDelegate {
+    func saveRepository(_ repositoriesVO: [RepositoryVO])
+    func readRepository(_ userID: Int) -> [RepositoryVO]
+    func fetchRepository(_ userName: String) async throws -> [RepositoryVO]
+    func deletRepository(_ userID: Int)
+}
+
+struct RepoUseCase: RepoUseCaseDelegate {
+    @Injected(\.repoRepository) private var repoRepository
     
     func saveRepository(_ repositoriesVO: [RepositoryVO]) {
         repoRepository.saveRepository(repositoriesVO)

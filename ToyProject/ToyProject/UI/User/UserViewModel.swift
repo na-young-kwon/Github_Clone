@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Alamofire
+import Factory
 
 class UserViewModel: ObservableObject {
     @Published var user: UserVO?
@@ -14,8 +15,8 @@ class UserViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String?
     
-    private let userUseCase: UserUseCase = UserUseCase()
-    private let repoUseCase: RepoUseCase = RepoUseCase()
+    @Injected(\.userUseCase) private var userUseCase
+    @Injected(\.repoUseCase) private var repoUseCase
     
     @MainActor
     public func dbCheck(_ userName: String) {
