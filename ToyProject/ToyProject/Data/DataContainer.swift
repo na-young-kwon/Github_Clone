@@ -16,4 +16,8 @@ extension Container {
     var repositoryDAO: Factory<RepositoryDAODelegate> {
         self { RepositoryDAO() }.singleton
     }
+
+    var networkService: Factory<NetworkServiceDelegate> {
+        self { NetworkService() }.singleton
+    }
 }

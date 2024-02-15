@@ -11,6 +11,7 @@ import Factory
 struct RepoRepository: RepoDelegate {
     
     @Injected(\.repositoryDAO) private var repositoryDAO
+    @Injected(\.networkService) private var networkService
     
     func saveRepository(_ repositoriesVO: [RepositoryVO]) {
         repositoryDAO.create(repositoriesVO)
@@ -23,7 +24,7 @@ struct RepoRepository: RepoDelegate {
     func fetchRepository(_ userName: String) async throws -> [RepositoryVO] {
         var fetchedRepository = [RepositoryVO]()
         do {
-            let fetchRepository = try await NetworkService.shared.fetchRepositories(forUser: userName).map { dto in
+            let fetchRepository = try await networkService.fetchRepositories(forUser: userName).map { dto in
                 return RepositoryVO(
                     id: dto.id,
                     user: RepositoryVO.User(userID: dto.user.userID),

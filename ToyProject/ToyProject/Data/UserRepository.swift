@@ -11,6 +11,7 @@ import Factory
 struct UserRepository: UserDelegate {
     
     @Injected(\.userDAO) private var userDAO
+    @Injected(\.networkService) private var networkService
     
     func saveUser(_ userVO: UserVO) {
         userDAO.create(userVO)
@@ -18,7 +19,7 @@ struct UserRepository: UserDelegate {
     
     func fetchUser(_ userName: String) async throws -> UserVO? {
         var userVO: UserVO?
-        let fetchUser = try await NetworkService.shared.fetchUser(forUser: userName)
+        let fetchUser = try await networkService.fetchUser(forUser: userName)
         let fetchedUser = UserVO(
             id: fetchUser.id,
             userName: fetchUser.userName,
