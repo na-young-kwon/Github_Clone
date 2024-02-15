@@ -1,10 +1,11 @@
 //
-//  ToyProjectApp+Injection.swift
+//  DomainContainer.swift
 //  ToyProject
 //
-//  Created by nayoung kwon on 2/14/24.
+//  Created by nayoung kwon on 2/15/24.
 //
 
+import Foundation
 import Factory
 
 extension Container {
@@ -22,13 +23,5 @@ extension Container {
     
     var repoRepository: Factory<RepoDelegate> {
         self { RepoRepository() }
-    }
-    
-    var userDAO: Factory<UserDAODelegate> {
-        self { UserDAO() }.singleton
-    }
-    
-    var repositoryDAO: Factory<RepositoryDAODelegate> {
-        self { RepositoryDAO() }.singleton
     }
 }
