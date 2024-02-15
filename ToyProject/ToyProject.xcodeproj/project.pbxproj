@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		082F093C2B3C0B4100A29EE9 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082F093B2B3C0B4100A29EE9 /* NetworkService.swift */; };
 		086484C62B7CB43900A9D03D /* ToyProjectApp+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086484C52B7CB43900A9D03D /* ToyProjectApp+Injection.swift */; };
+		086484D72B7DA61B00A9D03D /* UserUseCaseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086484D62B7DA61B00A9D03D /* UserUseCaseDelegate.swift */; };
+		086484D92B7DA63F00A9D03D /* RepoUseCaseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086484D82B7DA63F00A9D03D /* RepoUseCaseDelegate.swift */; };
+		086484DB2B7DA66500A9D03D /* UserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086484DA2B7DA66500A9D03D /* UserDelegate.swift */; };
+		086484DD2B7DA67400A9D03D /* RepoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086484DC2B7DA67400A9D03D /* RepoDelegate.swift */; };
+		086484E02B7DA7DD00A9D03D /* UserDAODelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086484DF2B7DA7DD00A9D03D /* UserDAODelegate.swift */; };
+		086484E22B7DA7FC00A9D03D /* RepositoryDAODelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086484E12B7DA7FC00A9D03D /* RepositoryDAODelegate.swift */; };
 		0872FB0C2B43FEED004D9A35 /* View+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0872FB0B2B43FEED004D9A35 /* View+extension.swift */; };
 		0872FB1F2B47EA45004D9A35 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0872FB1E2B47EA45004D9A35 /* String+extension.swift */; };
 		0872FB272B47F36A004D9A35 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0872FB292B47F36A004D9A35 /* Localizable.strings */; };
@@ -65,6 +71,12 @@
 /* Begin PBXFileReference section */
 		082F093B2B3C0B4100A29EE9 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkService.swift; path = ToyProject/Data/Network/NetworkService.swift; sourceTree = SOURCE_ROOT; };
 		086484C52B7CB43900A9D03D /* ToyProjectApp+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToyProjectApp+Injection.swift"; sourceTree = "<group>"; };
+		086484D62B7DA61B00A9D03D /* UserUseCaseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCaseDelegate.swift; sourceTree = "<group>"; };
+		086484D82B7DA63F00A9D03D /* RepoUseCaseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoUseCaseDelegate.swift; sourceTree = "<group>"; };
+		086484DA2B7DA66500A9D03D /* UserDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDelegate.swift; sourceTree = "<group>"; };
+		086484DC2B7DA67400A9D03D /* RepoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoDelegate.swift; sourceTree = "<group>"; };
+		086484DF2B7DA7DD00A9D03D /* UserDAODelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDAODelegate.swift; sourceTree = "<group>"; };
+		086484E12B7DA7FC00A9D03D /* RepositoryDAODelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDAODelegate.swift; sourceTree = "<group>"; };
 		0872FB0B2B43FEED004D9A35 /* View+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+extension.swift"; sourceTree = "<group>"; };
 		0872FB1E2B47EA45004D9A35 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
 		0872FB282B47F36A004D9A35 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -131,6 +143,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		086484D52B7DA60A00A9D03D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				086484DA2B7DA66500A9D03D /* UserDelegate.swift */,
+				086484DC2B7DA67400A9D03D /* RepoDelegate.swift */,
+				086484D62B7DA61B00A9D03D /* UserUseCaseDelegate.swift */,
+				086484D82B7DA63F00A9D03D /* RepoUseCaseDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		086484DE2B7DA7CF00A9D03D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				086484DF2B7DA7DD00A9D03D /* UserDAODelegate.swift */,
+				086484E12B7DA7FC00A9D03D /* RepositoryDAODelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		086484E32B7DA81C00A9D03D /* DAO */ = {
+			isa = PBXGroup;
+			children = (
+				08F8647C2B4E3A04004E9E06 /* UserDAO.swift */,
+				08F8647E2B4E3A16004E9E06 /* RepositoryDAO.swift */,
+			);
+			path = DAO;
+			sourceTree = "<group>";
+		};
 		087E0A972B561F880022C1ED /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				087E0AA12B5621E00022C1ED /* UseCase */,
+				086484D52B7DA60A00A9D03D /* Protocols */,
 				087E0A9C2B5621500022C1ED /* Entities */,
 			);
 			path = Domain;
@@ -325,8 +367,8 @@
 		08F28A0B2B5A3E3F00C9FAE2 /* DataMapping */ = {
 			isa = PBXGroup;
 			children = (
-				08F8647C2B4E3A04004E9E06 /* UserDAO.swift */,
-				08F8647E2B4E3A16004E9E06 /* RepositoryDAO.swift */,
+				086484DE2B7DA7CF00A9D03D /* Protocols */,
+				086484E32B7DA81C00A9D03D /* DAO */,
 			);
 			path = DataMapping;
 			sourceTree = "<group>";
@@ -480,21 +522,27 @@
 				08F864812B4E6266004E9E06 /* UserRepository.swift in Sources */,
 				0872FB382B4E2BBC004D9A35 /* UserForRealm.swift in Sources */,
 				08A8638D2B3BAF56003782E1 /* ToyProjectApp.swift in Sources */,
+				086484E22B7DA7FC00A9D03D /* RepositoryDAODelegate.swift in Sources */,
 				08DB88EB2B4E642D00631880 /* RepositoryDTO.swift in Sources */,
 				088574FB2B5DFA4800146AB8 /* Migrator.swift in Sources */,
 				0872FB0C2B43FEED004D9A35 /* View+extension.swift in Sources */,
+				086484DD2B7DA67400A9D03D /* RepoDelegate.swift in Sources */,
 				08F8647D2B4E3A04004E9E06 /* UserDAO.swift in Sources */,
 				0872FB1F2B47EA45004D9A35 /* String+extension.swift in Sources */,
 				087E0AA02B5621680022C1ED /* RepositoryVO.swift in Sources */,
 				08E0503F2B5906AB0060F09E /* WebView.swift in Sources */,
+				086484E02B7DA7DD00A9D03D /* UserDAODelegate.swift in Sources */,
 				08A863CB2B3BC408003782E1 /* UserView.swift in Sources */,
 				08E050412B5906D70060F09E /* UserViewModel.swift in Sources */,
+				086484DB2B7DA66500A9D03D /* UserDelegate.swift in Sources */,
 				087E0A9E2B5621610022C1ED /* UserVO.swift in Sources */,
 				08F864832B4E6310004E9E06 /* UserUseCase.swift in Sources */,
 				08E050432B5906F40060F09E /* SearchView.swift in Sources */,
 				08F8647F2B4E3A16004E9E06 /* RepositoryDAO.swift in Sources */,
+				086484D92B7DA63F00A9D03D /* RepoUseCaseDelegate.swift in Sources */,
 				08F864852B4E8A15004E9E06 /* RepoUseCase.swift in Sources */,
 				08F864872B4E8A40004E9E06 /* RepoRepository.swift in Sources */,
+				086484D72B7DA61B00A9D03D /* UserUseCaseDelegate.swift in Sources */,
 				086484C62B7CB43900A9D03D /* ToyProjectApp+Injection.swift in Sources */,
 				08E050472B59070E0060F09E /* SearchViewModel.swift in Sources */,
 				08E0503C2B59069D0060F09E /* DetailView.swift in Sources */,

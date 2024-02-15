@@ -8,13 +8,6 @@
 import Foundation
 import RealmSwift
 
-protocol UserDAODelegate {
-    func create(_ userVO: UserVO)
-    func readAll() -> [UserVO]
-    func read(_ userName: String) -> UserVO?
-    func delete(_ userName: String)
-}
-
 class UserDAO: UserDAODelegate {
     
     private let realm = try! Realm()

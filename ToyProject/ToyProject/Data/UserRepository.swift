@@ -8,14 +8,6 @@
 import Foundation
 import Factory
 
-protocol UserDelegate {
-    func saveUser(_ userVO: UserVO)
-    func fetchUser(_ userName: String) async throws -> UserVO?
-    func readUser(_ userName: String) -> UserVO?
-    func readAllUser() -> [UserVO]
-    func deleteUser(_ userName: String)
-}
-
 struct UserRepository: UserDelegate {
     
     @Injected(\.userDAO) private var userDAO

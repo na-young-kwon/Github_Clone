@@ -8,12 +8,6 @@
 import Foundation
 import RealmSwift
 
-protocol RepositoryDAODelegate {
-    func create(_ repositoriesVO: [RepositoryVO])
-    func read(_ userID: Int) -> [RepositoryVO]
-    func delete(_ userID: Int)
-}
-
 class RepositoryDAO: RepositoryDAODelegate {
     
     private let realm = try! Realm()

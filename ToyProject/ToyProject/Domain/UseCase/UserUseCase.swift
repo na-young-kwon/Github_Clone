@@ -8,14 +8,6 @@
 import Foundation
 import Factory
 
-protocol UserUseCaseDelegate {
-    func fetchUser(_ userName: String) async throws -> UserVO?
-    func saveUser(_ userVO: UserVO)
-    func readUser(_ userName: String) -> UserVO?
-    func readAllUser() -> [UserVO]
-    func deleteUser(_ userName: String)
-}
-
 struct UserUseCase: UserUseCaseDelegate {
     @Injected(\.userRepository) private var userRepository
     
