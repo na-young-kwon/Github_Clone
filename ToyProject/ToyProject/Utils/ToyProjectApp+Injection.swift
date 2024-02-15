@@ -23,4 +23,12 @@ extension Container {
     var repoRepository: Factory<RepoDelegate> {
         self { RepoRepository() }
     }
+    
+    var userDAO: Factory<UserDAODelegate> {
+        self { UserDAO() }.singleton
+    }
+    
+    var repositoryDAO: Factory<RepositoryDAODelegate> {
+        self { RepositoryDAO() }.singleton
+    }
 }

@@ -8,11 +8,15 @@
 import Foundation
 import RealmSwift
 
-class RepositoryDAO {
-    static let shared = RepositoryDAO()
-    private let realm = try! Realm()
+protocol RepositoryDAODelegate {
+    func create(_ repositoriesVO: [RepositoryVO])
+    func read(_ userID: Int) -> [RepositoryVO]
+    func delete(_ userID: Int)
+}
+
+class RepositoryDAO: RepositoryDAODelegate {
     
-    private init() {}
+    private let realm = try! Realm()
     
     func create(_ repositoriesVO: [RepositoryVO]) {
         do {

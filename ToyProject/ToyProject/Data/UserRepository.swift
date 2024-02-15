@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Factory
 
 protocol UserDelegate {
     func saveUser(_ userVO: UserVO)
@@ -17,8 +18,10 @@ protocol UserDelegate {
 
 struct UserRepository: UserDelegate {
     
+    @Injected(\.userDAO) private var userDAO
+    
     func saveUser(_ userVO: UserVO) {
-        UserDAO.shared.create(userVO)
+        userDAO.create(userVO)
     }
     
     func fetchUser(_ userName: String) async throws -> UserVO? {
@@ -37,15 +40,15 @@ struct UserRepository: UserDelegate {
     }
     
     func readUser(_ userName: String) -> UserVO? {
-        UserDAO.shared.read(userName)
+        userDAO.read(userName)
     }
     
     func readAllUser() -> [UserVO] {
-        UserDAO.shared.readAll()
+        userDAO.readAll()
     }
     
     func deleteUser(_ userName: String) {
-        UserDAO.shared.delete(userName)
+        userDAO.delete(userName)
     }
     
 }

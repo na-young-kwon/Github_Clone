@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Factory
 
 protocol RepoDelegate {
     func saveRepository(_ repositoriesVO: [RepositoryVO])
@@ -16,12 +17,14 @@ protocol RepoDelegate {
 
 struct RepoRepository: RepoDelegate {
     
+    @Injected(\.repositoryDAO) private var repositoryDAO
+    
     func saveRepository(_ repositoriesVO: [RepositoryVO]) {
-        RepositoryDAO.shared.create(repositoriesVO)
+        repositoryDAO.create(repositoriesVO)
     }
     
     func readRepository(_ userID: Int) -> [RepositoryVO] {
-        RepositoryDAO.shared.read(userID)
+        repositoryDAO.read(userID)
     }
     
     func fetchRepository(_ userName: String) async throws -> [RepositoryVO] {
@@ -47,7 +50,7 @@ struct RepoRepository: RepoDelegate {
     }
     
     func deleteRepository(_ userID: Int) {
-        RepositoryDAO.shared.delete(userID)
+        repositoryDAO.delete(userID)
     }
     
 }
