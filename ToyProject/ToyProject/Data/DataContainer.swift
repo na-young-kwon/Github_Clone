@@ -7,6 +7,7 @@
 
 import Foundation
 import Factory
+import RealmSwift
 
 extension Container {
     var userDAO: Factory<UserDAODelegate> {
@@ -19,5 +20,13 @@ extension Container {
 
     var networkService: Factory<NetworkServiceDelegate> {
         self { NetworkService() }.singleton
+    }
+    
+    var userRealm: Factory<Realm> {
+        self { Realm.open(configuration: Realm.userConfiguration) }.singleton
+    }
+    
+    var repositoryRealm: Factory<Realm> {
+        self { Realm.open(configuration: Realm.repositoryConfiguration) }.singleton
     }
 }

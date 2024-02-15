@@ -21,6 +21,7 @@
 		086484F32B7DD90000A9D03D /* NetworkServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086484F22B7DD90000A9D03D /* NetworkServiceDelegate.swift */; };
 		086484F52B7DDA6D00A9D03D /* UserRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086484F42B7DDA6D00A9D03D /* UserRepositoryTest.swift */; };
 		086484F72B7DDA7A00A9D03D /* UserDAOTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086484F62B7DDA7A00A9D03D /* UserDAOTest.swift */; };
+		086484F92B7DE1A100A9D03D /* Realm+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086484F82B7DE1A100A9D03D /* Realm+Extension.swift */; };
 		0872FB0C2B43FEED004D9A35 /* View+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0872FB0B2B43FEED004D9A35 /* View+extension.swift */; };
 		0872FB1F2B47EA45004D9A35 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0872FB1E2B47EA45004D9A35 /* String+extension.swift */; };
 		0872FB272B47F36A004D9A35 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0872FB292B47F36A004D9A35 /* Localizable.strings */; };
@@ -88,6 +89,7 @@
 		086484F22B7DD90000A9D03D /* NetworkServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceDelegate.swift; sourceTree = "<group>"; };
 		086484F42B7DDA6D00A9D03D /* UserRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryTest.swift; sourceTree = "<group>"; };
 		086484F62B7DDA7A00A9D03D /* UserDAOTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDAOTest.swift; sourceTree = "<group>"; };
+		086484F82B7DE1A100A9D03D /* Realm+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Extension.swift"; sourceTree = "<group>"; };
 		0872FB0B2B43FEED004D9A35 /* View+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+extension.swift"; sourceTree = "<group>"; };
 		0872FB1E2B47EA45004D9A35 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
 		0872FB282B47F36A004D9A35 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				088574FA2B5DFA4800146AB8 /* Migrator.swift */,
+				086484F82B7DE1A100A9D03D /* Realm+Extension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -555,6 +558,7 @@
 				087E0A9E2B5621610022C1ED /* UserVO.swift in Sources */,
 				08F864832B4E6310004E9E06 /* UserUseCase.swift in Sources */,
 				08E050432B5906F40060F09E /* SearchView.swift in Sources */,
+				086484F92B7DE1A100A9D03D /* Realm+Extension.swift in Sources */,
 				08F8647F2B4E3A16004E9E06 /* RepositoryDAO.swift in Sources */,
 				086484D92B7DA63F00A9D03D /* RepoUseCaseDelegate.swift in Sources */,
 				08F864852B4E8A15004E9E06 /* RepoUseCase.swift in Sources */,

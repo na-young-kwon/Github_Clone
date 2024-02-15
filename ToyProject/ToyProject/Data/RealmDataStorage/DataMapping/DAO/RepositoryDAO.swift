@@ -7,10 +7,11 @@
 
 import Foundation
 import RealmSwift
+import Factory
 
 class RepositoryDAO: RepositoryDAODelegate {
     
-    private let realm = try! Realm()
+    @Injected(\.repositoryRealm) private var realm
     
     func create(_ repositoriesVO: [RepositoryVO]) {
         do {
