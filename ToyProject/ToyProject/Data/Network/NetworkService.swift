@@ -19,10 +19,7 @@ struct Constants {
     static let userURL = "https://api.github.com/users/"
 }
 
-class NetworkService {
-    static let shared = NetworkService()
-    private init() {}
-    
+class NetworkService: NetworkServiceDelegate {
     func fetchUser(forUser username: String) async throws -> UserDTO {
         guard let url = URL(string: "\(Constants.userURL)\(username)") else {
             throw NetworkError.badURL

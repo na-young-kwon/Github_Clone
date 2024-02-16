@@ -6,28 +6,25 @@
 //
 
 import Foundation
-
-protocol RepoDelegate {
-    func saveRepository(_ repositoriesVO: [RepositoryVO])
-    func readRepository(_ userID: Int) -> [RepositoryVO]
-    func fetchRepository(_ userName: String) async throws -> [RepositoryVO]
-    func deleteRepository(_ userID: Int)
-}
+import Factory
 
 struct RepoRepository: RepoDelegate {
     
+    @Injected(\.repositoryDAO) private var repositoryDAO
+    @Injected(\.networkService) private var networkService
+    
     func saveRepository(_ repositoriesVO: [RepositoryVO]) {
-        RepositoryDAO.shared.create(repositoriesVO)
+        repositoryDAO.create(repositoriesVO)
     }
     
     func readRepository(_ userID: Int) -> [RepositoryVO] {
-        RepositoryDAO.shared.read(userID)
+        repositoryDAO.read(userID)
     }
     
     func fetchRepository(_ userName: String) async throws -> [RepositoryVO] {
         var fetchedRepository = [RepositoryVO]()
         do {
-            let fetchRepository = try await NetworkService.shared.fetchRepositories(forUser: userName).map { dto in
+            let fetchRepository = try await networkService.fetchRepositories(forUser: userName).map { dto in
                 return RepositoryVO(
                     id: dto.id,
                     user: RepositoryVO.User(userID: dto.user.userID),
@@ -47,7 +44,7 @@ struct RepoRepository: RepoDelegate {
     }
     
     func deleteRepository(_ userID: Int) {
-        RepositoryDAO.shared.delete(userID)
+        repositoryDAO.delete(userID)
     }
     
 }

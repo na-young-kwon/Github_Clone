@@ -7,12 +7,11 @@
 
 import Foundation
 import RealmSwift
+import Factory
 
-class RepositoryDAO {
-    static let shared = RepositoryDAO()
-    private let realm = try! Realm()
+class RepositoryDAO: RepositoryDAODelegate {
     
-    private init() {}
+    @Injected(\.repositoryRealm) private var realm
     
     func create(_ repositoriesVO: [RepositoryVO]) {
         do {

@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import Factory
 
-struct UserUseCase {
-    private let userRepository: UserRepository = UserRepository()
+struct UserUseCase: UserUseCaseDelegate {
+    @Injected(\.userRepository) private var userRepository
     
     func fetchUser(_ userName: String) async throws -> UserVO? {
         try await userRepository.fetchUser(userName)

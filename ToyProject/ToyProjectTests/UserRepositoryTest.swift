@@ -1,13 +1,13 @@
 //
-//  ToyProjectTests.swift
+//  UserRepositoryTest.swift
 //  ToyProjectTests
 //
-//  Created by SNPLAB on 12/27/23.
+//  Created by nayoung kwon on 2/15/24.
 //
 
 import XCTest
 
-final class ToyProjectTests: XCTestCase {
+final class UserRepositoryTest: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -27,7 +27,7 @@ final class ToyProjectTests: XCTestCase {
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
-        measure {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
